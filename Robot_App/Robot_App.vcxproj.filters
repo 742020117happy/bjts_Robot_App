@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="通讯层（父类）">
+      <UniqueIdentifier>{253ef675-2ce6-4a19-9eb9-3fbf3732a850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）">
+      <UniqueIdentifier>{c6580657-a066-411e-950b-c3889a6b4600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂120控制">
+      <UniqueIdentifier>{fa94d8fe-68b8-4abc-a640-808c1a26e41e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂120监视">
+      <UniqueIdentifier>{0876cbb1-dde4-46e1-afcd-d25546726095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂121控制">
+      <UniqueIdentifier>{3a1da9d1-c91a-42cf-bafc-57fb8ecf8078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂121监视">
+      <UniqueIdentifier>{ac90f49b-c3ba-414b-91d8-e59ba8dd3f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\控制服务器">
+      <UniqueIdentifier>{7743d644-1f02-4c7d-8dad-886068db2902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\监视服务器">
+      <UniqueIdentifier>{bc43b42f-acbe-4c4b-983a-8163a5461185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\底盘控制">
+      <UniqueIdentifier>{8dc24cce-1bc8-43c3-825e-03e4ea818988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\快扫相机采集控制">
+      <UniqueIdentifier>{38998acc-505b-4018-a09d-6e5a36a10660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\精扫相机121采集控制">
+      <UniqueIdentifier>{6b34af92-3a89-4632-9d8e-7b9da6cb65b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\精扫相机120采集控制">
+      <UniqueIdentifier>{cdda2c4d-500a-41b7-ad4d-0eb269548827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\声纹采集控制">
+      <UniqueIdentifier>{1b5545f6-90ad-47dc-972a-eb87d638b3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\调试App">
+      <UniqueIdentifier>{d082b247-42c8-4901-a34a-e91123aa1cd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\一键巡检">
+      <UniqueIdentifier>{40c016cf-e7e2-4012-8173-08d54da5b3a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\面阵雷达遥控">
+      <UniqueIdentifier>{1262c127-ecf0-453d-8776-3d4a0025e830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\线阵雷达遥控">
+      <UniqueIdentifier>{4ab5547a-aed7-4bb8-8410-6e1f59318e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\节卡机械臂遥控">
+      <UniqueIdentifier>{0df1713f-3e54-4db8-a873-79b7581d9674}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\节卡机械臂监控">
+      <UniqueIdentifier>{b0211827-fbe2-4c84-a06f-2a8f6fc5b857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\采集机遥控">
+      <UniqueIdentifier>{7a954ff0-d265-4556-bb03-8c15d071974f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\巡检机器人服务接口">
+      <UniqueIdentifier>{7a4f541e-6db7-4a52-83eb-e9555489f53e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\通讯数据库">
+      <UniqueIdentifier>{4f81168f-4352-4e93-9103-430d06f4b44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\面阵雷达31控制">
+      <UniqueIdentifier>{10392102-c051-49ce-864c-767c61474f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\线扫雷达21控制">
+      <UniqueIdentifier>{9a891c68-c2ae-4c86-ba75-d5856d1d7f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\线扫雷达20控制">
+      <UniqueIdentifier>{8e094796-2f40-4ebb-885c-4a8ba75eaef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\前面阵雷达30控制">
+      <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="主函数">
+      <UniqueIdentifier>{b0348c6b-8b97-46c4-82a9-0d4a8a7fb379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="界面层（包含子类）">
+      <UniqueIdentifier>{e78ce0d1-5899-4529-bcab-7b44d19ddbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="界面层（包含子类）\主界面">
+      <UniqueIdentifier>{4004f5c2-85fb-48d8-9d96-55020a070807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="界面层（包含子类）\登录界面">
+      <UniqueIdentifier>{3a1dbf30-a4cc-40d0-85b4-2398a02b1ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）">
+      <UniqueIdentifier>{fc264588-08ea-4c8c-8d9d-a1312a2c2153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\面阵雷达工具包">
+      <UniqueIdentifier>{8f455557-2f90-4a7a-83d6-ea3c933fefbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\线阵雷达工具包">
+      <UniqueIdentifier>{37fa5277-14ea-4e2a-ac7a-5dba90db1831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包">
+      <UniqueIdentifier>{1a923833-7365-4d6e-87c9-e6084d9a70d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\面阵雷达客户端">
+      <UniqueIdentifier>{f4a39810-8381-4256-b784-73913fdca907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\线阵雷达客户端">
+      <UniqueIdentifier>{ee62e0d2-f77f-4fc6-837b-fe1b199b1ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\节卡机械臂客户端">
+      <UniqueIdentifier>{b3547871-e5cf-4510-80bc-0a58668d4d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\移动底盘客户端">
+      <UniqueIdentifier>{a57333a8-a1ce-4532-84b2-da577a81abb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\采集机客户端">
+      <UniqueIdentifier>{f8193713-7006-4fba-93f6-f1c5d9df7328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\巡检机器人服务端">
+      <UniqueIdentifier>{223ee454-d983-4db5-8529-f4c65bd2fb17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\数据缓存工具包">
+      <UniqueIdentifier>{b12834e2-ee88-4947-ba7f-b671f105282c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\画图控件工具包">
+      <UniqueIdentifier>{bced720b-682a-4b0a-bd50-70d5aa258bed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\画图控件工具包\雷达图">
+      <UniqueIdentifier>{464db279-66af-443b-b89a-d94fc82b0f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\画图控件工具包\三色灯">
+      <UniqueIdentifier>{8566751d-20ac-434b-9b39-6001420ad9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\图标资源工具包">
+      <UniqueIdentifier>{a2886b1e-d41a-456d-9f75-00824307bfcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\业务线程（实例化所有子类对象）">
+      <UniqueIdentifier>{18b7740f-f7be-4d80-bd07-4c9d953dabfd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Jaka_120_Remote.cpp">
+      <Filter>业务层（子类）\机械臂120控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_120_Monitor.cpp">
+      <Filter>业务层（子类）\机械臂120监视</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_121_Remote.cpp">
+      <Filter>业务层（子类）\机械臂121控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_121_Monitor.cpp">
+      <Filter>业务层（子类）\机械臂121监视</Filter>
+    </ClCompile>
+    <ClCompile Include="Radar_Plot.cpp">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
+    </ClCompile>
+    <ClCompile Include="Fr_Light.cpp">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
+    </ClCompile>
+    <ClCompile Include="Hypersen_30_Remote.cpp">
+      <Filter>业务层（子类）\前面阵雷达30控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Hypersen_31_Remote.cpp">
+      <Filter>业务层（子类）\面阵雷达31控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Meijidenki_20_Remote.cpp">
+      <Filter>业务层（子类）\线扫雷达20控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Meijidenki_21_Remote.cpp">
+      <Filter>业务层（子类）\线扫雷达21控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_App_Widget.cpp">
+      <Filter>界面层（包含子类）\主界面</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_Logon_Widget.cpp">
+      <Filter>界面层（包含子类）\登录界面</Filter>
+    </ClCompile>
+    <ClCompile Include="Local_Monitor.cpp">
+      <Filter>业务层（子类）\监视服务器</Filter>
+    </ClCompile>
+    <ClCompile Include="Local_Remote.cpp">
+      <Filter>业务层（子类）\控制服务器</Filter>
+    </ClCompile>
+    <ClCompile Include="RGV_Remote.cpp">
+      <Filter>业务层（子类）\底盘控制</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>主函数</Filter>
+    </ClCompile>
+    <ClCompile Include="lim.cpp">
+      <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </ClCompile>
+    <ClCompile Include="Prec_Scan_120_Remote.cpp">
+      <Filter>业务层（子类）\精扫相机120采集控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Fast_Scan_Remote .cpp">
+      <Filter>业务层（子类）\快扫相机采集控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Prec_Scan_121_Remote .cpp">
+      <Filter>业务层（子类）\精扫相机121采集控制</Filter>
+    </ClCompile>
+    <ClCompile Include="Hikvision_Remote.cpp">
+      <Filter>业务层（子类）\声纹采集控制</Filter>
+    </ClCompile>
+    <ClCompile Include="App_Control.cpp">
+      <Filter>业务层（子类）\调试App</Filter>
+    </ClCompile>
+    <ClCompile Include="Work_Remote.cpp">
+      <Filter>业务层（子类）\一键巡检</Filter>
+    </ClCompile>
+    <ClCompile Include="Hypersen_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\面阵雷达客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="Meijidenki_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\线阵雷达客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\节卡机械臂客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="RGV_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\移动底盘客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="Scan_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\采集机客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot_Server.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\巡检机器人服务端</Filter>
+    </ClCompile>
+    <ClCompile Include="State_DB.cpp">
+      <Filter>软件开发工具包（与父类组合）\数据缓存工具包</Filter>
+    </ClCompile>
+    <ClCompile Include="Meijidenki_Remote.cpp">
+      <Filter>通讯层（父类）\线阵雷达遥控</Filter>
+    </ClCompile>
+    <ClCompile Include="Hypersen_Remote.cpp">
+      <Filter>通讯层（父类）\面阵雷达遥控</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_Remote.cpp">
+      <Filter>通讯层（父类）\节卡机械臂遥控</Filter>
+    </ClCompile>
+    <ClCompile Include="Jaka_Monitor.cpp">
+      <Filter>通讯层（父类）\节卡机械臂监控</Filter>
+    </ClCompile>
+    <ClCompile Include="Scan_Remote.cpp">
+      <Filter>通讯层（父类）\采集机遥控</Filter>
+    </ClCompile>
+    <ClCompile Include="Server_Remote.cpp">
+      <Filter>通讯层（父类）\巡检机器人服务接口</Filter>
+    </ClCompile>
+    <ClCompile Include="Variable.cpp">
+      <Filter>通讯层（父类）\通讯数据库</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_120_Remote.h">
+      <Filter>业务层（子类）\机械臂120控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_120_Monitor.h">
+      <Filter>业务层（子类）\机械臂120监视</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_121_Remote.h">
+      <Filter>业务层（子类）\机械臂121控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_121_Monitor.h">
+      <Filter>业务层（子类）\机械臂121监视</Filter>
+    </QtMoc>
+    <QtMoc Include="Radar_Plot.h">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
+    </QtMoc>
+    <QtMoc Include="Fr_Light.h">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
+    </QtMoc>
+    <QtMoc Include="Hypersen_30_Remote.h">
+      <Filter>业务层（子类）\前面阵雷达30控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Hypersen_31_Remote.h">
+      <Filter>业务层（子类）\面阵雷达31控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Meijidenki_20_Remote.h">
+      <Filter>业务层（子类）\线扫雷达20控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Meijidenki_21_Remote.h">
+      <Filter>业务层（子类）\线扫雷达21控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Robot_App_Widget.h">
+      <Filter>界面层（包含子类）\主界面</Filter>
+    </QtMoc>
+    <QtMoc Include="Robot_Logon_Widget.h">
+      <Filter>界面层（包含子类）\登录界面</Filter>
+    </QtMoc>
+    <QtMoc Include="Local_Monitor.h">
+      <Filter>业务层（子类）\监视服务器</Filter>
+    </QtMoc>
+    <QtMoc Include="Local_Remote.h">
+      <Filter>业务层（子类）\控制服务器</Filter>
+    </QtMoc>
+    <QtMoc Include="RGV_Remote.h">
+      <Filter>业务层（子类）\底盘控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Prec_Scan_120_Remote.h">
+      <Filter>业务层（子类）\精扫相机120采集控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Fast_Scan_Remote.h">
+      <Filter>业务层（子类）\快扫相机采集控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Prec_Scan_121_Remote.h">
+      <Filter>业务层（子类）\精扫相机121采集控制</Filter>
+    </QtMoc>
+    <QtMoc Include="Hikvision_Remote.h">
+      <Filter>业务层（子类）\声纹采集控制</Filter>
+    </QtMoc>
+    <QtMoc Include="App_Control.h">
+      <Filter>业务层（子类）\调试App</Filter>
+    </QtMoc>
+    <QtMoc Include="Work_Remote.h">
+      <Filter>业务层（子类）\一键巡检</Filter>
+    </QtMoc>
+    <QtMoc Include="Hypersen_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\面阵雷达客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="Meijidenki_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\线阵雷达客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\节卡机械臂客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="RGV_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\移动底盘客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="Scan_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\采集机客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="Robot_Server.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\巡检机器人服务端</Filter>
+    </QtMoc>
+    <QtMoc Include="State_DB.h">
+      <Filter>软件开发工具包（与父类组合）\数据缓存工具包</Filter>
+    </QtMoc>
+    <QtMoc Include="Meijidenki_Remote.h">
+      <Filter>通讯层（父类）\线阵雷达遥控</Filter>
+    </QtMoc>
+    <QtMoc Include="Hypersen_Remote.h">
+      <Filter>通讯层（父类）\面阵雷达遥控</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_Remote.h">
+      <Filter>通讯层（父类）\节卡机械臂遥控</Filter>
+    </QtMoc>
+    <QtMoc Include="Jaka_Monitor.h">
+      <Filter>通讯层（父类）\节卡机械臂监控</Filter>
+    </QtMoc>
+    <QtMoc Include="Scan_Remote.h">
+      <Filter>通讯层（父类）\采集机遥控</Filter>
+    </QtMoc>
+    <QtMoc Include="Server_Remote.h">
+      <Filter>通讯层（父类）\巡检机器人服务接口</Filter>
+    </QtMoc>
+    <QtMoc Include="Variable.h">
+      <Filter>通讯层（父类）\通讯数据库</Filter>
+    </QtMoc>
+    <QtMoc Include="Thread.h">
+      <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Robot_App_Widget.ui">
+      <Filter>界面层（包含子类）\主界面</Filter>
+    </QtUic>
+    <QtUic Include="Robot_Logon_Widget.ui">
+      <Filter>界面层（包含子类）\登录界面</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HPS3D_DEFINE.h">
+      <Filter>软件开发工具包（与父类组合）\面阵雷达工具包</Filter>
+    </ClInclude>
+    <ClInclude Include="HPS3D_IF.h">
+      <Filter>软件开发工具包（与父类组合）\面阵雷达工具包</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipmentComm.h">
+      <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </ClInclude>
+    <ClInclude Include="lim.h">
+      <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </ClInclude>
+    <ClInclude Include="Public_Header.h">
+      <Filter>主函数</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Robot_App\stuqss.css">
+      <Filter>界面层（包含子类）\主界面</Filter>
+    </None>
+    <None Include="Images\Bjtds.aps">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </None>
+    <None Include="..\x64\Release\HPS3D_SDK.dll">
+      <Filter>软件开发工具包（与父类组合）\面阵雷达工具包</Filter>
+    </None>
+    <None Include="..\x64\Release\EquipmentComm.dll">
+      <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Images\Bjtds.rc">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\icon.ico">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </Image>
+    <Image Include="Images\LOGO.png">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </Image>
+    <Image Include="Images\LOGO2.png">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </Image>
+    <Image Include="Images\LogonWidget.jpg">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </Image>
+    <Image Include="Images\Robot.png">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Images\Logo.qrc">
+      <Filter>软件开发工具包（与父类组合）\图标资源工具包</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\HPS3D_SDK.lib">
+      <Filter>软件开发工具包（与父类组合）\面阵雷达工具包</Filter>
+    </Library>
+    <Library Include="..\lib\EquipmentComm.lib">
+      <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </Library>
+  </ItemGroup>
+</Project>

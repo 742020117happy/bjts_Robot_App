@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E9C6C43B-C52C-47A0-8329-BCB92C89BEB6}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>5.12.1_msvc2015_64</QtInstall>
+    <QtModules>core;xml;sql;opengl;network;gui;axserver;axcontainer;svg;testlib;help;xmlpatterns;multimedia;uitools;widgets;location;nfc;qml;bluetooth;positioning;serialport;printsupport;sensors;winextras;quickwidgets;quick;concurrent;multimediawidgets;3dcore;3danimation;3dextras;3dinput;3dlogic;3drender;3dquick;dbus;gamepad;openglextensions;qmltest;quickcontrols2;scxml;serialbus;webenginewidgets;charts;datavisualization;networkauth;texttospeech;remoteobjects;purchasing;virtualkeyboard;x11extras;waylandcompositor;ivicore;geniviextras;coap;knx;mqtt;opcua</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>5.12.1_msvc2015_64</QtInstall>
+    <QtModules>core;gui;network;sql;serialbus;widgets;printsupport;charts</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(OutDir);$(FxCopDir);$(SolutionDir)x64\Release;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MSBuildProjectDirectory);$(SolutionDir)eigen-3.4.0</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;$(SolutionDir)lib</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);$(SolutionDir)eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(Qt_DEFINES_);_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(Qt_LIBS_);EquipmentComm.lib;HPS3D_SDK.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Xdcmake>
+      <AdditionalDocumentFile>%(AdditionalDocumentFile)</AdditionalDocumentFile>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="App_Control.cpp" />
+    <ClCompile Include="Thread.cpp" />
+    <ClCompile Include="Variable.cpp" />
+    <ClCompile Include="Server_Remote.cpp" />
+    <ClCompile Include="Scan_Remote.cpp" />
+    <ClCompile Include="Jaka_Monitor.cpp" />
+    <ClCompile Include="Jaka_Remote.cpp" />
+    <ClCompile Include="Hypersen_Remote.cpp" />
+    <ClCompile Include="Meijidenki_Remote.cpp" />
+    <ClCompile Include="Fast_Scan_Remote .cpp" />
+    <ClCompile Include="Fr_Light.cpp" />
+    <ClCompile Include="Hikvision_Remote.cpp" />
+    <ClCompile Include="Hypersen_30_Remote.cpp" />
+    <ClCompile Include="Hypersen_31_Remote.cpp" />
+    <ClCompile Include="Hypersen_Client.cpp" />
+    <ClCompile Include="Jaka_120_Monitor.cpp" />
+    <ClCompile Include="Jaka_120_Remote.cpp" />
+    <ClCompile Include="Jaka_121_Monitor.cpp" />
+    <ClCompile Include="Jaka_121_Remote.cpp" />
+    <ClCompile Include="Jaka_Client.cpp" />
+    <ClCompile Include="lim.cpp" />
+    <ClCompile Include="Local_Monitor.cpp" />
+    <ClCompile Include="Local_Remote.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Meijidenki_20_Remote.cpp" />
+    <ClCompile Include="Meijidenki_21_Remote.cpp" />
+    <ClCompile Include="Meijidenki_Client.cpp" />
+    <ClCompile Include="Prec_Scan_120_Remote.cpp" />
+    <ClCompile Include="Prec_Scan_121_Remote .cpp" />
+    <ClCompile Include="Radar_Plot.cpp" />
+    <ClCompile Include="RGV_Client.cpp" />
+    <ClCompile Include="RGV_Remote.cpp" />
+    <ClCompile Include="Robot_App_Widget.cpp" />
+    <ClCompile Include="Robot_Logon_Widget.cpp" />
+    <ClCompile Include="Robot_Server.cpp" />
+    <ClCompile Include="Scan_Client.cpp" />
+    <ClCompile Include="State_DB.cpp" />
+    <ClCompile Include="Work_Remote.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Hypersen_Client.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_Client.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Meijidenki_Client.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="RGV_Client.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Robot_Server.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Scan_Client.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_120_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_120_Monitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_121_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Jaka_121_Monitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Fr_Light.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Radar_Plot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Hypersen_30_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Hypersen_31_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Meijidenki_20_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Meijidenki_21_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Robot_App_Widget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Robot_App_Widget.ui" />
+    <QtUic Include="Robot_Logon_Widget.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="State_DB.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Robot_Logon_Widget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Local_Monitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Local_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Public_Header.h" />
+    <QtMoc Include="Work_Remote.h" />
+    <QtMoc Include="App_Control.h" />
+    <QtMoc Include="Meijidenki_Remote.h" />
+    <QtMoc Include="Hypersen_Remote.h" />
+    <QtMoc Include="Jaka_Remote.h" />
+    <QtMoc Include="Jaka_Monitor.h" />
+    <QtMoc Include="Scan_Remote.h" />
+    <QtMoc Include="Server_Remote.h" />
+    <QtMoc Include="Variable.h" />
+    <QtMoc Include="Thread.h" />
+    <ClInclude Include="EquipmentComm.h" />
+    <QtMoc Include="Prec_Scan_121_Remote.h" />
+    <QtMoc Include="Fast_Scan_Remote.h" />
+    <QtMoc Include="Hikvision_Remote.h" />
+    <ClInclude Include="HPS3D_DEFINE.h" />
+    <ClInclude Include="HPS3D_IF.h" />
+    <ClInclude Include="lim.h" />
+    <QtMoc Include="Prec_Scan_120_Remote.h" />
+    <QtMoc Include="RGV_Remote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Release\EquipmentComm.dll" />
+    <None Include="..\x64\Release\HPS3D_SDK.dll" />
+    <None Include="Images\Bjtds.aps" />
+    <None Include="Robot_App\stuqss.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Images\Bjtds.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\icon.ico" />
+    <Image Include="Images\LOGO.png" />
+    <Image Include="Images\LOGO2.png" />
+    <Image Include="Images\LogonWidget.jpg" />
+    <Image Include="Images\Robot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Images\Logo.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\EquipmentComm.lib" />
+    <Library Include="..\lib\HPS3D_SDK.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
