@@ -29,7 +29,6 @@ void c_State_DB::Init()
 	m_State_DB.insert("Hypersen_31_State", object);
 	m_State_DB.insert("Meijidenki_20_State", object);
 	m_State_DB.insert("Meijidenki_21_State", object);
-	m_State_DB.insert("Hikvision_State", object);
 	m_State_DB.insert("Fast_Scan_State", object);
 	m_State_DB.insert("Prec_Scan_120_State", object);
 	m_State_DB.insert("Prec_Scan_121_State", object);
@@ -88,10 +87,6 @@ void c_State_DB::Write_Meijidenki_21_State(QJsonObject db)
 {
 	m_State_DB.insert("Meijidenki_21_State", db);
 	emit Meijidenki_21_Read_Ready();
-}
-void c_State_DB::Write_Hikvision_State(QJsonObject db)
-{
-	m_State_DB.insert("Hikvision_State", db);
 }
 void c_State_DB::Write_Fast_Scan_State(QJsonObject db)
 {

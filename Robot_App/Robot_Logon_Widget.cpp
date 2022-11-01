@@ -17,6 +17,9 @@ c_Robot_Logon_Widget::c_Robot_Logon_Widget(QWidget *parent) : QWidget(parent)
 	QObject::connect(ui->pB_Exit, &QPushButton::clicked, this, &c_Robot_Logon_Widget::close);
 	//显示界面
 	QObject::connect(this, &c_Robot_Logon_Widget::Show_Robot_App, Robot_App_Widget, &c_Robot_App_Widget::showMaximized);
+	//加载样式表
+	keyPressEvent(c_Variable::Key_F6);
+	this->show();
 }
 //析构函数
 c_Robot_Logon_Widget::~c_Robot_Logon_Widget()
@@ -50,5 +53,11 @@ void c_Robot_Logon_Widget::keyPressEvent(QKeyEvent *event)
 {
 	if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return){
 		emit ui->pB_OK->click();
+	}
+	if (event->key() == Qt::Key_F6){
+		QFile file(QDir::currentPath() + "/Robot_App/stuqss.css");
+		file.open(QIODevice::ReadOnly);
+		QString strQss = file.readAll();
+		this->setStyleSheet(strQss);
 	}
 }

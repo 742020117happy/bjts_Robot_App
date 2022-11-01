@@ -42,6 +42,8 @@ public:
 	void State_17_Loop();//巡检完成
 	void State_18_Loop();//正向障碍停车
 	void State_19_Loop();//反向障碍停车
+	void State_20_Loop();//自动充电解除
+	void State_21_Loop();//风刀打开
 signals:
 	void Status(QString state);
 	void Write_Work_Remote_State(QJsonObject db);
@@ -56,8 +58,11 @@ signals:
 	void Fuction_15();//机器人开机（线圈，工控机立即复位）
 	void Fuction_19_Set();//上电（线圈，点控）
 	void Fuction_20();//自动充电定位
+	void Fuction_22_Set();//风刀电源开
+	void Fuction_22_Reset();//风刀电源关
 	void Fuction_24(int position);//轴1移动（线圈，工控机立即复位）
 	void Fuction_25(int position);//轴2移动（线圈，工控机立即复位）
+	void Fuction_27();//自动充电结束
 	void Date_0(int speed);//左升降台速度
 	void Date_1(int position);//左升降台位置
 	void Date_2(int speed);//右升降台速度
@@ -106,6 +111,7 @@ signals:
 	void is_State_24();//正向面阵雷达停车解除
 	void is_State_25();//反向面阵雷达停车
 	void is_State_26();//反向面阵雷达停车解除
+	void is_State_27();//自动充电解除
 
 private:
 	QJsonObject m_Work_Remote_State;
@@ -192,6 +198,7 @@ private:
 	bool m_State_28 = false;//反向面阵雷达停车2
 	bool m_State_29 = false;//正向障碍停车中
 	bool m_State_30 = false;//反向障碍停车中
+	bool m_State_31 = false;//自动在充电状态
 };
 
 

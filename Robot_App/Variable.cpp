@@ -4,6 +4,7 @@
 **Function:全局变量声明
 *************************************************************************************************************************************************/
 QJsonObject c_Variable::g_Communicate_DB;
+QKeyEvent  *c_Variable::Key_F6;
 /*************************************************************************************************************************************************
 **Function:高低位转浮点型
 *************************************************************************************************************************************************/
@@ -29,18 +30,18 @@ QString c_Variable::TCP_Status(int State)
 {
 	switch (State)
 	{
-	case 0:return " 连接被对等方拒绝（或超时）";
-	case 1:return " 远程主机关闭了连接。请注意，客户端套接字（即此套接字）将在发送远程关闭通知后关闭";
-	case 2:return " 找不到主机地址";
-	case 3:return " 套接字操作失败，因为应用程序缺少所需的权限";
-	case 4:return " 本地系统资源不足（例如，套接字过多）";
-	case 5:return " 套接字操作超时";
-	case 6:return " 数据报大于操作系统的限制（可低至8192字节）";
-	case 7:return " 网络发生错误（例如，网络电缆意外插拔）";
-	case 8:return " 为QAbstractSocket:：bind（）指定的地址已在使用中，并被设置为独占";
-	case 9:return " 为QAbstractSocket:：bind（）指定的地址不属于主机";
-	case 10:return " 本地操作系统不支持请求的套接字操作（例如，缺少IPv6支持）";
-	case 11:return " 仅由QAbstractSocketEngine使用，上次尝试的操作尚未完成（仍在后台进行）";
+	case 0:return "连接被对等方拒绝（或超时）";
+	case 1:return "远程主机关闭了连接。请注意，客户端套接字（即此套接字）将在发送远程关闭通知后关闭";
+	case 2:return "找不到主机地址";
+	case 3:return "套接字操作失败，因为应用程序缺少所需的权限";
+	case 4:return "本地系统资源不足（例如，套接字过多）";
+	case 5:return "套接字操作超时";
+	case 6:return "数据报大于操作系统的限制（可低至8192字节）";
+	case 7:return "网络发生错误（例如，网络电缆意外插拔）";
+	case 8:return "为QAbstractSocket:：bind（）指定的地址已在使用中，并被设置为独占";
+	case 9:return "为QAbstractSocket:：bind（）指定的地址不属于主机";
+	case 10:return "本地操作系统不支持请求的套接字操作（例如，缺少IPv6支持）";
+	case 11:return "仅由QAbstractSocketEngine使用，上次尝试的操作尚未完成（仍在后台进行）";
 	case 12:return "套接字正在使用代理，代理需要身份验证";
 	case 13:return "SSL/TLS握手失败，因此连接已关闭（仅在QSslSocket中使用）";
 	case 14:return "无法联系代理服务器，因为与该服务器的连接被拒绝";
@@ -70,9 +71,9 @@ QString c_Variable::Modbus_Status(int State)
 	case 0:return "已连接";
 	case 1:return "读取操作期间发生错误";
 	case 2:return "写入操作期间发生错误";
-	case 3:return ":尝试打开后端时出错";
-	case 4:return ":尝试设置配置参数时出错";
-	case 5:return ":I/O期间发生超时。I/O操作未在给定的时间范围内完成";
+	case 3:return "尝试打开后端时出错";
+	case 4:return "尝试设置配置参数时出错";
+	case 5:return "I/O期间发生超时。I/O操作未在给定的时间范围内完成";
 	case 6:return "发生Modbus特定协议错误";
 	case 7:return "由于设备断开连接，回复被中止";
 	case 8:return "发生未知错误";
@@ -111,6 +112,7 @@ c_Variable::c_Variable(QObject *parent) : QObject(parent)
 	Communicate_DB.close();
 	QJsonDocument DB_Doc(QJsonDocument::fromJson(Data));
 	g_Communicate_DB = DB_Doc.object();
+	Key_F6 = new QKeyEvent(QEvent::KeyPress, Qt::Key_F6, Qt::NoModifier);
 }
 /*************************************************************************************************************************************************
 **Function:析构函数(修改通讯参数本地文件)
@@ -122,4 +124,5 @@ c_Variable::~c_Variable()
 	DB_Doc.setObject(g_Communicate_DB);
 	Communicate_DB.write(DB_Doc.toJson());
 	Communicate_DB.close();
+	delete Key_F6;
 }

@@ -64,7 +64,7 @@ void c_Server_Remote::Read_Json_Done(QJsonObject json)
 	m_Cmd_Name = json.value("Cmd_Name").toString();
 	m_Value = json.value("Value").toBool();
 	if (m_Cmd_Name == "Read_Ready" && m_Value) { m_Robot_Server->Write_Json(m_State_DB); }
-	if (m_Cmd_Name == "Work_Start") { emit Start_Cmd(json); qDebug() << "服务"<<json; }
+	if (m_Cmd_Name == "Work_Start") { emit Start_Cmd(json);  m_Robot_Server->Write_Json(json);}
 	if (m_Cmd_Name == "00000" && m_Value) { emit Fuction_0_Set(); }
 	if (m_Cmd_Name == "00000" && !m_Value) { emit Fuction_0_Reset(); }
 	if (m_Cmd_Name == "00007" && m_Value) { emit Fuction_7();}

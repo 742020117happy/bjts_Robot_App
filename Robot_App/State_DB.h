@@ -35,7 +35,6 @@ public:
 	void Write_Hypersen_31_State(QJsonObject db);
 	void Write_Meijidenki_20_State(QJsonObject db);
 	void Write_Meijidenki_21_State(QJsonObject db);
-	void Write_Hikvision_State(QJsonObject db);
 	void Write_Fast_Scan_State(QJsonObject db);
 	void Write_Prec_Scan_120_State(QJsonObject db);
 	void Write_Prec_Scan_121_State(QJsonObject db);

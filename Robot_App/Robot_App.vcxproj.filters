@@ -7,18 +7,6 @@
     <Filter Include="业务层（子类）">
       <UniqueIdentifier>{c6580657-a066-411e-950b-c3889a6b4600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="业务层（子类）\机械臂120控制">
-      <UniqueIdentifier>{fa94d8fe-68b8-4abc-a640-808c1a26e41e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\机械臂120监视">
-      <UniqueIdentifier>{0876cbb1-dde4-46e1-afcd-d25546726095}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\机械臂121控制">
-      <UniqueIdentifier>{3a1da9d1-c91a-42cf-bafc-57fb8ecf8078}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\机械臂121监视">
-      <UniqueIdentifier>{ac90f49b-c3ba-414b-91d8-e59ba8dd3f22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="业务层（子类）\控制服务器">
       <UniqueIdentifier>{7743d644-1f02-4c7d-8dad-886068db2902}</UniqueIdentifier>
     </Filter>
@@ -27,21 +15,6 @@
     </Filter>
     <Filter Include="业务层（子类）\底盘控制">
       <UniqueIdentifier>{8dc24cce-1bc8-43c3-825e-03e4ea818988}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\快扫相机采集控制">
-      <UniqueIdentifier>{38998acc-505b-4018-a09d-6e5a36a10660}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\精扫相机121采集控制">
-      <UniqueIdentifier>{6b34af92-3a89-4632-9d8e-7b9da6cb65b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\精扫相机120采集控制">
-      <UniqueIdentifier>{cdda2c4d-500a-41b7-ad4d-0eb269548827}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\声纹采集控制">
-      <UniqueIdentifier>{1b5545f6-90ad-47dc-972a-eb87d638b3dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\调试App">
-      <UniqueIdentifier>{d082b247-42c8-4901-a34a-e91123aa1cd0}</UniqueIdentifier>
     </Filter>
     <Filter Include="业务层（子类）\一键巡检">
       <UniqueIdentifier>{40c016cf-e7e2-4012-8173-08d54da5b3a1}</UniqueIdentifier>
@@ -66,18 +39,6 @@
     </Filter>
     <Filter Include="通讯层（父类）\通讯数据库">
       <UniqueIdentifier>{4f81168f-4352-4e93-9103-430d06f4b44a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\面阵雷达31控制">
-      <UniqueIdentifier>{10392102-c051-49ce-864c-767c61474f8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\线扫雷达21控制">
-      <UniqueIdentifier>{9a891c68-c2ae-4c86-ba75-d5856d1d7f30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\线扫雷达20控制">
-      <UniqueIdentifier>{8e094796-2f40-4ebb-885c-4a8ba75eaef7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\前面阵雷达30控制">
-      <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="主函数">
       <UniqueIdentifier>{b0348c6b-8b97-46c4-82a9-0d4a8a7fb379}</UniqueIdentifier>
@@ -139,19 +100,148 @@
     <Filter Include="业务层（子类）\业务线程（实例化所有子类对象）">
       <UniqueIdentifier>{18b7740f-f7be-4d80-bd07-4c9d953dabfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="业务层（子类）\左面阵雷达">
+      <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右面阵雷达">
+      <UniqueIdentifier>{10392102-c051-49ce-864c-767c61474f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\快扫相机">
+      <UniqueIdentifier>{38998acc-505b-4018-a09d-6e5a36a10660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右精扫相机">
+      <UniqueIdentifier>{6b34af92-3a89-4632-9d8e-7b9da6cb65b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\左精扫相机">
+      <UniqueIdentifier>{cdda2c4d-500a-41b7-ad4d-0eb269548827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右机械臂控制">
+      <UniqueIdentifier>{3a1da9d1-c91a-42cf-bafc-57fb8ecf8078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右机械臂监视">
+      <UniqueIdentifier>{ac90f49b-c3ba-414b-91d8-e59ba8dd3f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\左机械臂控制">
+      <UniqueIdentifier>{fa94d8fe-68b8-4abc-a640-808c1a26e41e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\左机械臂监视">
+      <UniqueIdentifier>{0876cbb1-dde4-46e1-afcd-d25546726095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\左线扫雷达">
+      <UniqueIdentifier>{8e094796-2f40-4ebb-885c-4a8ba75eaef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右线扫雷达">
+      <UniqueIdentifier>{9a891c68-c2ae-4c86-ba75-d5856d1d7f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\调试平板电脑">
+      <UniqueIdentifier>{d082b247-42c8-4901-a34a-e91123aa1cd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包">
+      <UniqueIdentifier>{1e03cff7-6726-4df3-bc8e-1dc08514d80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\RTSP 通讯库">
+      <UniqueIdentifier>{5763d7d9-0b8d-4b5b-879c-fe8dbb1caefb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库">
+      <UniqueIdentifier>{814fcc9c-8f08-4979-92a7-4eff148853e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\模拟能力集">
+      <UniqueIdentifier>{1b7a115b-3338-4c42-9237-cf1f09c5ac2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\软解码库">
+      <UniqueIdentifier>{7b5f99f6-5c63-4970-b8bd-9574d18b164e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\网络通讯库">
+      <UniqueIdentifier>{47f92dd3-358d-4a34-bc3b-45afc0593c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\语音对讲库">
+      <UniqueIdentifier>{eb679622-4f89-403b-bae8-cf25dd6c7b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\帧分析库">
+      <UniqueIdentifier>{7c9fac97-5702-4418-bc4a-5d09bd700e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\转封装库">
+      <UniqueIdentifier>{63290370-ebff-451c-8948-b6762819ce4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\字符转码库">
+      <UniqueIdentifier>{ee2fb62e-08e6-430e-a93f-6a3290dfe20d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库">
+      <UniqueIdentifier>{6c565a46-431c-44ca-a550-3c89eabcdc8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\GPU硬解码库">
+      <UniqueIdentifier>{8b189d35-537d-462e-87b8-b0585a112c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\测温信息抓图库">
+      <UniqueIdentifier>{230053ea-efbb-4a10-bf5b-572602807b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\核心库文件">
+      <UniqueIdentifier>{aa5be67f-08fb-418c-8359-aeca913dd983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\视频渲染库">
+      <UniqueIdentifier>{fe2b5a33-0ea0-4516-8b64-fb96ab6d993c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\图像增强库（只支持win32）">
+      <UniqueIdentifier>{aa2b31dd-f8fa-42b8-9216-2ad519bfc2bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\小鹰眼库">
+      <UniqueIdentifier>{cfbc2017-23be-4e90-9778-513c3c8be8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\音频渲染库">
+      <UniqueIdentifier>{1d07639e-8666-44d9-90f4-9e053168c91f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\鱼眼和鹰眼依赖库">
+      <UniqueIdentifier>{c595d744-1bf0-4b51-997e-c277360b54f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\播放库\鱼眼库">
+      <UniqueIdentifier>{6e8bfc9e-a8a3-4058-925b-8dd302f7a65e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\核心组件">
+      <UniqueIdentifier>{9d0c792d-55a2-4462-b2f6-7146fad13f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\外部接口">
+      <UniqueIdentifier>{c4c5d273-4db2-4e17-87ce-dba95d9f1d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\报警组件">
+      <UniqueIdentifier>{073d2128-407d-4f9e-8176-07241a561ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\回放组件">
+      <UniqueIdentifier>{9a007689-fc83-48d2-9fac-923c6a4e0f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\设备配置核心组件">
+      <UniqueIdentifier>{14389878-7ecb-43a3-bfa1-0b754e7d9c8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\维护管理配置组件">
+      <UniqueIdentifier>{39d35b59-08eb-4603-bc2e-0b8c75ccd543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\显示组件">
+      <UniqueIdentifier>{94452389-14f7-4a0e-9afd-4541748bd034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\行业应用管理配置组件">
+      <UniqueIdentifier>{53ec30a2-7be6-46ad-9dc9-8f94387a923f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\语音组件">
+      <UniqueIdentifier>{61201fd3-2d9f-4f9d-a61a-40244e8bb8e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\海康相机工具包\组件库\预览组件">
+      <UniqueIdentifier>{a7465cde-868d-4cef-a19a-4346d5f985b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端">
+      <UniqueIdentifier>{7af53014-e516-4bb6-ad4c-215c8d3fcc68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Jaka_120_Remote.cpp">
-      <Filter>业务层（子类）\机械臂120控制</Filter>
+      <Filter>业务层（子类）\左机械臂控制</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_120_Monitor.cpp">
-      <Filter>业务层（子类）\机械臂120监视</Filter>
+      <Filter>业务层（子类）\左机械臂监视</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_121_Remote.cpp">
-      <Filter>业务层（子类）\机械臂121控制</Filter>
+      <Filter>业务层（子类）\右机械臂控制</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_121_Monitor.cpp">
-      <Filter>业务层（子类）\机械臂121监视</Filter>
+      <Filter>业务层（子类）\右机械臂监视</Filter>
     </ClCompile>
     <ClCompile Include="Radar_Plot.cpp">
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
@@ -160,16 +250,16 @@
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
     </ClCompile>
     <ClCompile Include="Hypersen_30_Remote.cpp">
-      <Filter>业务层（子类）\前面阵雷达30控制</Filter>
+      <Filter>业务层（子类）\左面阵雷达</Filter>
     </ClCompile>
     <ClCompile Include="Hypersen_31_Remote.cpp">
-      <Filter>业务层（子类）\面阵雷达31控制</Filter>
+      <Filter>业务层（子类）\右面阵雷达</Filter>
     </ClCompile>
     <ClCompile Include="Meijidenki_20_Remote.cpp">
-      <Filter>业务层（子类）\线扫雷达20控制</Filter>
+      <Filter>业务层（子类）\左线扫雷达</Filter>
     </ClCompile>
     <ClCompile Include="Meijidenki_21_Remote.cpp">
-      <Filter>业务层（子类）\线扫雷达21控制</Filter>
+      <Filter>业务层（子类）\右线扫雷达</Filter>
     </ClCompile>
     <ClCompile Include="Robot_App_Widget.cpp">
       <Filter>界面层（包含子类）\主界面</Filter>
@@ -193,19 +283,16 @@
       <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
     </ClCompile>
     <ClCompile Include="Prec_Scan_120_Remote.cpp">
-      <Filter>业务层（子类）\精扫相机120采集控制</Filter>
+      <Filter>业务层（子类）\左精扫相机</Filter>
     </ClCompile>
     <ClCompile Include="Fast_Scan_Remote .cpp">
-      <Filter>业务层（子类）\快扫相机采集控制</Filter>
+      <Filter>业务层（子类）\快扫相机</Filter>
     </ClCompile>
     <ClCompile Include="Prec_Scan_121_Remote .cpp">
-      <Filter>业务层（子类）\精扫相机121采集控制</Filter>
-    </ClCompile>
-    <ClCompile Include="Hikvision_Remote.cpp">
-      <Filter>业务层（子类）\声纹采集控制</Filter>
+      <Filter>业务层（子类）\右精扫相机</Filter>
     </ClCompile>
     <ClCompile Include="App_Control.cpp">
-      <Filter>业务层（子类）\调试App</Filter>
+      <Filter>业务层（子类）\调试平板电脑</Filter>
     </ClCompile>
     <ClCompile Include="Work_Remote.cpp">
       <Filter>业务层（子类）\一键巡检</Filter>
@@ -255,19 +342,22 @@
     <ClCompile Include="Thread.cpp">
       <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
     </ClCompile>
+    <ClCompile Include="Hikvision_Client.cpp">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Jaka_120_Remote.h">
-      <Filter>业务层（子类）\机械臂120控制</Filter>
+      <Filter>业务层（子类）\左机械臂控制</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_120_Monitor.h">
-      <Filter>业务层（子类）\机械臂120监视</Filter>
+      <Filter>业务层（子类）\左机械臂监视</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_121_Remote.h">
-      <Filter>业务层（子类）\机械臂121控制</Filter>
+      <Filter>业务层（子类）\右机械臂控制</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_121_Monitor.h">
-      <Filter>业务层（子类）\机械臂121监视</Filter>
+      <Filter>业务层（子类）\右机械臂监视</Filter>
     </QtMoc>
     <QtMoc Include="Radar_Plot.h">
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
@@ -276,16 +366,16 @@
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
     </QtMoc>
     <QtMoc Include="Hypersen_30_Remote.h">
-      <Filter>业务层（子类）\前面阵雷达30控制</Filter>
+      <Filter>业务层（子类）\左面阵雷达</Filter>
     </QtMoc>
     <QtMoc Include="Hypersen_31_Remote.h">
-      <Filter>业务层（子类）\面阵雷达31控制</Filter>
+      <Filter>业务层（子类）\右面阵雷达</Filter>
     </QtMoc>
     <QtMoc Include="Meijidenki_20_Remote.h">
-      <Filter>业务层（子类）\线扫雷达20控制</Filter>
+      <Filter>业务层（子类）\左线扫雷达</Filter>
     </QtMoc>
     <QtMoc Include="Meijidenki_21_Remote.h">
-      <Filter>业务层（子类）\线扫雷达21控制</Filter>
+      <Filter>业务层（子类）\右线扫雷达</Filter>
     </QtMoc>
     <QtMoc Include="Robot_App_Widget.h">
       <Filter>界面层（包含子类）\主界面</Filter>
@@ -303,19 +393,16 @@
       <Filter>业务层（子类）\底盘控制</Filter>
     </QtMoc>
     <QtMoc Include="Prec_Scan_120_Remote.h">
-      <Filter>业务层（子类）\精扫相机120采集控制</Filter>
+      <Filter>业务层（子类）\左精扫相机</Filter>
     </QtMoc>
     <QtMoc Include="Fast_Scan_Remote.h">
-      <Filter>业务层（子类）\快扫相机采集控制</Filter>
+      <Filter>业务层（子类）\快扫相机</Filter>
     </QtMoc>
     <QtMoc Include="Prec_Scan_121_Remote.h">
-      <Filter>业务层（子类）\精扫相机121采集控制</Filter>
-    </QtMoc>
-    <QtMoc Include="Hikvision_Remote.h">
-      <Filter>业务层（子类）\声纹采集控制</Filter>
+      <Filter>业务层（子类）\右精扫相机</Filter>
     </QtMoc>
     <QtMoc Include="App_Control.h">
-      <Filter>业务层（子类）\调试App</Filter>
+      <Filter>业务层（子类）\调试平板电脑</Filter>
     </QtMoc>
     <QtMoc Include="Work_Remote.h">
       <Filter>业务层（子类）\一键巡检</Filter>
@@ -365,6 +452,9 @@
     <QtMoc Include="Thread.h">
       <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
     </QtMoc>
+    <QtMoc Include="Hikvision_Client.h">
+      <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Robot_App_Widget.ui">
@@ -390,6 +480,21 @@
     <ClInclude Include="Public_Header.h">
       <Filter>主函数</Filter>
     </ClInclude>
+    <ClInclude Include="PlayM4.h">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\核心库文件</Filter>
+    </ClInclude>
+    <ClInclude Include="plaympeg4.h">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\软解码库</Filter>
+    </ClInclude>
+    <ClInclude Include="HCNetSDK.h">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\外部接口</Filter>
+    </ClInclude>
+    <ClInclude Include="DataType.h">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包</Filter>
+    </ClInclude>
+    <ClInclude Include="DecodeCardSdk.h">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Robot_App\stuqss.css">
@@ -403,6 +508,72 @@
     </None>
     <None Include="..\x64\Release\EquipmentComm.dll">
       <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </None>
+    <None Include="..\x64\Release\StreamTransClient.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\RTSP 通讯库</Filter>
+    </None>
+    <None Include="..\x64\Release\YUVProcess.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\测温信息抓图库</Filter>
+    </None>
+    <None Include="..\x64\Release\PlayCtrl.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\核心库文件</Filter>
+    </None>
+    <None Include="..\x64\Release\SuperRender.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\视频渲染库</Filter>
+    </None>
+    <None Include="..\x64\Release\AudioRender.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\音频渲染库</Filter>
+    </None>
+    <None Include="..\x64\Release\OpenAL32.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\音频渲染库</Filter>
+    </None>
+    <None Include="..\x64\Release\MP_Render.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\鱼眼库</Filter>
+    </None>
+    <None Include="..\x64\Release\LocalXml.zip">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\模拟能力集</Filter>
+    </None>
+    <None Include="..\x64\Release\HCCore.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\核心组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCNetSDK.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\外部接口</Filter>
+    </None>
+    <None Include="..\x64\Release\AudioIntercom.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\语音对讲库</Filter>
+    </None>
+    <None Include="..\x64\Release\AnalyzeData.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\帧分析库</Filter>
+    </None>
+    <None Include="..\x64\Release\SystemTransform.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\转封装库</Filter>
+    </None>
+    <None Include="..\x64\Release\libiconv2.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\字符转码库</Filter>
+    </None>
+    <None Include="..\x64\Release\HCAlarm.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\报警组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCPlayBack.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\回放组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCCoreDevCfg.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\设备配置核心组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCGeneralCfgMgr.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\维护管理配置组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCDisplay.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\显示组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCIndustry.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\行业应用管理配置组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCVoiceTalk.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\语音组件</Filter>
+    </None>
+    <None Include="..\x64\Release\HCPreview.dll">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\预览组件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -438,6 +609,24 @@
     </Library>
     <Library Include="..\lib\EquipmentComm.lib">
       <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
+    </Library>
+    <Library Include="..\lib\PlayCtrl.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\播放库\核心库文件</Filter>
+    </Library>
+    <Library Include="..\lib\HCCore.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\核心组件</Filter>
+    </Library>
+    <Library Include="..\lib\HCNetSDK.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\网络通讯库\外部接口</Filter>
+    </Library>
+    <Library Include="..\lib\HCAlarm.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\报警组件</Filter>
+    </Library>
+    <Library Include="..\lib\HCGeneralCfgMgr.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\维护管理配置组件</Filter>
+    </Library>
+    <Library Include="..\lib\HCPreview.lib">
+      <Filter>软件开发工具包（与父类组合）\海康相机工具包\组件库\预览组件</Filter>
     </Library>
   </ItemGroup>
 </Project>

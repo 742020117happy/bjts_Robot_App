@@ -28,7 +28,8 @@ void c_Prec_Scan_120_Remote::Run()
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Read_String_Done, this, &c_Prec_Scan_120_Remote::Tran);
 	//QObject::connect(this, &c_Scan_Remote::Read_String_Done, m_Prec_Scan_Tran, &c_Robot_Server::Write_String);
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
-	m_Prec_Scan_Tran->Connect_Device(ip, 7001);
+	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_120_Tran_Port").toInt();
+	m_Prec_Scan_Tran->Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************
 **Function:操作接口
@@ -79,6 +80,5 @@ void c_Prec_Scan_120_Remote::Tran(QString value)
 				.arg(camera_num).arg(yyyyMMdd).arg(m_Car_Type + m_Car_Num).arg(box_num).arg(bio_num).arg(axi_num).arg(whe_num).arg(fir_num).arg(sec_num).arg(poi_num);
 		}
 	}
-	qDebug() << cmd;
 	emit Write_String(ip, port, cmd);
 }

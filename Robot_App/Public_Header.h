@@ -44,6 +44,7 @@
 #include <tchar.h>
 #include <iostream>
 #include <SDKDDKVer.h>
+#include <Windows.h>
 using namespace std;
 
 #include <QMap>

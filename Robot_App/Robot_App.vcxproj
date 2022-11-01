@@ -69,7 +69,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(Qt_LIBPATH_);$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(Qt_LIBS_);EquipmentComm.lib;HPS3D_SDK.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(Qt_LIBS_);EquipmentComm.lib;HPS3D_SDK.lib;GdiPlus.lib;HCAlarm.lib;HCCore.lib;HCGeneralCfgMgr.lib;HCNetSDK.lib;HCPreview.lib;PlayCtrl.lib;ws2_32.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Xdcmake>
       <AdditionalDocumentFile>%(AdditionalDocumentFile)</AdditionalDocumentFile>
@@ -103,6 +103,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App_Control.cpp" />
+    <ClCompile Include="Hikvision_Client.cpp" />
     <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Variable.cpp" />
     <ClCompile Include="Server_Remote.cpp" />
@@ -113,7 +114,6 @@
     <ClCompile Include="Meijidenki_Remote.cpp" />
     <ClCompile Include="Fast_Scan_Remote .cpp" />
     <ClCompile Include="Fr_Light.cpp" />
-    <ClCompile Include="Hikvision_Remote.cpp" />
     <ClCompile Include="Hypersen_30_Remote.cpp" />
     <ClCompile Include="Hypersen_31_Remote.cpp" />
     <ClCompile Include="Hypersen_Client.cpp" />
@@ -209,6 +209,12 @@
     <QtMoc Include="Local_Remote.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataType.h" />
+    <ClInclude Include="DecodeCardSdk.h" />
+    <ClInclude Include="HCNetSDK.h" />
+    <QtMoc Include="Hikvision_Client.h" />
+    <ClInclude Include="PlayM4.h" />
+    <ClInclude Include="plaympeg4.h" />
     <ClInclude Include="Public_Header.h" />
     <QtMoc Include="Work_Remote.h" />
     <QtMoc Include="App_Control.h" />
@@ -223,7 +229,6 @@
     <ClInclude Include="EquipmentComm.h" />
     <QtMoc Include="Prec_Scan_121_Remote.h" />
     <QtMoc Include="Fast_Scan_Remote.h" />
-    <QtMoc Include="Hikvision_Remote.h" />
     <ClInclude Include="HPS3D_DEFINE.h" />
     <ClInclude Include="HPS3D_IF.h" />
     <ClInclude Include="lim.h" />
@@ -231,8 +236,30 @@
     <QtMoc Include="RGV_Remote.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\x64\Release\AnalyzeData.dll" />
+    <None Include="..\x64\Release\AudioIntercom.dll" />
+    <None Include="..\x64\Release\AudioRender.dll" />
     <None Include="..\x64\Release\EquipmentComm.dll" />
+    <None Include="..\x64\Release\HCAlarm.dll" />
+    <None Include="..\x64\Release\HCCore.dll" />
+    <None Include="..\x64\Release\HCCoreDevCfg.dll" />
+    <None Include="..\x64\Release\HCDisplay.dll" />
+    <None Include="..\x64\Release\HCGeneralCfgMgr.dll" />
+    <None Include="..\x64\Release\HCIndustry.dll" />
+    <None Include="..\x64\Release\HCNetSDK.dll" />
+    <None Include="..\x64\Release\HCPlayBack.dll" />
+    <None Include="..\x64\Release\HCPreview.dll" />
+    <None Include="..\x64\Release\HCVoiceTalk.dll" />
     <None Include="..\x64\Release\HPS3D_SDK.dll" />
+    <None Include="..\x64\Release\libiconv2.dll" />
+    <None Include="..\x64\Release\LocalXml.zip" />
+    <None Include="..\x64\Release\MP_Render.dll" />
+    <None Include="..\x64\Release\OpenAL32.dll" />
+    <None Include="..\x64\Release\PlayCtrl.dll" />
+    <None Include="..\x64\Release\StreamTransClient.dll" />
+    <None Include="..\x64\Release\SuperRender.dll" />
+    <None Include="..\x64\Release\SystemTransform.dll" />
+    <None Include="..\x64\Release\YUVProcess.dll" />
     <None Include="Images\Bjtds.aps" />
     <None Include="Robot_App\stuqss.css" />
   </ItemGroup>
@@ -251,7 +278,13 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\EquipmentComm.lib" />
+    <Library Include="..\lib\HCAlarm.lib" />
+    <Library Include="..\lib\HCCore.lib" />
+    <Library Include="..\lib\HCGeneralCfgMgr.lib" />
+    <Library Include="..\lib\HCNetSDK.lib" />
+    <Library Include="..\lib\HCPreview.lib" />
     <Library Include="..\lib\HPS3D_SDK.lib" />
+    <Library Include="..\lib\PlayCtrl.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

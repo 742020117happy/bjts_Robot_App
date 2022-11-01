@@ -9,18 +9,18 @@ QT_END_NAMESPACE
 
 class c_Robot_Logon_Widget : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit c_Robot_Logon_Widget(QWidget *parent = nullptr);
+	explicit c_Robot_Logon_Widget(QWidget *parent = nullptr);
 	virtual ~c_Robot_Logon_Widget();
 
-public slots:
-    void keyPressEvent(QKeyEvent *event);
-    void Logon_Robot_App();
+	public slots:
+	void keyPressEvent(QKeyEvent *event);
+	void Logon_Robot_App();
 
 signals:
-    void Show_Robot_App();
+	void Show_Robot_App();
 
 private:
 	Ui_Robot_Logon_Widget *ui;

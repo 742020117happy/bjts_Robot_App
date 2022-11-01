@@ -141,6 +141,9 @@ void c_Jaka_Remote::Jaka_program_name(QString name)
 *************************************************************************************************************************************************/
 void c_Jaka_Remote::Write(QJsonObject json)
 {
+	if (!m_Jaka_Remote_State.value("Connected").toBool()){ 
+		return;
+	}
 	QString cmdName = json.value("cmdName").toString();
 	if (m_Writing) {
 		emit Write_Json_Error(cmdName);

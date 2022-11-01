@@ -82,38 +82,40 @@ void c_Work_Remote::Work_Start()
 {
 	if (!m_Work_Start) { return; }
 	emit Status("巡检任务开始执行");
-	Step_0("1", "A", "1");//1-A-1   完成第一个间1位巡检
-	Step_2("1", "A", "2");//1-A-2
-	Step_1("1", "B", "1");//1-B-1
-	//Step_2("1", "B", "2");//1-B-2
-	//Step_1("2", "A", "1");//2-A-1
-	//Step_2("2", "A", "2");//2-A-2
-	//Step_1("2", "B", "1");//2-B-1
-	//Step_2("2", "B", "2");//2-B-2
-	//Step_1("3", "A", "1");//3-A-1
-	//Step_2("3", "A", "2");//3-A-2
-	//Step_1("3", "B", "1");//3-B-1
-	//Step_2("3", "B", "2");//3-B-2
-	//Step_1("4", "A", "1");//4-A-1
-	//Step_2("4", "A", "2");//4-A-2
-	//Step_1("4", "B", "1");//4-B-1
-	//Step_2("4", "B", "2");//4-B-2
-	//Step_1("5", "A", "1");//5-A-1
-	//Step_2("5", "A", "2");//5-A-2
-	//Step_1("5", "B", "1");//5-B-1
-	//Step_2("5", "B", "2");//5-B-2
-	//Step_1("6", "A", "1");//6-A-1
-	//Step_2("6", "A", "2");//6-A-2
-	//Step_1("6", "B", "1");//6-B-1
-	//Step_2("6", "B", "2");//6-B-2
-	//Step_1("7", "A", "1");//7-A-1
-	//Step_2("7", "A", "2");//7-A-2
-	//Step_1("7", "B", "1");//7-B-1
-	//Step_2("7", "B", "2");//7-B-2
-	//Step_1("8", "A", "1");//8-A-1
-	//Step_2("8", "A", "2");//8-A-2
-	//Step_1("8", "B", "1");//8-B-1
-	Step_3("8", "B", "2");//8-B-2    完成最后一个间2位巡检
+	Step_0("1", "A", "1");//1-A-1   完成第1个间1位巡检
+	Step_1("1", "A", "2");//1-A-2	完成第1个间2位巡检
+	Step_2("1", "B", "1");//1-B-1  	完成第2个间1位巡检
+/**
+	Step_1("1", "B", "2");//1-B-2   完成第2个间2位巡检
+	Step_2("2", "A", "1");//2-A-1  	完成第3个间1位巡检
+	Step_1("2", "A", "2");//2-A-2   完成第3个间2位巡检
+	Step_2("2", "B", "1");//2-B-1  	完成第4个间1位巡检
+	Step_1("2", "B", "2");//2-B-2   完成第4个间2位巡检
+	Step_2("3", "A", "1");//3-A-1  	完成第5个间1位巡检
+	Step_1("3", "A", "2");//3-A-2   完成第5个间2位巡检
+	Step_2("3", "B", "1");//3-B-1  	完成第6个间1位巡检
+	Step_1("3", "B", "2");//3-B-2   完成第6个间2位巡检
+	Step_2("4", "A", "1");//4-A-1  	完成第7个间1位巡检
+	Step_1("4", "A", "2");//4-A-2   完成第7个间2位巡检
+	Step_2("4", "B", "1");//4-B-1  	完成第8个间1位巡检
+	Step_1("4", "B", "2");//4-B-2   完成第8个间2位巡检
+	Step_2("5", "A", "1");//5-A-1  	完成第9个间1位巡检
+	Step_1("5", "A", "2");//5-A-2   完成第9个间2位巡检
+	Step_2("5", "B", "1");//5-B-1  	完成第10个间1位巡检
+	Step_1("5", "B", "2");//5-B-2   完成第10个间2位巡检
+	Step_2("6", "A", "1");//6-A-1  	完成第11个间1位巡检
+	Step_1("6", "A", "2");//6-A-2   完成第11个间2位巡检
+	Step_2("6", "B", "1");//6-B-1  	完成第12个间1位巡检
+	Step_1("6", "B", "2");//6-B-2   完成第12个间2位巡检
+	Step_2("7", "A", "1");//7-A-1  	完成第13个间1位巡检
+	Step_1("7", "A", "2");//7-A-2   完成第13个间2位巡检
+	Step_2("7", "B", "1");//7-B-1  	完成第14个间1位巡检
+	Step_1("7", "B", "2");//7-B-2   完成第14个间2位巡检
+	Step_2("8", "A", "1");//8-A-1  	完成第15个间1位巡检
+	Step_1("8", "A", "2");//8-A-2   完成第15个间2位巡检
+	Step_2("8", "B", "1");//8-B-1  	完成第16个间1位巡检
+**/
+	Step_3("8", "B", "2");//8-B-2   完成最后一个间2位巡检
 }
 /*************************************************************************************************************************************************
 **Function:直到第一轴巡检结束
@@ -127,52 +129,83 @@ void c_Work_Remote::Step_0(QString Carbox_Num, QString Bogie_Num, QString Axis_N
 	emit Status("更新巡检状态");
 	Init();
 	if (!m_Work_Start) { return; }
+
 	emit Status("检查通讯控制");
 	if (!m_State_1) { State_1_Loop(); }//通讯
 	c_Variable::msleep(500);//等待0.5秒
+
 	emit Status("检查上电状态");
 	if (!m_State_7) { State_8_Loop(); }//上电
-	c_Variable::msleep(10000);//等待10秒
+	c_Variable::msleep(500);//等待0.5秒
+
+	emit Status("检查充电状态");
+	if (m_State_31) { State_20_Loop(); }//结束自动充电
+	c_Variable::msleep(500);//等待0.5秒
+
 	emit Status("检查机械臂控制柜是否开机");
 	if (!m_State_6) { State_7_Loop(); }//机械臂开机
 	c_Variable::msleep(500);//等待0.5秒
-	emit Status("等待系统自检完成,预计1分钟");
-	if (!m_Jaka_120_Monitor_Connected || !m_Jaka_120_Monitor_Connected || !m_Jaka_120_Remote_Connected || !m_Jaka_120_Remote_Connected || !m_Hypersen_30_Connected || !m_Hypersen_31_Connected) {c_Variable::msleep(90000);}//等待90秒
-	c_Variable::msleep(500);//等待0.5秒
+
+	emit Status("等待系统自检完成,预计2分钟");
+	if (!m_Jaka_120_Monitor_Connected || !m_Jaka_121_Monitor_Connected || !m_Jaka_120_Remote_Connected || !m_Jaka_121_Remote_Connected || !m_Hypersen_30_Connected || !m_Hypersen_31_Connected) {
+		c_Variable::msleep(90000);
+	}//等待90秒
+	
 	emit Status("系统完全打开");
+
 	emit Status("检查主动力当前位置");
 	if (!m_State_5) { State_2_Loop(); }//位置清零
 	c_Variable::msleep(500);//等待0.5秒
+
+	emit Status("检查风刀状态");
+	if (!m_State_18) { State_21_Loop(); }//打开风刀
+	c_Variable::msleep(500);//等待0.5秒
+
 	emit Status("清除历史定位数据");
 	emit Fuction_8();//故障复位
 	c_Variable::msleep(500);//等待0.5秒
+
 	emit Status("系统初始化完成");
-	c_Variable::msleep(500);//等待0.5秒
-	//emit Fast_Scan_Start();//快扫开始采集
+
+	emit Fast_Scan_Start();//快扫开始采集
 	emit Status("快扫开始采集");
 	c_Variable::msleep(500);//等待0.5秒
+
 	State_4_Loop();//正向连续
 	c_Variable::msleep(500);//等待0.5秒
+
 	emit Fuction_14();//停止
 	emit Status("正向连续运行停止");
 	c_Variable::msleep(500);//等待0.5秒
-	//emit Fast_Scan_Stop();//快扫结束采集
+
+	emit Fast_Scan_Stop();//快扫结束采集
 	emit Status("快扫结束采集");
 	c_Variable::msleep(500);//等待0.5秒
+
+	emit Fuction_22_Reset();//关闭风刀
+	emit Status("风刀关闭");
+	c_Variable::msleep(500);//等待0.5秒
+
 	if (!m_State_23) { State_12_Loop(); }//机械臂上电
 	c_Variable::msleep(500);//等待0.5秒
+
 	State_5_Loop();//反向断续
 	c_Variable::msleep(500);//等待0.5秒
+
 	if (!m_State_24) { State_14_Loop(); }//机械臂上使能
 	c_Variable::msleep(500);//等待0.5秒
+
 	State_9_Loop(m_Axis_1_Position);//轴一运动
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
+
 	emit Status("间1位巡检");
 	QString program_name = QString("%1_%2_%3_间1").arg(m_Car_Type).arg(m_Carbox_Num + m_Bogie_Num).arg(m_Axis_Num);//CRH380A_01A_1_间1
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
 }
@@ -187,16 +220,21 @@ void c_Work_Remote::Step_1(QString Carbox_Num, QString Bogie_Num, QString Axis_N
 	m_Axis_Num = Axis_Num;
 	Init();
 	if (!m_Work_Start) { return; }
+
 	State_6_Loop();//返向连续运行再启动
 	c_Variable::msleep(1000);//等待1秒
+
 	State_10_Loop(m_Axis_2_Position);//轴二运动
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
+
 	emit Status("间2位巡检");
 	QString program_name = QString("%1_%2_%3_间2").arg(m_Car_Type).arg(m_Carbox_Num + m_Bogie_Num).arg(m_Axis_Num);//CRH380A_01A_2_间2
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
 }
@@ -211,16 +249,21 @@ void c_Work_Remote::Step_2(QString Carbox_Num, QString Bogie_Num, QString Axis_N
 	m_Axis_Num = Axis_Num;
 	Init();
 	if (!m_Work_Start) { return; }
+
 	State_6_Loop();//返向连续运行再启动
 	c_Variable::msleep(1000);//等待1秒
+
 	State_9_Loop(m_Axis_1_Position);//轴一运动
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
+
 	emit Status("间1位巡检");
 	QString program_name = QString("%1_%2_%3_间1").arg(m_Car_Type).arg(m_Carbox_Num + m_Bogie_Num).arg(m_Axis_Num);//CRH380A_01A_1_间1
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
+
 	State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
 }
@@ -235,44 +278,58 @@ void c_Work_Remote::Step_3(QString Carbox_Num, QString Bogie_Num, QString Axis_N
 	m_Axis_Num = Axis_Num;
 	Init();
 	if (!m_Work_Start) { return; }
+
 	State_6_Loop();//返向连续运行再启动
 	c_Variable::msleep(1000);//等待1秒
+
 	//State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
-	///////////////////////////////////////////////
+
 	emit Status("南头主排障器检测");
 	QString program_name = QString("%1_南头主排障器").arg(m_Car_Type);//CRH380A_南头主排障器
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
+
 	//State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
+
 	State_10_Loop(m_Axis_2_Position);//轴二运动
 	c_Variable::msleep(1000);//等待1秒
-	//State_11_Loop(20, 200);//升降台上升
+
+	State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
+
 	emit Status("间2位巡检");
 	program_name = QString("%1_%2_%3_间2").arg(m_Car_Type).arg(m_Carbox_Num + m_Bogie_Num).arg(m_Axis_Num);//CRH380A_08B_2_间2
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
-	//State_11_Loop(20, 0);//升降台下降升
+
+	State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
+
 	State_9_Loop(m_Header_Position);//轴一运动
 	c_Variable::msleep(1000);//等待1秒
+
 	//State_11_Loop(20, 200);//升降台上升
 	c_Variable::msleep(1000);//等待1秒
-	///////////////////////////////////////////////
+
 	emit Status("南头车头巡检");
 	program_name = QString("%1_南头车头").arg(m_Car_Type);//CRH380A_南头车头
 	//State_16_Loop(program_name);
 	c_Variable::msleep(1000);//等待1秒
+
 	//State_11_Loop(20, 0);//升降台下降升
 	c_Variable::msleep(1000);//等待1秒
+
 	State_17_Loop();//巡检完成停车
 	c_Variable::msleep(500);//等待0.5秒
+
 	emit Fuction_14();//急停
 	c_Variable::msleep(1000);//等待1秒
+
 	//emit Fuction_20();//返回充电原点
 	c_Variable::msleep(500);//等待0.5秒
+
 	m_Work_Stage = "Debug";
 	m_Carbox_Num = "1";
 	m_Bogie_Num = "A";
@@ -365,6 +422,7 @@ void c_Work_Remote::System_Scan(QJsonObject db)
 		if (!m_State_16 && m_DiscreteInputs.value("93").toInt() == 1 && m_DiscreteInputs.value("94").toInt() == 1) { emit is_State_16(); }//升降台位置到达
 		if (!m_State_17 && m_DiscreteInputs.value("129").toInt() == 1) { emit is_State_17(); }//动力伺服就绪
 		if (!m_State_18 && m_DiscreteInputs.value("262").toInt() == 1) { emit is_State_18(); }//风刀电机
+		if (m_State_31 && m_DiscreteInputs.value("258").toInt() == 0) { emit is_State_27(); } //自动充电结束
 
 		m_State_1 = m_DiscreteInputs.value("0").toInt();//通信控制
 		m_State_2 = m_DiscreteInputs.value("11").toInt();//正向连续运动
@@ -383,6 +441,7 @@ void c_Work_Remote::System_Scan(QJsonObject db)
 		m_State_16 = m_DiscreteInputs.value("93").toInt() == 1 && m_DiscreteInputs.value("94").toInt() == 1;//升降台位置到达
 		m_State_17 = m_DiscreteInputs.value("129").toInt();//动力伺服就绪
 		m_State_18 = m_DiscreteInputs.value("262").toInt();//风刀电机
+		m_State_31 = m_DiscreteInputs.value("258").toInt();//自动充电状态
 
 		m_InputRegisters = m_json.value("InputRegisters").toObject();
 		m_RGV_Position = c_Variable::Short_To_Float(m_InputRegisters.value("40").toInt(), m_InputRegisters.value("41").toInt());
@@ -447,6 +506,7 @@ void c_Work_Remote::System_Scan(QJsonObject db)
 		default:
 			break;
 		}
+
 		if (!m_State_23 && m_State_19 && m_State_21) {emit is_State_19(); }//机器人上电
 		if (!m_State_24 && m_State_20 && m_State_22) { emit is_State_20(); }//机器人上使能
 		if (m_State_23 && !m_State_19 && !m_State_21) { emit is_State_21(); }//机器人下电
@@ -587,6 +647,7 @@ void c_Work_Remote::State_8_Loop()
 	emit Fuction_19_Set();
 	emit Status("上电中");
 	loop.exec();
+	c_Variable::msleep(10000);//等待10秒
 	emit Status("上电完成");
 }
 //轴1移动（线圈，工控机立即复位）
@@ -620,6 +681,7 @@ void c_Work_Remote::State_11_Loop(int speed, int position)
 	emit Date_2(speed);//右升降台速度
 	emit Status("升降台移动开始");
 	loop.exec();
+	c_Variable::msleep(1000);//等待1秒
 	emit Date_0(0);//左升降台速度
 	emit Date_2(0);//右升降台速度
 	emit Status("升降台移动完成");
@@ -632,6 +694,7 @@ void c_Work_Remote::State_12_Loop()
 	emit Jaka_120_power_on();
 	emit Jaka_121_power_on();
 	emit Status("机械臂上电中");
+	c_Variable::msleep(500);//等待0.5秒
 	loop.exec();
 	emit Status("机械臂上电完成");
 }
@@ -643,6 +706,7 @@ void c_Work_Remote::State_13_Loop()
 	emit Jaka_120_power_off();
 	emit Jaka_121_power_on();
 	emit Status("机械臂下电中");
+	c_Variable::msleep(500);//等待0.5秒
 	loop.exec();
 	emit Status("机械臂下电完成");
 }
@@ -654,6 +718,7 @@ void c_Work_Remote::State_14_Loop()
 	emit Jaka_120_enable();
 	emit Jaka_121_enable();
 	emit Status("机械臂使能中");
+	c_Variable::msleep(500);//等待0.5秒
 	loop.exec();
 	emit Status("机械臂使能完成");
 }
@@ -665,6 +730,7 @@ void c_Work_Remote::State_15_Loop()
 	emit Jaka_120_disable();
 	emit Jaka_121_disable();
 	emit Status("机械臂下使能中");
+	c_Variable::msleep(500);//等待0.5秒
 	loop.exec();
 	emit Status("机械臂下使能完成");
 }
@@ -676,6 +742,7 @@ void c_Work_Remote::State_16_Loop(QString name)
 	Jaka_120_play_program(name);
 	Jaka_121_play_program(name);
 	emit Status("机械臂运行程序中：" + name);
+	c_Variable::msleep(500);//等待0.5秒
 	loop.exec();
 	emit Status("机械臂运行程序完成");
 }
@@ -717,4 +784,26 @@ void c_Work_Remote::State_19_Loop()
 	emit Status("面阵雷达反向运行检查到障碍解除");
 	//if (m_State_4) { emit Fuction_13(); }//继续反向断续再启动
 	//if (!m_State_4) { emit Fuction_12(); }//继续反向断续运动
+}
+//结束自动充电
+void c_Work_Remote::State_20_Loop()
+{
+	QEventLoop loop;
+	QObject::connect(this, &c_Work_Remote::is_State_27, &loop, &QEventLoop::quit);
+	emit Fuction_27();
+	emit Status("断开充电继电器");
+	loop.exec();
+	emit Status("等待充电桩缩回");
+	c_Variable::msleep(10000);//等待10秒
+	emit Status("自动充电结束");
+}
+//风刀电源
+void c_Work_Remote::State_21_Loop()
+{
+	QEventLoop loop;
+	QObject::connect(this, &c_Work_Remote::is_State_18, &loop, &QEventLoop::quit);
+	emit Fuction_22_Set();
+	emit Status("打开风刀");
+	loop.exec();
+	emit Status("风刀打开完成");
 }

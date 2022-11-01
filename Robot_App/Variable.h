@@ -11,6 +11,7 @@ public:
 	explicit c_Variable(QObject *parent = nullptr);
 	virtual ~c_Variable();
 	static QJsonObject g_Communicate_DB;
+	static QKeyEvent *Key_F6;
 	public slots:
 	static float Short_To_Float(quint16 high, quint16 low);
 	static QString TCP_Status(int State);

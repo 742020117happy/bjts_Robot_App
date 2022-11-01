@@ -76,10 +76,12 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Set_Default, ui->Fast_Scan_Working_State, &c_Fr_Light::Set_Default);
 	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Fast_Scan_Cmd->addItem(value); });
 	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "块扫相机：" + value); });
-	QObject::connect(m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Set_Working, ui->Hikvision_Working_State, &c_Fr_Light::Set_Working);
-	QObject::connect(m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Set_Default, ui->Hikvision_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Hikvision_Cmd->addItem(value); });
-	QObject::connect(m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "声纹采集：" + value); });
+	QObject::connect(m_Thread->m_Hikvision_20, &c_Hikvision_Client::Connect_Done, ui->Hikvision_20_State, &c_Fr_Light::Set_Working);
+	QObject::connect(m_Thread->m_Hikvision_20, &c_Hikvision_Client::Disconnect_Done, ui->Hikvision_20_State, &c_Fr_Light::Set_Default);
+	QObject::connect(m_Thread->m_Hikvision_20, &c_Hikvision_Client::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "右监控相机：" + value); });
+	QObject::connect(m_Thread->m_Hikvision_21, &c_Hikvision_Client::Connect_Done, ui->Hikvision_21_State, &c_Fr_Light::Set_Working);
+	QObject::connect(m_Thread->m_Hikvision_21, &c_Hikvision_Client::Disconnect_Done, ui->Hikvision_21_State, &c_Fr_Light::Set_Default);
+	QObject::connect(m_Thread->m_Hikvision_21, &c_Hikvision_Client::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "左监控相机：" + value); });
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Set_Working, ui->Local_Remote_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Set_Default, ui->Local_Remote_Working_State, &c_Fr_Light::Set_Default);
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "本地控制服务：" + value); });
@@ -102,10 +104,10 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_19_Set, ui->Fuction_19_Set, &QPushButton::click);//上电
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_19_Reset, ui->Fuction_19_Reset, &QPushButton::click);//下电
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_20, ui->Fuction_20, &QPushButton::click);//充电回原点
-	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//清扫电机
-	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//风刀电机
+	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//风刀电机
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_26, ui->Fuction_26, &QPushButton::click);//开始充电
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_27, ui->Fuction_27, &QPushButton::click);//结束充电
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_24, this, [=](int position) {
@@ -164,10 +166,10 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_19_Set, ui->Fuction_19_Set, &QPushButton::click);//上电
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_19_Reset, ui->Fuction_19_Reset, &QPushButton::click);//下电
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_20, ui->Fuction_20, &QPushButton::click);//充电回原点
-	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//清扫电机
-	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//风刀电机
+	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//风刀电机
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_26, ui->Fuction_26, &QPushButton::click);//开始充电
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_27, ui->Fuction_27, &QPushButton::click);//结束充电
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_24, this, [=](int position) {
@@ -228,10 +230,10 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_19_Set, ui->Fuction_19_Set, &QPushButton::click);//上电
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_19_Reset, ui->Fuction_19_Reset, &QPushButton::click);//下电
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_20, ui->Fuction_20, &QPushButton::click);//充电回原点
-	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//风刀电机
-	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//清扫电机
-	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_21_Set, ui->Fuction_21_Set, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_21_Reset, ui->Fuction_21_Reset, &QPushButton::click);//清扫电机
+	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//风刀电机
+	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//风刀电机
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_26, ui->Fuction_26, &QPushButton::click);//开始充电
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_27, ui->Fuction_27, &QPushButton::click);//结束充电
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_24, this, [=](int position) {
@@ -281,6 +283,9 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_15, ui->Fuction_17, &QPushButton::click);//右机器人开机（线圈，工控机立即复位）
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_19_Set, ui->Fuction_19_Set, &QPushButton::click);//上电（线圈，点控）
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_20, ui->Fuction_20, &QPushButton::click);//自动充电定位
+	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_22_Set, ui->Fuction_22_Set, &QPushButton::click);//风刀电机开
+	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_22_Reset, ui->Fuction_22_Reset, &QPushButton::click);//风刀电机关
+	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_27, ui->Fuction_27, &QPushButton::click);//结束自动充电
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fuction_24, this, [=](int position) {
 		ui->is_RGV_Date_4->setText(QString::number(position));
 		ui->Date_4->clicked();//写入数据
@@ -326,67 +331,14 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 		ui->Jaka_121_play_program->clicked();//执行
 	});
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fast_Scan_Start, ui->Fast_Scan_Collection, &QPushButton::click);//快扫采集
-	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fast_Scan_Stop, ui->Fast_Scan_Stop, &QPushButton::click);//快扫停止采集
-	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Hikvision_Start, ui->Hikvision_Collection, &QPushButton::click);//声纹采集
-	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Hikvision_Stop, ui->Hikvision_Stop, &QPushButton::click);//声纹停止采集																				   
+	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fast_Scan_Stop, ui->Fast_Scan_Stop, &QPushButton::click);//快扫停止采集																				   
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Work_Init, ui->Work_Start, &QPushButton::click);//触发自动巡检按钮
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Status, this, [=](QString value) {ui->Work_List->addItem(m_Current_Time + value); });
 	//UI输入绑定
-	QObject::connect(ui->Local_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Local_Ip", ip); });
-	QObject::connect(ui->Collector_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Collector_Ip", ip); });
-	QObject::connect(ui->Prec_Scan_120_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Local_Port", port.toInt()); });
-	QObject::connect(ui->Prec_Scan_121_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Local_Port", port.toInt()); });
-	QObject::connect(ui->Fast_Scan_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Fast_Scan_Local_Port", port.toInt()); });
-	QObject::connect(ui->Prec_Scan_120_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Collector_Port", port.toInt()); });
-	QObject::connect(ui->Prec_Scan_121_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Collector_Port", port.toInt()); });
-	QObject::connect(ui->Fast_Scan_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Fast_Scan_Collector_Port", port.toInt()); });
-	QObject::connect(ui->Jaka_120_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Jaka_120_Ip", ip); });
-	QObject::connect(ui->Jaka_121_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Jaka_121_Ip", ip); });
-	QObject::connect(ui->Jaka_Remote_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Jaka_Remote_Port", port.toInt()); });
-	QObject::connect(ui->Jaka_Monitor_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Jaka_Monitor_Port", port.toInt()); });
-	QObject::connect(ui->RGV_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("RGV_Ip", ip); });
-	QObject::connect(ui->RGV_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("RGV_Port", port.toInt()); });
-	QObject::connect(ui->Hypersen_30_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Ip", ip); });
-	QObject::connect(ui->Hypersen_30_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Id", id.toInt()); });
-	QObject::connect(ui->Hypersen_30_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Port", port.toInt()); });
-	QObject::connect(ui->Hypersen_31_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Ip", ip); });
-	QObject::connect(ui->Hypersen_31_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Id", id.toInt()); });
-	QObject::connect(ui->Hypersen_31_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Port", port.toInt()); });
-	QObject::connect(ui->Meijidenki_20_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Ip", ip); });
-	QObject::connect(ui->Meijidenki_20_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Id", id.toInt()); });
-	QObject::connect(ui->Meijidenki_20_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Port", port.toInt()); });
-	QObject::connect(ui->Meijidenki_21_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Ip", ip); });
-	QObject::connect(ui->Meijidenki_21_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Id", id.toInt()); });
-	QObject::connect(ui->Meijidenki_21_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Port", port.toInt()); });
-	QObject::connect(ui->Web_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Web_Server_Ip", ip); });
-	QObject::connect(ui->Ai_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Ai_Server_Ip", ip); });
-	QObject::connect(ui->App_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("App_Server_Ip", ip); });
-	QObject::connect(ui->Local_Monitor_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Local_Monitor_Port", port.toInt()); });
-	QObject::connect(ui->Local_Remote_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Local_Remote_Port", port.toInt()); });
-	QObject::connect(ui->App_Server_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("App_Server_Port", port.toInt()); });
-	QObject::connect(ui->Hikvision_20_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hikvision_20_Ip", ip); });
-	QObject::connect(ui->Hikvision_21_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hikvision_21_Ip", ip); });
-	QObject::connect(ui->Hikvision_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hikvision_Local_Port", port.toInt()); });
-	QObject::connect(ui->Hikvision_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hikvision_Collector_Port", port.toInt()); });
-	QObject::connect(ui->Write_Coils_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_Coils_Size) {c_Variable::g_Communicate_DB.insert("Write_Coils_Size", Write_Coils_Size); });
-	QObject::connect(ui->Read_DiscreteInputs_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_DiscreteInputs_Size) {c_Variable::g_Communicate_DB.insert("Read_DiscreteInputs_Size", Read_DiscreteInputs_Size); });
-	QObject::connect(ui->Read_InputRegisters_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_InputRegisters_Size) {c_Variable::g_Communicate_DB.insert("Read_InputRegisters_Size", Read_InputRegisters_Size); });
-	QObject::connect(ui->Write_HoldingRegisters_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_HoldingRegisters_Size) {c_Variable::g_Communicate_DB.insert("Write_HoldingRegisters_Size", Write_HoldingRegisters_Size); });
-	QObject::connect(ui->Write_Coils_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_Coils_Addr) {c_Variable::g_Communicate_DB.insert("Write_Coils_Addr", Write_Coils_Addr); });
-	QObject::connect(ui->Read_DiscreteInputs_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_DiscreteInputs_Addr) {c_Variable::g_Communicate_DB.insert("Read_DiscreteInputs_Addr", Read_DiscreteInputs_Addr); });
-	QObject::connect(ui->Read_InputRegisters_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_InputRegisters_Addr) {c_Variable::g_Communicate_DB.insert("Read_InputRegisters_Addr", Read_InputRegisters_Addr); });
-	QObject::connect(ui->Write_HoldingRegisters_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_HoldingRegisters_Addr) {c_Variable::g_Communicate_DB.insert("Write_HoldingRegisters_Addr", Write_HoldingRegisters_Addr); });
-	QObject::connect(ui->is_RGV_Date_0, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_0", date.toInt()); });
-	QObject::connect(ui->is_RGV_Date_1, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_1", date.toInt()); });
-	QObject::connect(ui->is_RGV_Date_2, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_2", date.toInt()); });
-	QObject::connect(ui->is_RGV_Date_3, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_3", date.toInt()); });
-	QObject::connect(ui->is_RGV_Date_4, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_4", date.toInt()); });
-	QObject::connect(ui->is_RGV_Date_5, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_5", date.toInt()); });
 	QObject::connect(ui->Show_Work_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Work_Widget); });
 	QObject::connect(ui->Show_Setting_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Setting_Widget); });
 	QObject::connect(ui->Show_RGV_Remote_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->RGV_Remote_Widget); });
 	QObject::connect(ui->Show_Jaka_120_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Jaka_120_Widget); });
-	QObject::connect(ui->Show_Jaka_121_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Jaka_121_Widget); });
 	QObject::connect(ui->Show_Scan_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Scan_Widget); });
 	QObject::connect(ui->Show_Hypersen_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Hypersen_Widget); });
 	QObject::connect(ui->Show_Meijidenki_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Meijidenki_Widget); });
@@ -404,6 +356,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->Fuction_12, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_12);//返向连续运行
 	QObject::connect(ui->Fuction_13, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_13);//返向连续运行再启动
 	QObject::connect(ui->Fuction_14, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_14);//急停
+	QObject::connect(ui->Stop_working, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_14);//急停
 	QObject::connect(ui->Fuction_15, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_15);//左机器人开机
 	QObject::connect(ui->Fuction_16, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_16);//左机器人关机
 	QObject::connect(ui->Fuction_17, &QPushButton::clicked, m_Thread->m_RGV_Remote, &c_RGV_Remote::Fuction_17);//右机器人开机
@@ -436,6 +389,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->Jaka_120_pause_program, &QPushButton::clicked, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Jaka_pause_program);
 	QObject::connect(ui->Jaka_120_resume_program, &QPushButton::clicked, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Jaka_resume_program);
 	QObject::connect(ui->Jaka_120_stop_program, &QPushButton::clicked, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Jaka_stop_program);
+	QObject::connect(ui->Stop_working, &QPushButton::clicked, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Jaka_stop_program);
 	QObject::connect(ui->Jaka_120_Monitor_Connect, &QPushButton::clicked, m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Connect);
 	QObject::connect(ui->Jaka_120_Monitor_Disconnect, &QPushButton::clicked, m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Disconnect_Device);
 	QObject::connect(ui->Jaka_121_Remote_Connect, &QPushButton::clicked, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Connect);
@@ -449,6 +403,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->Jaka_121_pause_program, &QPushButton::clicked, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Jaka_pause_program);
 	QObject::connect(ui->Jaka_121_resume_program, &QPushButton::clicked, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Jaka_resume_program);
 	QObject::connect(ui->Jaka_121_stop_program, &QPushButton::clicked, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Jaka_stop_program);
+	QObject::connect(ui->Stop_working, &QPushButton::clicked, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Jaka_stop_program);
 	QObject::connect(ui->Jaka_121_Monitor_Connect, &QPushButton::clicked, m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Connect);
 	QObject::connect(ui->Jaka_121_Monitor_Disconnect, &QPushButton::clicked, m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Disconnect_Device);
 	QObject::connect(ui->Hypersen_30_Connect, &QPushButton::clicked, m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Connect);
@@ -473,11 +428,67 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->Fast_Scan_Disconnect, &QPushButton::clicked, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Disconnect_Device);
 	QObject::connect(ui->Fast_Scan_Collection, &QPushButton::clicked, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Collection);
 	QObject::connect(ui->Fast_Scan_Stop, &QPushButton::clicked, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Stop);
-	QObject::connect(ui->Hikvision_Connect, &QPushButton::clicked, m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Connect);
-	QObject::connect(ui->Hikvision_Disconnect, &QPushButton::clicked, m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Disconnect_Device);
-	QObject::connect(ui->Hikvision_Collection, &QPushButton::clicked, m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Start);
-	QObject::connect(ui->Hikvision_Stop, &QPushButton::clicked, m_Thread->m_Hikvision_Remote, &c_Hikvision_Remote::Stop);
 	QObject::connect(ui->Work_Start, &QPushButton::clicked, m_Thread->m_Work_Remote, &c_Work_Remote::Work_Start);
+	QObject::connect(ui->Local_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Local_Ip", ip); });
+	QObject::connect(ui->Collector_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Collector_Ip", ip); });
+	QObject::connect(ui->Prec_Scan_120_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Local_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_121_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Local_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_120_Tran_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Tran_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_121_Tran_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Tran_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_120_Jaka_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Jaka_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_121_Jaka_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Jaka_Port", port.toInt()); });
+	QObject::connect(ui->Fast_Scan_Local_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Fast_Scan_Local_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_120_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_120_Collector_Port", port.toInt()); });
+	QObject::connect(ui->Prec_Scan_121_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Prec_Scan_121_Collector_Port", port.toInt()); });
+	QObject::connect(ui->Fast_Scan_Collector_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Fast_Scan_Collector_Port", port.toInt()); });
+	QObject::connect(ui->Jaka_120_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Jaka_120_Ip", ip); });
+	QObject::connect(ui->Jaka_121_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Jaka_121_Ip", ip); });
+	QObject::connect(ui->Jaka_Remote_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Jaka_Remote_Port", port.toInt()); });
+	QObject::connect(ui->Jaka_Monitor_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Jaka_Monitor_Port", port.toInt()); });
+	QObject::connect(ui->RGV_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("RGV_Ip", ip); });
+	QObject::connect(ui->RGV_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("RGV_Port", port.toInt()); });
+	QObject::connect(ui->Mcgs_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Mcgs_Ip", ip); });
+	QObject::connect(ui->Mcgs_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Mcgs_Port", port.toInt()); });
+	QObject::connect(ui->Hypersen_30_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Ip", ip); });
+	QObject::connect(ui->Hypersen_30_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Id", id.toInt()); });
+	QObject::connect(ui->Hypersen_30_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hypersen_30_Port", port.toInt()); });
+	QObject::connect(ui->Hypersen_31_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Ip", ip); });
+	QObject::connect(ui->Hypersen_31_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Id", id.toInt()); });
+	QObject::connect(ui->Hypersen_31_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hypersen_31_Port", port.toInt()); });
+	QObject::connect(ui->Meijidenki_20_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Ip", ip); });
+	QObject::connect(ui->Meijidenki_20_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Id", id.toInt()); });
+	QObject::connect(ui->Meijidenki_20_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Meijidenki_20_Port", port.toInt()); });
+	QObject::connect(ui->Meijidenki_21_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Ip", ip); });
+	QObject::connect(ui->Meijidenki_21_Id, &QLineEdit::textChanged, this, [=](QString id) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Id", id.toInt()); });
+	QObject::connect(ui->Meijidenki_21_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Meijidenki_21_Port", port.toInt()); });
+	QObject::connect(ui->Web_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Web_Server_Ip", ip); });
+	QObject::connect(ui->Ai_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Ai_Server_Ip", ip); });
+	QObject::connect(ui->App_Server_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("App_Server_Ip", ip); });
+	QObject::connect(ui->Local_Monitor_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Local_Monitor_Port", port.toInt()); });
+	QObject::connect(ui->Local_Remote_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Local_Remote_Port", port.toInt()); });
+	QObject::connect(ui->App_Server_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("App_Server_Port", port.toInt()); });
+	QObject::connect(ui->Hikvision_20_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hikvision_20_Ip", ip); });
+	QObject::connect(ui->Hikvision_21_Ip, &QLineEdit::textChanged, this, [=](QString ip) {c_Variable::g_Communicate_DB.insert("Hikvision_21_Ip", ip); });
+	QObject::connect(ui->Hikvision_20_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hikvision_20_Port", port.toInt()); });
+	QObject::connect(ui->Hikvision_21_Port, &QLineEdit::textChanged, this, [=](QString port) {c_Variable::g_Communicate_DB.insert("Hikvision_21_Port", port.toInt()); });
+	QObject::connect(ui->Hikvision_20_User, &QLineEdit::textChanged, this, [=](QString name) {c_Variable::g_Communicate_DB.insert("Hikvision_20_User", name); });
+	QObject::connect(ui->Hikvision_21_User, &QLineEdit::textChanged, this, [=](QString name) {c_Variable::g_Communicate_DB.insert("Hikvision_21_User", name); });
+	QObject::connect(ui->Hikvision_20_Pass, &QLineEdit::textChanged, this, [=](QString word) {c_Variable::g_Communicate_DB.insert("Hikvision_20_Pass", word); });
+	QObject::connect(ui->Hikvision_21_Pass, &QLineEdit::textChanged, this, [=](QString word) {c_Variable::g_Communicate_DB.insert("Hikvision_21_Pass", word); });
+	QObject::connect(ui->Write_Coils_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_Coils_Size) {c_Variable::g_Communicate_DB.insert("Write_Coils_Size", Write_Coils_Size); });
+	QObject::connect(ui->Read_DiscreteInputs_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_DiscreteInputs_Size) {c_Variable::g_Communicate_DB.insert("Read_DiscreteInputs_Size", Read_DiscreteInputs_Size); });
+	QObject::connect(ui->Read_InputRegisters_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_InputRegisters_Size) {c_Variable::g_Communicate_DB.insert("Read_InputRegisters_Size", Read_InputRegisters_Size); });
+	QObject::connect(ui->Write_HoldingRegisters_Size, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_HoldingRegisters_Size) {c_Variable::g_Communicate_DB.insert("Write_HoldingRegisters_Size", Write_HoldingRegisters_Size); });
+	QObject::connect(ui->Write_Coils_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_Coils_Addr) {c_Variable::g_Communicate_DB.insert("Write_Coils_Addr", Write_Coils_Addr); });
+	QObject::connect(ui->Read_DiscreteInputs_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_DiscreteInputs_Addr) {c_Variable::g_Communicate_DB.insert("Read_DiscreteInputs_Addr", Read_DiscreteInputs_Addr); });
+	QObject::connect(ui->Read_InputRegisters_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Read_InputRegisters_Addr) {c_Variable::g_Communicate_DB.insert("Read_InputRegisters_Addr", Read_InputRegisters_Addr); });
+	QObject::connect(ui->Write_HoldingRegisters_Addr, QOverload<int>::of(&QSpinBox::valueChanged), this, [=](int Write_HoldingRegisters_Addr) {c_Variable::g_Communicate_DB.insert("Write_HoldingRegisters_Addr", Write_HoldingRegisters_Addr); });
+	QObject::connect(ui->is_RGV_Date_0, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_0", date.toInt()); });
+	QObject::connect(ui->is_RGV_Date_1, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_1", date.toInt()); });
+	QObject::connect(ui->is_RGV_Date_2, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_2", date.toInt()); });
+	QObject::connect(ui->is_RGV_Date_3, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_3", date.toInt()); });
+	QObject::connect(ui->is_RGV_Date_4, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_4", date.toInt()); });
+	QObject::connect(ui->is_RGV_Date_5, &QLineEdit::textChanged, this, [=](QString date) {c_Variable::g_Communicate_DB.insert("RGV_Date_5", date.toInt()); });
 	ui->Local_Ip->setText(c_Variable::g_Communicate_DB.value("Local_Ip").toString());
 	ui->Collector_Ip->setText(c_Variable::g_Communicate_DB.value("Collector_Ip").toString());
 	ui->Prec_Scan_120_Local_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_120_Local_Port").toInt()));
@@ -486,12 +497,18 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	ui->Prec_Scan_120_Collector_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_120_Collector_Port").toInt()));
 	ui->Prec_Scan_121_Collector_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_121_Collector_Port").toInt()));
 	ui->Fast_Scan_Collector_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Fast_Scan_Collector_Port").toInt()));
+	ui->Prec_Scan_120_Tran_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_120_Tran_Port").toInt())); 
+	ui->Prec_Scan_121_Tran_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_121_Tran_Port").toInt()));
+	ui->Prec_Scan_120_Jaka_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_120_Jaka_Port").toInt()));
+	ui->Prec_Scan_121_Jaka_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Prec_Scan_121_Jaka_Port").toInt()));
 	ui->Jaka_120_Ip->setText(c_Variable::g_Communicate_DB.value("Jaka_120_Ip").toString());
 	ui->Jaka_121_Ip->setText(c_Variable::g_Communicate_DB.value("Jaka_121_Ip").toString());
 	ui->Jaka_Remote_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Jaka_Remote_Port").toInt()));
 	ui->Jaka_Monitor_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Jaka_Monitor_Port").toInt()));
 	ui->RGV_Ip->setText(c_Variable::g_Communicate_DB.value("RGV_Ip").toString());
 	ui->RGV_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("RGV_Port").toInt()));
+	ui->Mcgs_Ip->setText(c_Variable::g_Communicate_DB.value("Mcgs_Ip").toString());
+	ui->Mcgs_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Mcgs_Port").toInt()));
 	ui->Hypersen_30_Ip->setText(c_Variable::g_Communicate_DB.value("Hypersen_30_Ip").toString());
 	ui->Hypersen_30_Id->setText(QString::number(c_Variable::g_Communicate_DB.value("Hypersen_30_Id").toInt()));
 	ui->Hypersen_30_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Hypersen_30_Port").toInt()));
@@ -512,8 +529,12 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	ui->App_Server_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("App_Server_Port").toInt()));
 	ui->Hikvision_20_Ip->setText(c_Variable::g_Communicate_DB.value("Hikvision_20_Ip").toString());
 	ui->Hikvision_21_Ip->setText(c_Variable::g_Communicate_DB.value("Hikvision_21_Ip").toString());
-	ui->Hikvision_Local_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Hikvision_Local_Port").toInt()));
-	ui->Hikvision_Collector_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Hikvision_Collector_Port").toInt()));
+	ui->Hikvision_20_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Hikvision_20_Port").toInt()));
+	ui->Hikvision_21_Port->setText(QString::number(c_Variable::g_Communicate_DB.value("Hikvision_21_Port").toInt()));
+	ui->Hikvision_20_User->setText(c_Variable::g_Communicate_DB.value("Hikvision_20_User").toString()); 
+	ui->Hikvision_21_User->setText(c_Variable::g_Communicate_DB.value("Hikvision_21_User").toString());
+	ui->Hikvision_20_Pass->setText(c_Variable::g_Communicate_DB.value("Hikvision_20_Pass").toString());
+	ui->Hikvision_21_Pass->setText(c_Variable::g_Communicate_DB.value("Hikvision_21_Pass").toString());
 	ui->Write_Coils_Size->setValue(c_Variable::g_Communicate_DB.value("Write_Coils_Size").toInt());
 	ui->Read_DiscreteInputs_Size->setValue(c_Variable::g_Communicate_DB.value("Read_DiscreteInputs_Size").toInt());
 	ui->Read_InputRegisters_Size->setValue(c_Variable::g_Communicate_DB.value("Read_InputRegisters_Size").toInt());
@@ -532,10 +553,15 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	//系统输出
 	QObject::connect(m_Thread->m_State_DB, &c_State_DB::System_Scan, this, &c_Robot_App_Widget::System_Scan);
 	QObject::connect(this, &c_Robot_App_Widget::System_Scan_Done, m_Thread->m_State_DB, &c_State_DB::Write_System_Time);
+	//加载样式表
+	keyPressEvent(c_Variable::Key_F6);
 	//启动系统
 	m_Time->start();
 	m_Thread->Start();
 	emit System_Scan_Done();
+	//打开监控相机
+	m_Thread->m_Hikvision_20->Connect_Device(ui->Hikvision_20_Ip->text(), ui->Hikvision_20_Port->text().toInt(), ui->Hikvision_20_User->text(), ui->Hikvision_20_Pass->text(), (HWND)ui->Hikvision_20_Video->winId());
+	m_Thread->m_Hikvision_21->Connect_Device(ui->Hikvision_21_Ip->text(), ui->Hikvision_21_Port->text().toInt(), ui->Hikvision_21_User->text(), ui->Hikvision_21_Pass->text(), (HWND)ui->Hikvision_21_Video->winId());
 }
 /*************************************************************************************************************************************************
 **Function:析构函数
@@ -574,7 +600,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	m_Fast_Scan_State = db.value("Fast_Scan_State").toObject();//更新
 	m_Prec_Scan_120_State = db.value("Prec_Scan_120_State").toObject();//更新
 	m_Prec_Scan_121_State = db.value("Prec_Scan_121_State").toObject();//更新
-	m_Hikvision_State = db.value("Hikvision_State").toObject();//更新
 	m_RGV_Connected = m_RGV_State.value("Connected").toBool();//状态
 	m_Jaka_120_Remote_Connected = m_Jaka_120_Remote_State.value("Connected").toBool();//状态
 	m_Jaka_121_Remote_Connected = m_Jaka_121_Remote_State.value("Connected").toBool();//状态
@@ -585,7 +610,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	m_Meijidenki_20_Connected = m_Meijidenki_20_State.value("Connected").toBool();//状态
 	m_Meijidenki_21_Connected = m_Meijidenki_21_State.value("Connected").toBool();//状态
 	m_Fast_Scan_Connected = m_Fast_Scan_State.value("Connected").toBool();//状态
-	m_Hikvision_Connected = m_Hikvision_State.value("Connected").toBool();//状态
 	m_Work_Connected = m_Work_Remote_State.value("Connected").toBool();//状态
 	/*************************************************************************************************************************************************
 	**Function:更新RGV状态显示
@@ -671,7 +695,7 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 
 		m_Date_High = m_InputRegisters.value("36").toInt();//电池容量
 		m_Date_Low = m_InputRegisters.value("37").toInt();
-		ui->RGV_State_19->setText(QString::number(c_Variable::Short_To_Float(m_Date_High, m_Date_Low)));
+		ui->RGV_State_19->setValue(c_Variable::Short_To_Float(m_Date_High, m_Date_Low));
 
 		m_Date_High = m_InputRegisters.value("38").toInt();//电池温度
 		m_Date_Low = m_InputRegisters.value("39").toInt();
@@ -1250,9 +1274,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 			ui->Jaka_120_interp_state->setText("未连接");
 			break;
 		}
-		//机器人当前使用的工具 ID
-		m_current_tool_id = m_json.value("current_tool_id").toInt();
-		ui->Jaka_120_current_tool_id->setText(QString::number(m_current_tool_id));
 		//值为 1 时代表机器人正处于急停状态
 		m_protective_stop = m_json.value("protective_stop").toInt();
 		ui->Jaka_120_protective_stop->setText(QString::number(m_protective_stop));
@@ -1368,9 +1389,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 			ui->Jaka_121_interp_state->setText("未连接");
 			break;
 		}
-		//机器人当前使用的工具 ID
-		m_current_tool_id = m_json.value("m_current_tool_id").toInt();
-		ui->Jaka_121_current_tool_id->setText(QString::number(m_current_tool_id));
 		//值为 1 时代表机器人正处于急停状态
 		m_protective_stop = m_json.value("protective_stop").toInt();
 		ui->Jaka_121_protective_stop->setText(QString::number(m_protective_stop));
@@ -1625,7 +1643,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		ui->Point_Num_121->setText(m_json.value("Point_Num_121").toString());//机械臂121巡检点
 	}
 	if (m_RGV_Ready && !m_Fast_Scan_Connected && m_Connect_Count == 500) { ui->Fast_Scan_Connect->clicked(); }
-	if (m_RGV_Ready && !m_Hikvision_Connected && m_Connect_Count == 500) { ui->Hikvision_Connect->clicked(); }
 	/*************************************************************************************************************************************************
 	**Function:扫描初始化
 	**如果 RGV未连接 -》 时序1000
@@ -1646,12 +1663,11 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	emit System_Scan_Done();
 }
 /*************************************************************************************************************************************************
-**Function:刷新界面
+**Function:刷新样式表
 *************************************************************************************************************************************************/
 void c_Robot_App_Widget::keyPressEvent(QKeyEvent *event)
 {
-	if (event->key() == Qt::Key_F6)
-	{
+	if (event->key() == Qt::Key_F6) {
 		QFile file(QDir::currentPath() + "/Robot_App/stuqss.css");
 		file.open(QIODevice::ReadOnly);
 		QString strQss = file.readAll();

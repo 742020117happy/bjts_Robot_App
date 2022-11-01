@@ -28,7 +28,8 @@ void c_Prec_Scan_121_Remote::Run()
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Read_String_Done, this, &c_Prec_Scan_121_Remote::Tran);
 	//QObject::connect(this, &c_Scan_Remote::Read_String_Done, m_Prec_Scan_Tran, &c_Robot_Server::Write_String);
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
-	m_Prec_Scan_Tran->Connect_Device(ip, 7101);
+	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_121_Tran_Port").toInt();
+	m_Prec_Scan_Tran->Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************
 **Function:操作接口

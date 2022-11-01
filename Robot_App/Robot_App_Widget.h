@@ -4,24 +4,22 @@
 #include "Thread.h"
 
 
-class c_Robot_App_Widget : public QMainWindow {
+class c_Robot_App_Widget : public QMainWindow
+{
 	Q_OBJECT
-
 public:
 	c_Robot_App_Widget(QWidget * parent = nullptr);
 	virtual ~c_Robot_App_Widget();
-	
+	Ui_Robot_App_Widget *ui;
+	c_Thread *m_Thread;//子类线程
+	QElapsedTimer *m_Time;//计时器
+
 	public slots:
 	void keyPressEvent(QKeyEvent *event);
 
 signals:
 	void System_Scan_Done();
-
 private:
-	Ui_Robot_App_Widget *ui;
-	c_Thread *m_Thread;//子类线程
-	QElapsedTimer *m_Time;//计时器
-
 	QString m_Current_Time = "";//系统时间
 	int m_Current_FPS = 0;//当前帧率
 	int m_FPS = 0;//帧率计数
@@ -40,7 +38,6 @@ private:
 	QJsonObject m_Fast_Scan_State;//快扫采集状态
 	QJsonObject m_Prec_Scan_120_State;//左精扫采集状态
 	QJsonObject m_Prec_Scan_121_State;//右精扫采集状态
-	QJsonObject m_Hikvision_State;//声纹采集状态
 
 	bool m_RGV_Connected = false;//状态
 	bool m_Jaka_120_Remote_Connected = false;//状态
@@ -52,14 +49,13 @@ private:
 	bool m_Meijidenki_20_Connected = false;//状态
 	bool m_Meijidenki_21_Connected = false;//状态
 	bool m_Fast_Scan_Connected = false;//状态
-	bool m_Hikvision_Connected = false;//状态
 	bool m_Work_Connected = false;//状态
 	bool m_START_LMD_20 = false;//状态
 	bool m_START_LMD_21 = false;//状态
 	bool m_RUN_CONTINUOUS_30 = false;//状态
 	bool m_RUN_CONTINUOUS_31 = false;//状态
 
-	QJsonObject m_DiscreteInputs ;//RGV离散输入
+	QJsonObject m_DiscreteInputs;//RGV离散输入
 	QJsonObject m_InputRegisters;//RGV输入寄存器
 	QJsonObject m_HoldingRegisters;//RGV保持寄存器
 
@@ -90,7 +86,7 @@ private:
 	int m_on_soft_limit = 0;//值为 1 时代表机器人正处于关节软
 	int m_emergency_stop = 0;//值为 1 时代表机器人正处于代表急
 	QJsonArray m_drag_near_limit;//值为 1 时代表机器人接近拖拽的极限位
-	
+
 	QJsonObject  m_value;//线阵雷达参数
 	int m_MR = 0;// 量程
 	int m_ESAR = 0;// 设备角度范围
@@ -118,7 +114,6 @@ private:
 	int m_roi_min_distance = 0;//最小距离
 	int m_roi_valid_aver_amp = 0;//有效幅值
 	int m_roi_all_aver_amp = 0;//平均幅值
-
 	private slots:
 	void System_Scan(QJsonObject db);//系统扫描
 };

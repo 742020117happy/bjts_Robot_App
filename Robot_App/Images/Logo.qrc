@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="Logo">
+    <file>icon.ico</file>
+    <file>System.png</file>
+    <file>LogonWidget.jpg</file>
     <file>a921b6ad98a96f5eccea8e2046f425a.jpg</file>
     <file>LOGO.png</file>
     <file>Robot.png</file>

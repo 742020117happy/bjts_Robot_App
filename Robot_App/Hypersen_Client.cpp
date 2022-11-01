@@ -2,10 +2,6 @@
 #include "Hypersen_Client.h"
 
 /*************************************************************************************************************************************************
-**Function:指向面阵雷达的回调函数的全局指针
-*************************************************************************************************************************************************/
-c_Hypersen_CallBack *c_Hypersen_CallBack::g_Hypersen_CallBack = new c_Hypersen_CallBack;
-/*************************************************************************************************************************************************
 **Function:构造函数
 *************************************************************************************************************************************************/
 c_Hypersen_CallBack::c_Hypersen_CallBack(QObject * parent) : QObject(parent)
@@ -19,8 +15,7 @@ c_Hypersen_CallBack::c_Hypersen_CallBack(QObject * parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Hypersen_CallBack::~c_Hypersen_CallBack()
 {
-	g_Hypersen_CallBack = NULL;
-	delete g_Hypersen_CallBack;
+	
 }
 /*************************************************************************************************************************************************
 **Function:状态回调
@@ -237,7 +232,6 @@ void c_Hypersen_Client::Read_Json(quint8 id)
 	uint8_t ret = 0;
 	ret = HPS3D_GetOutRoiParam_CB(id, &m_group_id, &m_roi_number, m_roi_id);
 	QJsonObject object;
-	object.insert("roi_number", m_roi_number);
 	//获取ROI数学统计信息
 	for (int i = 0; i < m_roi_number; i++) {
 		QJsonArray arry;

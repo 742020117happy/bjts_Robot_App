@@ -1,15 +1,11 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "Meijidenki_Client.h"
-/*************************************************************************************************************************************************
-**Function:指向线阵雷达的回调函数的全局指针
-*************************************************************************************************************************************************/
-c_Meijidenki_CallBack *c_Meijidenki_CallBack::g_Meijidenki_CallBack = new c_Meijidenki_CallBack;
+
 /*************************************************************************************************************************************************
 **Function:构造函数
 *************************************************************************************************************************************************/
 c_Meijidenki_CallBack::c_Meijidenki_CallBack(QObject * parent) : QObject(parent)
 {
-	g_Meijidenki_CallBack = this;
 	EquipmentCommInit(NULL, c_Meijidenki_CallBack::EqCommDataCallBack, c_Meijidenki_CallBack::EqCommStateCallBack);
 }
 /*************************************************************************************************************************************************
@@ -17,8 +13,7 @@ c_Meijidenki_CallBack::c_Meijidenki_CallBack(QObject * parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Meijidenki_CallBack::~c_Meijidenki_CallBack()
 {
-	g_Meijidenki_CallBack = NULL;
-	delete g_Meijidenki_CallBack;
+	EquipmentCommDestory(); //关闭通讯库
 }
 /*************************************************************************************************************************************************
 **Function:状态回调
@@ -90,7 +85,6 @@ c_Meijidenki_Client::c_Meijidenki_Client(QObject *parent) : QObject(parent)
 c_Meijidenki_Client::~c_Meijidenki_Client()
 {
 	CloseEquipmentComm(m_device_id); // 关闭当前设备
-	EquipmentCommDestory(); //关闭通讯库
 }
 /*************************************************************************************************************************************************
 **Function:    初始化函数
