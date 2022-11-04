@@ -1,6 +1,7 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "Hypersen_Client.h"
 
+c_Hypersen_CallBack *c_Hypersen_CallBack::g_Hypersen_CallBack = new c_Hypersen_CallBack;
 /*************************************************************************************************************************************************
 **Function:构造函数
 *************************************************************************************************************************************************/
@@ -8,7 +9,7 @@ c_Hypersen_CallBack::c_Hypersen_CallBack(QObject * parent) : QObject(parent)
 {
 	//第一步，设置Debug信息回调函数，用于打印错误信息
 	//调试时使用，不需要可以不注册（可选）
-	HPS3D_SetDebugCallBack(c_Hypersen_CallBack::Hypersen_DebugFunc, NULL);
+	HPS3D_SetDebugCallBack(Hypersen_DebugFunc, NULL);
 }
 /*************************************************************************************************************************************************
 **Function:析构指针
@@ -76,7 +77,10 @@ void c_Hypersen_CallBack::Hypersen_31_Read_Ready(quint8 id)
 *************************************************************************************************************************************************/
 c_Hypersen_Client::c_Hypersen_Client(QObject *parent) : QObject(parent)
 {
-
+	//如果，客户端，状态改变，执行，本线程，状态改变函数
+	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::State_Changed, this, &c_Hypersen_Client::State_Changed);
+	//开启监听模式{机器人，有可读取通道，对象，读取信号}
+	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::ReadReady, this, &c_Hypersen_Client::Read_Json);
 }
 /*************************************************************************************************************************************************
 **Function:    析构函数
@@ -94,21 +98,6 @@ c_Hypersen_Client::~c_Hypersen_Client()
 	HPS3D_DisConnect(m_device_id);
 }
 /*************************************************************************************************************************************************
-**Function:    初始化函数
-**Description: 线程的构造函数
-**Input:       无输入
-**Output:      无输出
-**Return:      无返回
-**Others:
-*************************************************************************************************************************************************/
-void c_Hypersen_Client::Init()
-{
-	//如果，客户端，状态改变，执行，本线程，状态改变函数
-	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::State_Changed, this, &c_Hypersen_Client::State_Changed);
-	//开启监听模式{机器人，有可读取通道，对象，读取信号}
-	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::ReadReady, this, &c_Hypersen_Client::Read_Json);
-}
-/*************************************************************************************************************************************************
 **Function:    Connect_Device(QString ip, int port)
 **Description: 连接tcpsocket服务器
 **Input:       -> ip
@@ -121,6 +110,7 @@ void c_Hypersen_Client::Init()
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Connect_Device(QString ip, int port)
 {
+	if (m_State) { return; }//如果处于连接状态立即返回
 	uint8_t ret = 0;
 	m_ip = ip;
 	//第二步，连接设备（必要）
@@ -196,6 +186,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 		emit Status("设置ROI简单深度事件:..........成功!");
 	}
 	if (ret == RET_OK){
+		m_State = true;
 		emit Connect_Done(m_device_id);
 	}
 }
@@ -209,6 +200,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Disconnect_Device()
 {
+	if (!m_State) { return; }//如果处于未连接状态立即返回
 	uint8_t ret = 0;
 	ret = HPS3D_DisConnect(m_device_id);
 	if (ret != RET_OK) {
@@ -264,6 +256,7 @@ void c_Hypersen_Client::Read_Json(quint8 id)
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Write(quint8 value)
 {
+	if (!m_State) { return; }//如果处于未连接状态立即返回
 	uint8_t ret = 0;
 	ret = HPS3D_SetRunMode(m_device_id, value);
 	if(ret != RET_OK){
@@ -294,5 +287,6 @@ void c_Hypersen_Client::State_Changed(QString str)
 	if (inf.left(20) == "HPS3D device remove " && inf.right(1) == QString::number(m_device_id) ) {
 		emit Disconnect_Done();
 		emit Status("断开设备连接:..........成功!");
+		m_State = false;
 	}
 }

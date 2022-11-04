@@ -4,15 +4,21 @@ QFrame#Logon{
     background-position:center;
     background-repeat:no-repeat;
 }
-QWidget#widget_3{
-    border:solid 10px black;
-    border-image: url(:/Logo/Robot.png);
-    background-position:center;
-    background-repeat:no-repeat;
-}
 QWidget#widget{
     border:solid 10px black;
     border-image: url(:/Logo/a921b6ad98a96f5eccea8e2046f425a.jpg);
+    background-position:center;
+    background-repeat:no-repeat;
+}
+QWidget#widget_2{
+    border:solid 10px black;
+    border-image: url(:/Logo/Car.png);
+    background-position:center;
+    background-repeat:no-repeat;
+}
+QWidget#widget_3{
+    border:solid 10px black;
+    border-image: url(:/Logo/Robot.png);
     background-position:center;
     background-repeat:no-repeat;
 }
@@ -21,6 +27,7 @@ QLabel, QToolTip {
     border-radius: 4px;
     padding: 2px; /* 边界都内部矩形的宽度 */
 }
+
 QLineEdit {
     border: 2px solid gray;
     border-radius: 10px;
@@ -34,6 +41,7 @@ QListView {
 QListView {
     show-decoration-selected: 1;
 }
+
 QListView::item:alternate {
         background: #EEEEEE;
     }
@@ -49,6 +57,7 @@ QListView::item:selected:active {
 QListView::item:hover {
         background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FAFBFE, stop: 1 #DCDEF1);
     }
+
 QPushButton {
 	background-color: green;
 	color: white;
@@ -62,18 +71,7 @@ QPushButton:disabled {
 QPushButton::pressed {
         background-color: red;
 }
-QPushButton:checked {
-	color: white;
-	background-color:  rgba(37, 130, 122, 255);
-}
-QProgressBar {
-    border: 2px solid grey;
-    border-radius: 5px;
-}
-QProgressBar::chunk {
-    background-color: #05B8CC;
-    width: 20px;
-}
+
 QProgressBar {
     border: 2px solid grey;
     border-radius: 5px;
@@ -84,14 +82,15 @@ QProgressBar::chunk {
     width: 10px;
     margin: 0.5px;
 }
+
 QGroupBox {
     font-size: 20px;
+    font-weight:bold;
     font-family: "微软雅黑";
     border: 1px solid black;
     border-radius: 4px;
     margin-top: 10px;
     border-width: 2px;
-   
 }
 QGroupBox::title {
      background-color: orange;

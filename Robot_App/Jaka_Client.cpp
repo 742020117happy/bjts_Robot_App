@@ -23,7 +23,7 @@ c_Jaka_Client::c_Jaka_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Jaka_Client::~c_Jaka_Client()
 {
-	m_Socket->deleteLater();
+	delete m_Socket;
 }
 /*************************************************************************************************************************************************
 **Function:    初始化函数
@@ -91,14 +91,15 @@ void c_Jaka_Client::Init()
 void c_Jaka_Client::Connect_Device(QString ip, int port)
 {
     //如果已连接则返回
-    if(m_Socket->state() == QAbstractSocket::ConnectedState)
-    {
-        return;
-    }
+    if(!m_Socket || m_Socket->state() == QAbstractSocket::ConnectedState) {return;}
     //建立新的连接
 	m_Ip = ip;
 	m_Port = port;
-    m_Socket->connectToHost(ip, port);
+	m_Socket->connectToHost(ip, port);
+	//等待连接3秒
+	if(!m_Socket->waitForConnected(3000)){
+		emit Connect_Loop(m_Ip, m_Port);
+	}
 }
 /*************************************************************************************************************************************************
 **Function:    Disconnect_Device()
@@ -110,10 +111,7 @@ void c_Jaka_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Jaka_Client::Disconnect_Device()
 {
-    if((!m_Socket) || (m_Socket->state() != QAbstractSocket::ConnectedState))
-    {
-        return;
-    }
+	if(!m_Socket || m_Socket->state() != QAbstractSocket::ConnectedState){return;}
     m_Socket->close();
 }
 /*************************************************************************************************************************************************

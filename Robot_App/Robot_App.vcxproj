@@ -103,7 +103,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App_Control.cpp" />
+    <ClCompile Include="Hikvision_20_Remote.cpp" />
+    <ClCompile Include="Hikvision_21_Remote.cpp" />
     <ClCompile Include="Hikvision_Client.cpp" />
+    <ClCompile Include="Hikvision_Remote.cpp" />
     <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Variable.cpp" />
     <ClCompile Include="Server_Remote.cpp" />
@@ -213,6 +216,9 @@
     <ClInclude Include="DecodeCardSdk.h" />
     <ClInclude Include="HCNetSDK.h" />
     <QtMoc Include="Hikvision_Client.h" />
+    <QtMoc Include="Hikvision_21_Remote.h" />
+    <QtMoc Include="Hikvision_20_Remote.h" />
+    <QtMoc Include="Hikvision_Remote.h" />
     <ClInclude Include="PlayM4.h" />
     <ClInclude Include="plaympeg4.h" />
     <ClInclude Include="Public_Header.h" />

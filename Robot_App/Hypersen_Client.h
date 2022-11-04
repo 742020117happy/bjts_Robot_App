@@ -25,7 +25,7 @@ class c_Hypersen_CallBack : public QObject
 {
 	Q_OBJECT
 public:
-	c_Hypersen_CallBack(QObject * parent = nullptr);
+	explicit c_Hypersen_CallBack(QObject * parent = nullptr);
 	virtual ~c_Hypersen_CallBack();
 	//操作对象
 	static c_Hypersen_CallBack *g_Hypersen_CallBack;
@@ -51,12 +51,11 @@ private:
 class c_Hypersen_Client : public QObject
 {
 	Q_OBJECT
-
 public:
-	c_Hypersen_Client(QObject * parent = nullptr);
+	explicit c_Hypersen_Client(QObject * parent = nullptr);
 	virtual ~c_Hypersen_Client();
+	bool m_State = false;
 	public slots:
-	void Init();//子线程初始化
 	void Connect_Device(QString ip, int port);//连接到服务器
 	void Disconnect_Device();//断开连接
 	void Write(quint8 value); //写Json数据

@@ -11,6 +11,8 @@ public:
 	explicit c_Variable(QObject *parent = nullptr);
 	virtual ~c_Variable();
 	static QJsonObject g_Communicate_DB;
+	static HWND g_Hikvision_20_winId;
+	static HWND g_Hikvision_21_winId;
 	static QKeyEvent *Key_F6;
 	public slots:
 	static float Short_To_Float(quint16 high, quint16 low);

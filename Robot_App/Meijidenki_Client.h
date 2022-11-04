@@ -40,7 +40,7 @@ class c_Meijidenki_CallBack : public QObject
 {
 	Q_OBJECT
 public:
-	c_Meijidenki_CallBack(QObject * parent = nullptr);
+	explicit c_Meijidenki_CallBack(QObject * parent = nullptr);
 	virtual ~c_Meijidenki_CallBack();
 	//操作对象
 	static c_Meijidenki_CallBack *g_Meijidenki_CallBack;
@@ -69,11 +69,11 @@ class c_Meijidenki_Client : public QObject
 	Q_OBJECT
 
 public:
-	c_Meijidenki_Client(QObject * parent = nullptr);
+	explicit c_Meijidenki_Client(QObject * parent = nullptr);
 	virtual ~c_Meijidenki_Client();
+	bool m_State = false;
 
 	public slots:
-	void Init();//子线程初始化
 	void Connect_Device(int id, QString ip, int port);//连接到服务器
 	void Disconnect_Device();//断开连接
 	void Write(quint32 value); //写Json数据

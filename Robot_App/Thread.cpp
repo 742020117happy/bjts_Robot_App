@@ -16,6 +16,8 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	m_Hypersen_31_Remote->moveToThread(m_Hypersen_31_Remote_Thread);//右面阵雷达控制
 	m_Meijidenki_20_Remote->moveToThread(m_Meijidenki_20_Remote_Thread);//左线阵雷达控制
 	m_Meijidenki_21_Remote->moveToThread(m_Meijidenki_21_Remote_Thread);//右线阵雷达控制
+	m_Hikvision_20_Remote->moveToThread(m_Hikvision_20_Remote_Thread);//左监控相机
+	m_Hikvision_21_Remote->moveToThread(m_Hikvision_21_Remote_Thread);//右监控相机
 	m_Prec_Scan_120_Remote->moveToThread(m_Prec_Scan_120_Remote_Thread);//左精扫相机转发
 	m_Prec_Scan_121_Remote->moveToThread(m_Prec_Scan_121_Remote_Thread);//右精扫相机转发
 	m_Fast_Scan_Remote->moveToThread(m_Fast_Scan_Remote_Thread);//快扫相机控制
@@ -33,6 +35,8 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	QObject::connect(m_Hypersen_31_Remote_Thread, &QThread::started, m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Init);
 	QObject::connect(m_Meijidenki_20_Remote_Thread, &QThread::started, m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Init);
 	QObject::connect(m_Meijidenki_21_Remote_Thread, &QThread::started, m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Init);
+	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Init);
+	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Init);
 	QObject::connect(m_Prec_Scan_120_Remote_Thread, &QThread::started, m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Run);
 	QObject::connect(m_Prec_Scan_121_Remote_Thread, &QThread::started, m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Run);
 	QObject::connect(m_Fast_Scan_Remote_Thread, &QThread::started, m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Init);
@@ -56,6 +60,9 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	QObject::connect(m_Local_Remote_Thread, &QThread::finished, m_Local_Remote, &c_Local_Remote::deleteLater);
 	QObject::connect(m_Local_Monitor_Thread, &QThread::finished, m_Local_Monitor, &c_Local_Monitor::deleteLater);
 	QObject::connect(m_App_Control_Thread, &QThread::finished, m_App_Control, &c_App_Control::deleteLater);
+	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::deleteLater);
+	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::deleteLater);
+
 	QObject::connect(m_Work_Remote_Thread, &QThread::finished, m_Work_Remote, &c_Work_Remote::deleteLater);
 	QObject::connect(m_State_DB, &c_State_DB::System_Scan, m_Local_Remote, &c_Local_Remote::System_Scan);
 	QObject::connect(m_State_DB, &c_State_DB::System_Scan, m_Local_Monitor, &c_Local_Monitor::System_Scan);
@@ -111,6 +118,14 @@ c_Thread::~c_Thread()
 	m_App_Control_Thread->requestInterruption();
 	m_App_Control_Thread->quit();
 	m_App_Control_Thread->wait();
+
+	m_Hikvision_20_Remote_Thread->requestInterruption();
+	m_Hikvision_20_Remote_Thread->quit();
+	m_Hikvision_20_Remote_Thread->wait();
+
+	m_Hikvision_21_Remote_Thread->requestInterruption();
+	m_Hikvision_21_Remote_Thread->quit();
+	m_Hikvision_21_Remote_Thread->wait();
 
 	m_Prec_Scan_120_Remote_Thread->requestInterruption();
 	m_Prec_Scan_120_Remote_Thread->quit();
@@ -178,6 +193,8 @@ void c_Thread::Start()
 	m_Hypersen_31_Remote_Thread->start();//右面阵雷达控制线程
 	m_Meijidenki_20_Remote_Thread->start();//左线阵雷达控制线程
 	m_Meijidenki_21_Remote_Thread->start();//右线阵雷达控制线程
+	m_Hikvision_20_Remote_Thread->start();//右监控相机
+	m_Hikvision_21_Remote_Thread->start();//左监控相机
 	m_Prec_Scan_120_Remote_Thread->start();//左精扫相机转发线程
 	m_Prec_Scan_121_Remote_Thread->start();//右精扫相机转发线程
 	m_Fast_Scan_Remote_Thread->start();//快扫相机控制线程

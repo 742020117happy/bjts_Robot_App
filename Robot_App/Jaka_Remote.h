@@ -20,9 +20,6 @@ public:
 	void Jaka_power_off();
 	void Jaka_enable_robot();
 	void Jaka_disable_robot();
-	void Jaka_joint_move(double J1, double J2, double J3, double J4, double J5, double J6);
-	void Jaka_origin_move();
-	void Jaka_load_program();
 	void Jaka_play_program();
 	void Jaka_pause_program();
 	void Jaka_resume_program();
@@ -59,6 +56,10 @@ private:
 	private slots:
 	void Connect_Done();
 	void Disconnect_Done();
+	void Connect_Loop(QString ip, int port);//循环检测连接状态
 	void Write(QJsonObject json);
 	void Read_Json_Done(QJsonObject json);
+	void Jaka_joint_move(double J1, double J2, double J3, double J4, double J5, double J6);
+	void Jaka_origin_move();
+	void Jaka_load_program();
 };

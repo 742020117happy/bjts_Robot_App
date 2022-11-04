@@ -19,6 +19,7 @@ public:
 	void Work_Start();
 	void System_Scan(QJsonObject object);
 	void Prec_Scan_Write_Done(QString ip, int port, QString value);
+	void Load_Status(QString state);
 	void Step_0(QString Carbox_Num, QString Bogie_Num, QString Axis_Num);//直到第一轴巡检结束
 	void Step_1(QString Carbox_Num, QString Bogie_Num, QString Axis_Num);//直到间二位巡检结束
 	void Step_2(QString Carbox_Num, QString Bogie_Num, QString Axis_Num);//直到间一位巡检结束
@@ -44,6 +45,7 @@ public:
 	void State_19_Loop();//反向障碍停车
 	void State_20_Loop();//自动充电解除
 	void State_21_Loop();//风刀打开
+	void State_22_Loop();//系统就绪
 signals:
 	void Status(QString state);
 	void Write_Work_Remote_State(QJsonObject db);
@@ -112,14 +114,16 @@ signals:
 	void is_State_25();//反向面阵雷达停车
 	void is_State_26();//反向面阵雷达停车解除
 	void is_State_27();//自动充电解除
+	void is_State_28();//系统就绪
 
 private:
 	QJsonObject m_Work_Remote_State;
+	QJsonArray m_Status;
 	QString m_Robot_Num = "01";//机器人编号
 	QString m_Track_Rank = "D98";//股道号
-	QString m_Begin_Time = "202209201622";//开始时间
-	QString m_Work_Num = "202111060940CHR380AL2411";//任务编号
-	QString m_Car_Type = "CHR380AL";//任务车型
+	QString m_Begin_Time = "202211021651";//开始时间
+	QString m_Work_Num = "202211021651CHR380A2411";//任务编号
+	QString m_Car_Type = "CHR380A";//任务车型
 	QString m_Car_Num = "2411";//车辆编号
 	QString m_Carbox_Num = "01";//车厢号
 	QString m_Bogie_Num = "A";//转向架号
@@ -127,8 +131,12 @@ private:
 	QString m_Work_Stage = "Debuge";//巡检工作阶段
 	QString m_Wheelset_Num_120 = "L";//机械臂120轮对号
 	QString m_Wheelset_Num_121 = "L";//机械臂121轮对号
-	QString m_Point_Num_120 = "0";//机械臂120巡检点
-	QString m_Point_Num_121 = "O";//机械臂121巡检点
+	QString m_Point_Num_120 = "01";//机械臂120巡检点
+	QString m_Point_Num_121 = "O1";//机械臂121巡检点
+	QString m_Primary_Components_120 = "ZDJQ";//机械臂120巡检一级部件
+	QString m_Secondary_Components_120 = "01";//机械臂120巡检二级部件
+	QString m_Primary_Components_121 = "ZDJQ";//机械臂121巡检一级部件
+	QString m_Secondary_Components_121 = "01";//机械臂121巡检二级部件
 	bool m_Work_Start = false;
 	bool m_Jaka_120 = false;
 	bool m_Jaka_121 = false;
@@ -142,6 +150,9 @@ private:
 	QJsonObject m_Jaka_121_Monitor_State;//右机械臂监视状态
 	QJsonObject m_Hypersen_30_State;//左面阵相机状态
 	QJsonObject m_Hypersen_31_State;//右面阵相机状态
+	QJsonObject m_Meijidenki_20_State;//左线阵相机状态
+	QJsonObject m_Meijidenki_21_State;//右线阵相机状态
+	QJsonObject m_Fast_Scan_State;//快扫采集状态
 
 	bool m_RGV_Connected = false;//状态
 	bool m_Jaka_120_Remote_Connected = false;//状态
@@ -150,6 +161,9 @@ private:
 	bool m_Jaka_121_Monitor_Connected = false;//状态
 	bool m_Hypersen_30_Connected = false;//状态
 	bool m_Hypersen_31_Connected = false;//状态
+	bool m_Meijidenki_20_Connected = false;//状态
+	bool m_Meijidenki_21_Connected = false;//状态
+	bool m_Fast_Scan_Connected = false;//状态
 
 	QJsonObject m_DiscreteInputs;
 	QJsonObject m_InputRegisters;
@@ -199,6 +213,7 @@ private:
 	bool m_State_29 = false;//正向障碍停车中
 	bool m_State_30 = false;//反向障碍停车中
 	bool m_State_31 = false;//自动在充电状态
+	bool m_State_32 = false;//系统就绪状态
 };
 
 

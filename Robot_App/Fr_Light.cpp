@@ -3,7 +3,7 @@
 
 c_Fr_Light::c_Fr_Light(QWidget * parent) :QWidget(parent)
 {
-	m_State = Default;
+	m_State = Other;
 	m_Working_Color = QColor("green");
 	m_Default_Color = QColor("red");
 	m_Error_Color = QColor("yellow");
@@ -15,32 +15,26 @@ c_Fr_Light::~c_Fr_Light()
 	
 }
 
-bool c_Fr_Light::Current_State()
-{
-	switch (m_State) {
-	case Default:return false;
-	case Working:return true;
-	default:return false;
-	}
-}
-
 void c_Fr_Light::Set_Working()
 {
-	if (m_State == Working) { return; }
+	if (m_State == Working) { return; }//如果状态未改变则立即退出
 	m_State = Working;
 	update();
+	emit Working_State(true);
 }
 void c_Fr_Light::Set_Default()
 {
-	if (m_State == Default) { return; }
+	if (m_State == Default) { return; }	  //如果状态未改变则立即退出
 	m_State = Default;
 	update();
+	emit Default_State(true);
 }
 void c_Fr_Light::Set_Error()
 {
-	if (m_State == Error) { return; }
+	if (m_State == Error) { return; }	   //如果状态未改变则立即退出
 	m_State = Error;
 	update();
+	emit Error_State(true);
 }
 void c_Fr_Light::Set_State(bool state)
 {

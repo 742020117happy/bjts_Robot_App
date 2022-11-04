@@ -14,10 +14,11 @@
 #include "Hypersen_31_Remote.h"
 #include "Meijidenki_20_Remote.h"
 #include "Meijidenki_21_Remote.h"
+#include "Hikvision_20_Remote.h"
+#include "Hikvision_21_Remote.h"
 #include "Prec_Scan_120_Remote.h"
 #include "Prec_Scan_121_Remote.h"
 #include "Fast_Scan_Remote.h"
-#include "Hikvision_Client.h"
 
 /*************************************************************************************************************************************************
 **Function:线程对象与接口
@@ -45,8 +46,8 @@ public:
 	c_Local_Monitor *m_Local_Monitor = new c_Local_Monitor;//监视服务
 	c_App_Control *m_App_Control = new c_App_Control;//调试App服务
 	c_Work_Remote *m_Work_Remote = new c_Work_Remote;//巡检控制
-	c_Hikvision_Client *m_Hikvision_20 = new c_Hikvision_Client;
-	c_Hikvision_Client *m_Hikvision_21 = new c_Hikvision_Client;
+	c_Hikvision_20_Remote *m_Hikvision_20_Remote = new c_Hikvision_20_Remote;//左监控相机
+	c_Hikvision_21_Remote *m_Hikvision_21_Remote = new c_Hikvision_21_Remote;//右监控相机
 	public slots:
 	void Start();
 private:
@@ -60,10 +61,11 @@ private:
 	QThread *m_Hypersen_31_Remote_Thread = new QThread;//右面阵雷达控制线程
 	QThread *m_Meijidenki_20_Remote_Thread = new QThread;//左线阵雷达控制线程
 	QThread *m_Meijidenki_21_Remote_Thread = new QThread;//右线阵雷达控制线程
+	QThread *m_Hikvision_20_Remote_Thread = new QThread;//左监控相机线程
+	QThread *m_Hikvision_21_Remote_Thread = new QThread;//右监控相机线程
 	QThread *m_Prec_Scan_120_Remote_Thread = new QThread;//左精扫相机转发线程
 	QThread *m_Prec_Scan_121_Remote_Thread = new QThread;//右精扫相机转发线程
 	QThread *m_Fast_Scan_Remote_Thread = new QThread;//快扫相机控制线程
-	QThread *m_Hikvision_Remote_Thread = new QThread;//海康声纹采集线程
 	QThread *m_Local_Remote_Thread = new QThread;//控制服务线程
 	QThread *m_Local_Monitor_Thread = new QThread;//监视服务线程
 	QThread *m_App_Control_Thread = new QThread;//调试App线程

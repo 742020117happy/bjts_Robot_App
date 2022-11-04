@@ -97,9 +97,6 @@
     <Filter Include="软件开发工具包（与父类组合）\图标资源工具包">
       <UniqueIdentifier>{a2886b1e-d41a-456d-9f75-00824307bfcf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="业务层（子类）\业务线程（实例化所有子类对象）">
-      <UniqueIdentifier>{18b7740f-f7be-4d80-bd07-4c9d953dabfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="业务层（子类）\左面阵雷达">
       <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
     </Filter>
@@ -229,6 +226,18 @@
     <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端">
       <UniqueIdentifier>{7af53014-e516-4bb6-ad4c-215c8d3fcc68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="业务层（子类）\左监控相机">
+      <UniqueIdentifier>{05f9e0d0-c0ca-4c0e-9053-686ec3890be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\右监控相机">
+      <UniqueIdentifier>{5823f046-9015-4431-8d4d-c6eb43371e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="通讯层（父类）\监控相机遥控">
+      <UniqueIdentifier>{687da099-fd64-472e-b059-253928383499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\实例化所有子类对象">
+      <UniqueIdentifier>{18b7740f-f7be-4d80-bd07-4c9d953dabfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Jaka_120_Remote.cpp">
@@ -340,10 +349,19 @@
       <Filter>通讯层（父类）\通讯数据库</Filter>
     </ClCompile>
     <ClCompile Include="Thread.cpp">
-      <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
+      <Filter>业务层（子类）\实例化所有子类对象</Filter>
     </ClCompile>
     <ClCompile Include="Hikvision_Client.cpp">
       <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
+    </ClCompile>
+    <ClCompile Include="Hikvision_21_Remote.cpp">
+      <Filter>业务层（子类）\左监控相机</Filter>
+    </ClCompile>
+    <ClCompile Include="Hikvision_20_Remote.cpp">
+      <Filter>业务层（子类）\右监控相机</Filter>
+    </ClCompile>
+    <ClCompile Include="Hikvision_Remote.cpp">
+      <Filter>通讯层（父类）\监控相机遥控</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -450,10 +468,19 @@
       <Filter>通讯层（父类）\通讯数据库</Filter>
     </QtMoc>
     <QtMoc Include="Thread.h">
-      <Filter>业务层（子类）\业务线程（实例化所有子类对象）</Filter>
+      <Filter>业务层（子类）\实例化所有子类对象</Filter>
     </QtMoc>
     <QtMoc Include="Hikvision_Client.h">
       <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
+    </QtMoc>
+    <QtMoc Include="Hikvision_21_Remote.h">
+      <Filter>业务层（子类）\左监控相机</Filter>
+    </QtMoc>
+    <QtMoc Include="Hikvision_20_Remote.h">
+      <Filter>业务层（子类）\右监控相机</Filter>
+    </QtMoc>
+    <QtMoc Include="Hikvision_Remote.h">
+      <Filter>通讯层（父类）\监控相机遥控</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

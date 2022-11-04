@@ -43,6 +43,8 @@ void c_Jaka_Remote::Init()
 	//连接设备
 	QObject::connect(this, &c_Jaka_Remote::Connect_Device, m_Jaka_Remote, &c_Jaka_Client::Connect_Device);
 	QObject::connect(this, &c_Jaka_Remote::Disconnect_Device, m_Jaka_Remote, &c_Jaka_Client::Disconnect_Device);
+	//循环连接
+	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Connect_Loop, this, &c_Jaka_Remote::Connect_Loop);
 	//设备状态改变
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Connect_Done, this, &c_Jaka_Remote::Set_Working);
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Disconnect_Done, this, &c_Jaka_Remote::Set_Default);
@@ -85,34 +87,6 @@ void c_Jaka_Remote::Jaka_enable_robot()
 void c_Jaka_Remote::Jaka_disable_robot()
 {
 	Write(disable_robot);
-}
-void c_Jaka_Remote::Jaka_joint_move(double J1, double J2, double J3, double J4, double J5, double J6)
-{
-	joint_move.insert("cmdName", "joint_move");
-	QJsonArray jointPosition;
-	jointPosition.append(J1);
-	jointPosition.append(J2);
-	jointPosition.append(J3);
-	jointPosition.append(J4);
-	jointPosition.append(J5);
-	jointPosition.append(J6);
-	joint_move.insert("jointPosition", jointPosition);
-	joint_move.insert("speed", 30);
-	joint_move.insert("accel", 30);
-	joint_move.insert("relFlag", 0);
-	Write(joint_move);
-}
-void c_Jaka_Remote::Jaka_origin_move()
-{
-	QEventLoop *origin_move_Loop = new QEventLoop;
-	Jaka_joint_move(-90, 40, 150, 120, 0, 5);
-	QObject::connect(this, &c_Jaka_Remote::Origin_Moved, origin_move_Loop, &QEventLoop::quit);
-	emit Origin_Monitor();
-	origin_move_Loop->exec();
-}
-void c_Jaka_Remote::Jaka_load_program()
-{
-	Write(load_program);
 }
 void c_Jaka_Remote::Jaka_play_program()
 {
@@ -187,6 +161,37 @@ void c_Jaka_Remote::Read_Json_Done(QJsonObject json)
 	}
 }
 /*************************************************************************************************************************************************
+**Function:子类私有遥控方法接口
+*************************************************************************************************************************************************/
+void c_Jaka_Remote::Jaka_joint_move(double J1, double J2, double J3, double J4, double J5, double J6)
+{
+	joint_move.insert("cmdName", "joint_move");
+	QJsonArray jointPosition;
+	jointPosition.append(J1);
+	jointPosition.append(J2);
+	jointPosition.append(J3);
+	jointPosition.append(J4);
+	jointPosition.append(J5);
+	jointPosition.append(J6);
+	joint_move.insert("jointPosition", jointPosition);
+	joint_move.insert("speed", 30);
+	joint_move.insert("accel", 30);
+	joint_move.insert("relFlag", 0);
+	Write(joint_move);
+}
+void c_Jaka_Remote::Jaka_origin_move()
+{
+	QEventLoop *origin_move_Loop = new QEventLoop;
+	Jaka_joint_move(-90, 40, 150, 120, 0, 5);
+	QObject::connect(this, &c_Jaka_Remote::Origin_Moved, origin_move_Loop, &QEventLoop::quit);
+	emit Origin_Monitor();
+	origin_move_Loop->exec();
+}
+void c_Jaka_Remote::Jaka_load_program()
+{
+	Write(load_program);
+}
+/*************************************************************************************************************************************************
 **Function:父类私有连接状态写入
 *************************************************************************************************************************************************/
 void c_Jaka_Remote::Connect_Done()
@@ -198,4 +203,9 @@ void c_Jaka_Remote::Disconnect_Done()
 {
 	m_Jaka_Remote_State.insert("Connected", false);
 	emit Write_Jaka_Remote_State(m_Jaka_Remote_State);
+}
+void c_Jaka_Remote::Connect_Loop(QString ip, int port)
+{
+	c_Variable::msleep(3000);
+	emit Connect_Device(ip,port);
 }

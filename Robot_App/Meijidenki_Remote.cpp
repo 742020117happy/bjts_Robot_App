@@ -12,12 +12,7 @@ c_Meijidenki_Remote::c_Meijidenki_Remote(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Meijidenki_Remote::~c_Meijidenki_Remote()
 {
-	//线程中断
-	m_Meijidenki_Remote_Thread->requestInterruption();
-	//线程退出
-	m_Meijidenki_Remote_Thread->quit();
-	//线程等待
-	m_Meijidenki_Remote_Thread->wait();
+	delete m_Meijidenki_Remote;
 }
 /*************************************************************************************************************************************************
 **Function:初始化接口
@@ -26,11 +21,6 @@ void c_Meijidenki_Remote::Init()
 {
 	//实例化
 	m_Meijidenki_Remote = new c_Meijidenki_Client;
-	m_Meijidenki_Remote_Thread = new QThread;
-	m_Meijidenki_Remote->moveToThread(m_Meijidenki_Remote_Thread);
-	//初始化数据交换层
-	QObject::connect(m_Meijidenki_Remote_Thread, &QThread::started, m_Meijidenki_Remote, &c_Meijidenki_Client::Init);
-	QObject::connect(m_Meijidenki_Remote_Thread, &QThread::finished, m_Meijidenki_Remote, &c_Meijidenki_Client::deleteLater);
 	//连接设备
 	QObject::connect(this, &c_Meijidenki_Remote::Connect_Device, m_Meijidenki_Remote, &c_Meijidenki_Client::Connect_Device);
 	QObject::connect(this, &c_Meijidenki_Remote::Disconnect_Device, m_Meijidenki_Remote, &c_Meijidenki_Client::Disconnect_Device);
@@ -49,8 +39,6 @@ void c_Meijidenki_Remote::Init()
 	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Disconnect_Done, this, &c_Meijidenki_Remote::Disconnect_Done);
 	//提示信息
 	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Status, this, &c_Meijidenki_Remote::Status);
-	//启动线程
-	m_Meijidenki_Remote_Thread->start();
 	emit setEnabled(false);
 }
 /*************************************************************************************************************************************************
