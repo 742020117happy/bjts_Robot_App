@@ -30,9 +30,11 @@ signals:
 	void Write(quint8 value);//写
 	void Status(QString status);//监视器状态
 private:
+	QThread *m_Hypersen_Remote_Thread;
 	c_Hypersen_Client *m_Hypersen_Remote;
 	private slots :
 	void Connect_Done(quint8 id);
 	void Disconnect_Done();
+                void Connect_Loop(QString ip, int port);
 	void Read_Json_Done(QJsonObject json);
 };

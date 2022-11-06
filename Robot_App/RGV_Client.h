@@ -29,6 +29,7 @@ public:
 signals:
     void Connect_Done();//连接到服务器
     void Disconnect_Done();//断开连接
+	void Connect_Loop();//循环连接
     void Read_Coils_Done(QJsonObject value);//读线圈完成
     void Read_DiscreteInputs_Done(QJsonObject value);//读离散输入完成
     void Read_InputRegisters_Done(QJsonObject value);//读输入寄存器完成
@@ -67,5 +68,6 @@ private:
 	QJsonObject m_DiscreteInputs;//数据缓存区间
 	QJsonObject m_InputRegisters;//数据缓存区间
 	QJsonObject m_HoldingRegisters;//数据缓存区间
+	bool m_Stop_Connect = false;
 };
 

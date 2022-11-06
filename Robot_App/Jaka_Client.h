@@ -45,6 +45,7 @@ private:
 	QTcpSocket *m_Socket;//通讯对象
 	QString m_Ip;
 	int m_Port;
+	bool m_Stop_Connect = false;
 	bool m_Read_Ready = true;
 	private slots:
 	void Read_Json();//读Json数据

@@ -5,7 +5,7 @@ class c_Radar_Plot : public QWidget {
 	Q_OBJECT
 
 public:
-	c_Radar_Plot(QWidget * parent = Q_NULLPTR);
+	explicit c_Radar_Plot(QWidget * parent = Q_NULLPTR);
 	virtual ~c_Radar_Plot();
 	public slots:
 	void set_Date(QJsonArray len);

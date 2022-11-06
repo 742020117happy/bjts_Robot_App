@@ -23,6 +23,7 @@ void c_Hypersen_31_Remote::Connect()
 	QObject::connect(this, &c_Hypersen_31_Remote::Read_Ready, c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::Hypersen_31_Read_Ready);
 	QString ip = c_Variable::g_Communicate_DB.value("Hypersen_31_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Hypersen_31_Port").toInt();
+	c_Variable::msleep(1000);
 	emit Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************

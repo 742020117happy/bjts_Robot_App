@@ -24,7 +24,7 @@ c_Robot_Logon_Widget::c_Robot_Logon_Widget(QWidget *parent) : QWidget(parent)
 //析构函数
 c_Robot_Logon_Widget::~c_Robot_Logon_Widget()
 {
-	delete Robot_App_Widget;
+	Robot_App_Widget->deleteLater();
 	delete ui;
 }
 //登录界面

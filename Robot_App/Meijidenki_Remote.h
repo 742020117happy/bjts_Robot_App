@@ -29,9 +29,11 @@ signals:
 	void Write(quint32 value);//写
 	void Status(QString status);//监视器状态
 private:
+	QThread *m_Meijidenki_Remote_Thread;
 	c_Meijidenki_Client *m_Meijidenki_Remote;
 	private slots :
 	void Connect_Done();
 	void Disconnect_Done();
+	void Connect_Loop(int id, QString ip, int port);//循环连接
 	void Read_Json_Done(QJsonObject json);
 };

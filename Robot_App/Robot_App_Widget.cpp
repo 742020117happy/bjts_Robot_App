@@ -461,14 +461,10 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->m_State_17, &c_Fr_Light::Working_State, ui->Jaka_121_Remote_Disconnect, &QPushButton::click);//右机器人关机
 	QObject::connect(ui->m_State_225, &c_Fr_Light::Working_State, ui->Fast_Scan_Connect, &QPushButton::click);//采集机电源
 	QObject::connect(ui->m_State_225, &c_Fr_Light::Default_State, ui->Fast_Scan_Disconnect, &QPushButton::click);//采集机电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, this, [=] {
-		c_Variable::msleep(5000);//等待5秒
-		ui->Hypersen_30_Connect->clicked();
-		ui->Meijidenki_20_Connect->clicked();
-		c_Variable::msleep(1000);//等待1秒
-		ui->Meijidenki_21_Connect->clicked();
-		ui->Hypersen_31_Connect->clicked();
-	});//传感器电源
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Hypersen_30_Connect, &QPushButton::click);//传感器电源
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Hypersen_31_Connect, &QPushButton::click);//传感器电源
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Meijidenki_20_Connect, &QPushButton::click);//传感器电源
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Meijidenki_21_Connect, &QPushButton::click);//传感器电源
 	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Hypersen_30_Disconnect, &QPushButton::click);//传感器电源
 	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Hypersen_31_Disconnect, &QPushButton::click);//传感器电源
 	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Meijidenki_20_Disconnect, &QPushButton::click);//传感器电源
@@ -670,7 +666,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 **Function:析构函数
 *************************************************************************************************************************************************/
 c_Robot_App_Widget::~c_Robot_App_Widget() {
-	delete m_Thread;
+	m_Thread->deleteLater();;
 	delete m_Time;
 	delete ui;
 }
@@ -707,11 +703,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	bool Meijidenki_21_Connected = Meijidenki_21_State.value("Connected").toBool();//状态
 	bool Fast_Scan_Connected = Fast_Scan_State.value("Connected").toBool();//状态
 	bool Work_Connected = Work_Remote_State.value("Connected").toBool();//状态
-	/*************************************************************************************************************************************************
-	**Function:执行计数
-	*************************************************************************************************************************************************/
-	m_Connect_Count += 1;
-	ui->Status_Bar->showMessage("系统时间：" + m_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
 	/*************************************************************************************************************************************************
 	**Function:执行计数
 	*************************************************************************************************************************************************/
@@ -1750,17 +1741,9 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		else { ui->Num_16->Set_Default(); }
 	}
 	/*************************************************************************************************************************************************
-	**Function:扫描初始化
-	**如果 RGV未连接 到达时序1000 -》 连接机械臂监视
-	**如果 RGV未连接 -》 时序1000
-	*************************************************************************************************************************************************/
-	if (!RGV_Connected && m_Connect_Count == 1000) { ui->RGV_Connect->clicked(); }
-	if (m_Connect_Count == 1000) {
-		m_Connect_Count = 0;
-	}
-	/*************************************************************************************************************************************************
 	**Function:跟新系统时间
 	*************************************************************************************************************************************************/
+	ui->Status_Bar->showMessage("系统时间：" + m_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
 	if (m_FPS == 50) {
 		m_Current_FPS = m_Time->restart() / 50;
 		m_Current_FPS = 1000 / m_Current_FPS;

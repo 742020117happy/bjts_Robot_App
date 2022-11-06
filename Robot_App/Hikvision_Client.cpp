@@ -27,11 +27,12 @@ void c_Hikvision_Client::Connect_Device(QVariant Login, QVariant Client)
 {
 	//如果处于连接状态则立即退出
 	if (m_State) { return; }
+	m_State = true;
 	//初始化
 	NET_DVR_Init();
 	//设置连接时间与重连时间
-	NET_DVR_SetConnectTime(2000, 1);
-	NET_DVR_SetReconnect(10000, true);
+	NET_DVR_SetConnectTime(10000, 3);
+	NET_DVR_SetReconnect(50000, true);
 	// 注册设备登录参数，包括设备地址、登录用户、密码等
 	NET_DVR_USER_LOGIN_INFO struLoginInfo = Login.value<NET_DVR_USER_LOGIN_INFO>();
 	NET_DVR_DEVICEINFO_V30 struDeviceInfoV30 = { 0 };
@@ -65,8 +66,9 @@ void c_Hikvision_Client::Connect_Device(QVariant Login, QVariant Client)
 void c_Hikvision_Client::Disconnect_Device()
 {
 	if (!m_State) { return; }  //如果处于断开状态立即退出
+	m_State = false;
 	//关闭预览
-	NET_DVR_StopRealPlay(lRealPlayHandle);
+	if (!NET_DVR_StopRealPlay(lRealPlayHandle)) { m_State = true; };
 	//注销用户
 	NET_DVR_Logout(lUserID);
 	emit Status("断开连接成功");

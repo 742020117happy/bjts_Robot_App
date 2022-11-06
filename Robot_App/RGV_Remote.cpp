@@ -34,6 +34,8 @@ void c_RGV_Remote::Init()
 	//连接设备
 	QObject::connect(this, &c_RGV_Remote::Connect_Device, m_RGV_Remote, &c_RGV_Client::Connect_Device);
 	QObject::connect(this, &c_RGV_Remote::Disconnect_Device, m_RGV_Remote, &c_RGV_Client::Disconnect_Device);
+	//循环连接设备
+	QObject::connect(m_RGV_Remote, &c_RGV_Client::Connect_Loop, this, &c_RGV_Remote::Connect);
 	//读数据
 	QObject::connect(this, &c_RGV_Remote::Read_Coils, m_RGV_Remote, &c_RGV_Client::Read_Coils);
 	QObject::connect(this, &c_RGV_Remote::Read_HoldingRegisters, m_RGV_Remote, &c_RGV_Client::Read_HoldingRegisters);
@@ -63,6 +65,8 @@ void c_RGV_Remote::Init()
 	//启动线程
 	m_RGV_Remote_Thread->start();
 	emit setEnabled(false);
+	c_Variable::msleep(500);
+	Connect();
 }
 /*************************************************************************************************************************************************
 **Function:连接设备

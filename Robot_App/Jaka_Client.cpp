@@ -23,7 +23,9 @@ c_Jaka_Client::c_Jaka_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Jaka_Client::~c_Jaka_Client()
 {
-	delete m_Socket;
+	m_Stop_Connect = true;
+	if (m_Socket->state() == QAbstractSocket::ConnectedState) { m_Socket->close();}
+	m_Socket->deleteLater();
 }
 /*************************************************************************************************************************************************
 **Function:    初始化函数
@@ -91,7 +93,12 @@ void c_Jaka_Client::Init()
 void c_Jaka_Client::Connect_Device(QString ip, int port)
 {
     //如果已连接则返回
-    if(!m_Socket || m_Socket->state() == QAbstractSocket::ConnectedState) {return;}
+    if(!m_Socket || m_Socket->state() != QAbstractSocket::UnconnectedState) {return;}
+	//如果发出断开连接请求则终止循环连接，并复位请求标志
+	if (m_Stop_Connect) {
+		m_Stop_Connect = false;
+		return;
+	}
     //建立新的连接
 	m_Ip = ip;
 	m_Port = port;
@@ -111,6 +118,7 @@ void c_Jaka_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Jaka_Client::Disconnect_Device()
 {
+	m_Stop_Connect = true;
 	if(!m_Socket || m_Socket->state() != QAbstractSocket::ConnectedState){return;}
     m_Socket->close();
 }
@@ -168,7 +176,7 @@ void c_Jaka_Client::Read_Ready()
 *************************************************************************************************************************************************/
 void c_Jaka_Client::Write_Json(QJsonObject value)
 {
-    //如果设备已打开
+    //如果设备未打开
     if((!m_Socket) || (m_Socket->state() != QAbstractSocket::ConnectedState) || (value.isEmpty()))
     {
         return;

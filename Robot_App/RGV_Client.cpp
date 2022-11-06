@@ -22,6 +22,8 @@ c_RGV_Client::c_RGV_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_RGV_Client::~c_RGV_Client()
 {
+	m_Stop_Connect = false;
+	if (m_ModbusDevice->state() == QModbusDevice::ConnectedState) { m_ModbusDevice->disconnectDevice(); };
 	m_ModbusDevice->deleteLater();
 }
 /*************************************************************************************************************************************************
@@ -66,17 +68,20 @@ void c_RGV_Client::Init()
 void c_RGV_Client::Connect_Device(QString ip, int port)
 {
     //如果已连接，则返回
-    if (m_ModbusDevice->state() == QModbusDevice::ConnectedState)
-    {
+    if (m_ModbusDevice->state() != QModbusDevice::UnconnectedState){
         return;
     }
+	if (m_Stop_Connect) {
+		m_Stop_Connect = false;
+		return;
+	}
     //配置modbus tcp的连接参数 IP + Port
     m_ModbusDevice->setConnectionParameter(QModbusDevice::NetworkAddressParameter, ip);
     m_ModbusDevice->setConnectionParameter(QModbusDevice::NetworkPortParameter, port);
     //再设置从机无响应时的动作
     m_ModbusDevice->setTimeout(1000);//从设备回复信息的超时时间
     m_ModbusDevice->setNumberOfRetries(2);//重复发送次数
-    m_ModbusDevice->connectDevice();
+	m_ModbusDevice->connectDevice();
 }
 /*************************************************************************************************************************************************
 **Function:    Disconnect_Device()
@@ -88,8 +93,8 @@ void c_RGV_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_RGV_Client::Disconnect_Device()
 {
-    if ((!m_ModbusDevice) || (m_ModbusDevice->state() != QModbusDevice::ConnectedState))
-    {
+	m_Stop_Connect = true;
+	if ((!m_ModbusDevice) || (m_ModbusDevice->state() != QModbusDevice::ConnectedState)){
         return;//如果RGV没有连接则提前退出
     }
     m_ModbusDevice->disconnectDevice();
@@ -406,6 +411,7 @@ void c_RGV_Client::State_Changed()
     {
         emit Status(9);
         emit Disconnect_Done();
+		emit Connect_Loop();
     }
     if(m_ModbusDevice->state() == QModbusDevice::ConnectingState)
     {

@@ -43,20 +43,20 @@ QListView {
 }
 
 QListView::item:alternate {
-        background: #EEEEEE;
-    }
+    background: #EEEEEE;
+}
 QListView::item:selected {
-        border: 1px solid #6a6ea9;
-    }
+    border: 1px solid #6a6ea9;
+}
 QListView::item:selected:!active {
-            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ABAFE5, stop: 1 #8588B2);
-        }
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ABAFE5, stop: 1 #8588B2);
+}
 QListView::item:selected:active {
-            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6a6ea9, stop: 1 #888dd9);
-        }
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6a6ea9, stop: 1 #888dd9);
+}
 QListView::item:hover {
-        background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FAFBFE, stop: 1 #DCDEF1);
-    }
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FAFBFE, stop: 1 #DCDEF1);
+}
 
 QPushButton {
 	background-color: green;
@@ -69,17 +69,17 @@ QPushButton:disabled {
 	background-color: grey;
 }
 QPushButton::pressed {
-        background-color: red;
+    background-color: red;
 }
 
 QProgressBar {
+    border-radius: 10px;
     border: 2px solid grey;
-    border-radius: 5px;
     text-align: center;
 }
 QProgressBar::chunk {
     background-color: #CD96CD;
-    width: 10px;
+    width: 5px;
     margin: 0.5px;
 }
 

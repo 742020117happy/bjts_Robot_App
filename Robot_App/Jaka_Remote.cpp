@@ -206,6 +206,6 @@ void c_Jaka_Remote::Disconnect_Done()
 }
 void c_Jaka_Remote::Connect_Loop(QString ip, int port)
 {
-	c_Variable::msleep(3000);
+	c_Variable::msleep(6000);//等待6秒
 	emit Connect_Device(ip,port);
 }

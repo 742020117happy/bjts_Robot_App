@@ -74,6 +74,7 @@ public:
 	bool m_State = false;
 
 	public slots:
+	void Init();//子线程初始化
 	void Connect_Device(int id, QString ip, int port);//连接到服务器
 	void Disconnect_Device();//断开连接
 	void Write(quint32 value); //写Json数据
@@ -81,6 +82,7 @@ public:
 signals:
 	void Connect_Done();//连接到服务器完成
 	void Disconnect_Done();//断开连接完成
+	void Connect_Loop(int id, QString ip, int port);//循环连接
 	void Connect_Error();//连接到服务器失败
 	void Disconnect_Error();//断开连接失败
 	void Read_Json_Done(QJsonObject value);//读Json完成
@@ -91,8 +93,10 @@ signals:
 
 private:
 	int m_device_id = 99;
+	QString m_ip = "";
+	int m_port = 0;
 	QJsonObject m_Value;
-
+	bool m_Stop_Connect;
 	private slots :
 	void Read_Json(QVariant db);//读Json数据
 	void State_Changed(qint32 _cid, quint32 _state_code);//状态改变

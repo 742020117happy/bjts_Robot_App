@@ -11,7 +11,7 @@ public:
 		Working,
 		Other
 	};
-	c_Fr_Light(QWidget * parent = nullptr);
+	explicit c_Fr_Light(QWidget * parent = nullptr);
 	virtual ~c_Fr_Light();
 
 	public slots:

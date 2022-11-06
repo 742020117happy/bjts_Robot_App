@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>669</height>
+    <height>679</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -3419,94 +3419,8 @@
                <property name="spacing">
                 <number>7</number>
                </property>
-               <item row="1" column="2">
-                <widget class="QLineEdit" name="RGV_State_338">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="8">
-                <widget class="QLineEdit" name="RGV_State_20">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="3">
-                <widget class="QLabel" name="label_66">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>电池容量：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <widget class="QLabel" name="label_15">
-                 <property name="text">
-                  <string>工控机温度：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_32">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>电池电流：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="9">
-                <widget class="QLabel" name="label_51">
-                 <property name="text">
-                  <string>间1位距离：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_14">
-                 <property name="text">
-                  <string>充电刷温度：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="4">
-                <widget class="QLineEdit" name="RGV_State_339">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="2">
-                <widget class="QLineEdit" name="RGV_State_17">
+               <item row="3" column="12">
+                <widget class="QLineEdit" name="RGV_State_337">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -3519,13 +3433,6 @@
                 </widget>
                </item>
                <item row="1" column="9">
-                <widget class="QLabel" name="label_58">
-                 <property name="text">
-                  <string>间2位距离：</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="7">
                 <widget class="QLabel" name="label_29">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -3538,8 +3445,15 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="6">
-                <widget class="QLineEdit" name="RGV_State_18">
+               <item row="3" column="5">
+                <widget class="QLabel" name="label_33">
+                 <property name="text">
+                  <string>电源温度：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="10">
+                <widget class="QLineEdit" name="RGV_State_20">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -3551,8 +3465,28 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="5">
-                <widget class="QLabel" name="label_28">
+               <item row="1" column="12">
+                <widget class="QLineEdit" name="RGV_State_336">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
+                  <string>主机温度：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="11">
+                <widget class="QLabel" name="label_12">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -3560,12 +3494,12 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>电池电压：</string>
+                  <string>动力扭矩：</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="10">
-                <widget class="QLineEdit" name="RGV_State_345">
+               <item row="3" column="2">
+                <widget class="QLineEdit" name="RGV_State_338">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -3577,33 +3511,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="6">
-                <widget class="QLineEdit" name="RGV_State_340">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="10">
-                <widget class="QLineEdit" name="RGV_State_344">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="readOnly">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="8">
+               <item row="3" column="10">
                 <widget class="QLineEdit" name="RGV_State_341">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3616,21 +3524,67 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="7">
+               <item row="3" column="4">
+                <widget class="QLineEdit" name="RGV_State_339">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="11">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>动力电流：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_14">
+                 <property name="text">
+                  <string>充电温度：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="6">
+                <widget class="QLineEdit" name="RGV_State_340">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="9">
                 <widget class="QLabel" name="label_35">
                  <property name="text">
                   <string>驱动温度：</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
-                <widget class="QLabel" name="label_33">
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_66">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
-                  <string>电源温度：</string>
+                  <string>电池容量：</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="4">
+               <item row="1" column="2">
                 <widget class="QProgressBar" name="RGV_State_19">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3639,7 +3593,59 @@
                   </sizepolicy>
                  </property>
                  <property name="value">
-                  <number>0</number>
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QLabel" name="label_28">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>电池电压：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QLineEdit" name="RGV_State_18">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="5">
+                <widget class="QLabel" name="label_32">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>电池电流：</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="6">
+                <widget class="QLineEdit" name="RGV_State_17">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -3675,28 +3681,8 @@
              <property name="spacing">
               <number>7</number>
              </property>
-             <item row="0" column="8">
-              <widget class="QLabel" name="label_11">
-               <property name="text">
-                <string>主动力电流：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QLineEdit" name="RGV_State_22">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="8">
-              <widget class="QLabel" name="label_12">
+             <item row="0" column="4">
+              <widget class="QLabel" name="label_31">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -3704,46 +3690,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>主动力扭矩：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="7">
-              <widget class="QLineEdit" name="RGV_State_33">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="2">
-              <widget class="QLabel" name="label_290">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>中前轮轴定位：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="RGV_State_27">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
+                <string>轮对距离：</string>
                </property>
               </widget>
              </item>
@@ -3760,111 +3707,7 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="6">
-              <widget class="QLabel" name="label_298">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>结束位置：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_56">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>轮轴检测数量：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="5">
-              <widget class="QLineEdit" name="RGV_State_35">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="5">
-              <widget class="QLineEdit" name="RGV_State_24">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="9">
-              <widget class="QLineEdit" name="RGV_State_21">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="7">
-              <widget class="QLineEdit" name="RGV_State_38">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="2">
-              <widget class="QLabel" name="label_57">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>反向运行速度：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="4">
-              <widget class="QLabel" name="label_291">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>中后轮轴定位：</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="6">
+             <item row="5" column="7">
               <widget class="QLabel" name="label_55">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -3877,8 +3720,8 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="RGV_State_28">
+             <item row="3" column="8">
+              <widget class="QLineEdit" name="RGV_State_31">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3887,6 +3730,59 @@
                </property>
                <property name="readOnly">
                 <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="4">
+              <widget class="QLabel" name="label_291">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>轴高度二：</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="9">
+              <widget class="QLabel" name="label_51">
+               <property name="text">
+                <string>间一位移：</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QLabel" name="label_290">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>轴高度一：</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="RGV_State_32">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="9">
+              <widget class="QLabel" name="label_58">
+               <property name="text">
+                <string>间二位移：</string>
                </property>
               </widget>
              </item>
@@ -3899,11 +3795,37 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>车底空间距离：</string>
+                <string>车底高度：</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="6">
+             <item row="3" column="5">
+              <widget class="QLineEdit" name="RGV_State_30">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="8">
+              <widget class="QLineEdit" name="RGV_State_33">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="7">
               <widget class="QLabel" name="label_289">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -3916,8 +3838,8 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="4">
-              <widget class="QLabel" name="label_31">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_287">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -3925,12 +3847,25 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>轮对检测距离：</string>
+                <string>正向速度：</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="9">
-              <widget class="QLineEdit" name="RGV_State_337">
+             <item row="5" column="3">
+              <widget class="QLineEdit" name="RGV_State_34">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="10">
+              <widget class="QLineEdit" name="RGV_State_344">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3951,12 +3886,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>第一减速速度：</string>
+                <string>减速速度：</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="9">
-              <widget class="QLineEdit" name="RGV_State_336">
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="RGV_State_28">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3968,8 +3903,8 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
-              <widget class="QLineEdit" name="RGV_State_32">
+             <item row="5" column="5">
+              <widget class="QLineEdit" name="RGV_State_35">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3981,8 +3916,8 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="8">
-              <widget class="QLabel" name="label_70">
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_56">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -3990,7 +3925,59 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>主动力位置：</string>
+                <string>轮轴编号：</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="RGV_State_27">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLineEdit" name="RGV_State_22">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="10">
+              <widget class="QLineEdit" name="RGV_State_345">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QLabel" name="label_57">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>反向速度：</string>
                </property>
               </widget>
              </item>
@@ -4003,12 +3990,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>手动运行速度：</string>
+                <string>手动速度：</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="3">
-              <widget class="QLineEdit" name="RGV_State_34">
+             <item row="0" column="5">
+              <widget class="QLineEdit" name="RGV_State_24">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4020,8 +4007,8 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_287">
+             <item row="0" column="9">
+              <widget class="QLabel" name="label_298">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -4029,12 +4016,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>正向运行速度：</string>
+                <string>结束位置：</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="7">
-              <widget class="QLineEdit" name="RGV_State_31">
+             <item row="0" column="10">
+              <widget class="QLineEdit" name="RGV_State_38">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4046,8 +4033,8 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="5">
-              <widget class="QLineEdit" name="RGV_State_30">
+             <item row="0" column="8">
+              <widget class="QLineEdit" name="RGV_State_21">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4056,6 +4043,19 @@
                </property>
                <property name="readOnly">
                 <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="7">
+              <widget class="QLabel" name="label_70">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>当前位置：</string>
                </property>
               </widget>
              </item>

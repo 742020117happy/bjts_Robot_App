@@ -313,6 +313,9 @@ void c_Work_Remote::Step_3(QString Carbox_Num, QString Bogie_Num, QString Axis_N
 	m_Carbox_Num = "1";
 	m_Bogie_Num = "A";
 	m_Axis_Num = "1";
+	for (int i = 0; i<m_Status.size(); i++){
+		m_Status.removeFirst();
+	}
 	Load_Status("巡检任务完成，返回充电位置，检查充电状态");
 	m_Work_Start = false;
 	Load_Status("等待巡检任务中");

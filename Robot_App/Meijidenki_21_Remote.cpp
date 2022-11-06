@@ -25,6 +25,7 @@ void c_Meijidenki_21_Remote::Connect()
 	m_device_id = c_Variable::g_Communicate_DB.value("Meijidenki_21_Id").toInt();
 	QString ip = c_Variable::g_Communicate_DB.value("Meijidenki_21_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Meijidenki_21_Port").toInt();
+	c_Variable::msleep(1000);
 	emit Connect_Device(m_device_id, ip, port);
 }
 /*************************************************************************************************************************************************

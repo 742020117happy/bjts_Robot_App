@@ -56,12 +56,14 @@ public:
 	virtual ~c_Hypersen_Client();
 	bool m_State = false;
 	public slots:
+	void Init();//初始化
 	void Connect_Device(QString ip, int port);//连接到服务器
 	void Disconnect_Device();//断开连接
 	void Write(quint8 value); //写Json数据
 signals:
 	void Connect_Done(quint8 id);//连接到服务器完成
 	void Disconnect_Done();//断开连接完成
+	void Connect_Loop(QString ip, int port);//循环连接
 	void Connect_Error();//连接到服务器失败
 	void Disconnect_Error();//断开连接失败
 	void Read_Json_Done(QJsonObject value);//读Json完成
@@ -71,6 +73,7 @@ signals:
 	void Status(QString state);//通讯状态
 private:
 	QString m_ip = nullptr;
+	bool m_Stop_Connect = false;
 	quint8 m_device_id = 99;
 	uint8_t m_sdk_version[6] = { 0 };
 	uint8_t m_device_version[6] = { 0 };

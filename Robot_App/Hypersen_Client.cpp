@@ -1,6 +1,8 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "Hypersen_Client.h"
-
+/*************************************************************************************************************************************************
+**Function:指向面阵雷达的回调函数的全局指针
+*************************************************************************************************************************************************/
 c_Hypersen_CallBack *c_Hypersen_CallBack::g_Hypersen_CallBack = new c_Hypersen_CallBack;
 /*************************************************************************************************************************************************
 **Function:构造函数
@@ -16,7 +18,8 @@ c_Hypersen_CallBack::c_Hypersen_CallBack(QObject * parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Hypersen_CallBack::~c_Hypersen_CallBack()
 {
-	
+	g_Hypersen_CallBack = NULL;
+	g_Hypersen_CallBack->deleteLater();
 }
 /*************************************************************************************************************************************************
 **Function:状态回调
@@ -77,6 +80,18 @@ void c_Hypersen_CallBack::Hypersen_31_Read_Ready(quint8 id)
 *************************************************************************************************************************************************/
 c_Hypersen_Client::c_Hypersen_Client(QObject *parent) : QObject(parent)
 {
+	
+}
+/*************************************************************************************************************************************************
+**Function:    初始化函数
+**Description: 初始化成员变量
+**Input:       无输入
+**Output:      无输出
+**Return:      无返回
+**Others:      构造函数初始化在主线程实例化中完成，故在子线程中运行时，成员函数的初始化不能在构造函数中完成
+*************************************************************************************************************************************************/
+void c_Hypersen_Client::Init()
+{
 	//如果，客户端，状态改变，执行，本线程，状态改变函数
 	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::State_Changed, this, &c_Hypersen_Client::State_Changed);
 	//开启监听模式{机器人，有可读取通道，对象，读取信号}
@@ -92,10 +107,11 @@ c_Hypersen_Client::c_Hypersen_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Hypersen_Client::~c_Hypersen_Client()
 {
-	//停止输出数据
-	HPS3D_SetRunMode(m_device_id, RUN_IDLE);
+	m_Stop_Connect = true;
 	//断开设备
-	HPS3D_DisConnect(m_device_id);
+    HPS3D_SetRunMode(m_device_id, RUN_IDLE);
+    HPS3D_DisConnect(m_device_id);
+
 }
 /*************************************************************************************************************************************************
 **Function:    Connect_Device(QString ip, int port)
@@ -110,7 +126,14 @@ c_Hypersen_Client::~c_Hypersen_Client()
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Connect_Device(QString ip, int port)
 {
-	if (m_State) { return; }//如果处于连接状态立即返回
+	//如果处于连接状态立即返回
+	if (m_State) {return; }
+	m_State = true;
+	//如果发出断开请求，立即返回停止循环连接，复位请求标志
+	if (m_Stop_Connect) {
+		m_Stop_Connect = false;
+		return;
+	}
 	uint8_t ret = 0;
 	m_ip = ip;
 	//第二步，连接设备（必要）
@@ -118,6 +141,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	if (ret != RET_OK){
 		emit Status("设备连接:..........失败!");
 		emit  Connect_Error();
+		emit Connect_Loop(ip, port);
 		return;
 	}
 	else {
@@ -126,6 +150,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//第三步，注册输出事件回调函数（必要）
 	ret = HPS3D_SetOutputCallBack(c_Hypersen_CallBack::Hypersen_OutputEventFunc, m_device_id, NULL);
 	if (ret != RET_OK){
+			HPS3D_DisConnect(m_device_id);
 		emit Status("输出事件回调函数注册:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -137,6 +162,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//调试时使用，调试完成后需要及时开启
 	ret = HPS3D_SetWatchDogEnable(m_device_id, false);
 	if (ret != RET_OK){
+		HPS3D_DisConnect(m_device_id);
 		emit Status("看门狗关闭:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -148,6 +174,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//查询设备信息
 	ret = HPS3D_GetSDKVersion(m_sdk_version);
 	if (ret != RET_OK) {
+		HPS3D_DisConnect(m_device_id);
 		emit Status("SDK版本信息获取:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -158,6 +185,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//获取设备版本前，需要确保设备已经正常连接
 	ret = HPS3D_GetDeviceVersion(m_device_id, m_device_version);
 	if (ret != RET_OK) {
+		HPS3D_DisConnect(m_device_id);
 		emit Status("设备版本信息获取:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -168,6 +196,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//获取设备序列号前，需要确保设备已经正常连接
 	ret = HPS3D_GetDeviceSN(m_device_id, m_SN);
 	if (ret != RET_OK) {
+		HPS3D_DisConnect(m_device_id);
 		emit Status("设备序列号获取:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -178,6 +207,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//第六步，设置设备输出类型（必要）
 	ret = HPS3D_SetOutputDataType(m_device_id, OUTPUT_DISTANCE_SIMPLE);
 	if (ret != RET_OK) {
+		HPS3D_DisConnect(m_device_id);
 		emit Status("设置ROI简单深度事件:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -200,10 +230,13 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Disconnect_Device()
 {
+	m_Stop_Connect = true;
 	if (!m_State) { return; }//如果处于未连接状态立即返回
+	m_State = false;
 	uint8_t ret = 0;
 	ret = HPS3D_DisConnect(m_device_id);
 	if (ret != RET_OK) {
+		m_State = true;
 		emit Status("断开设备连接:..........失败!");
 		emit  Disconnect_Error();
 	}
@@ -281,7 +314,7 @@ void c_Hypersen_Client::State_Changed(QString str)
 		inf = inf.split(",", QString::SkipEmptyParts).at(0);
 		inf = inf.split(" = ", QString::SkipEmptyParts).at(1);
 		if (inf == m_ip){
-			emit Status("DEBUG信息回调函数注册:..........成功!"); 
+			emit Status("尝试连接:..........等待!"); 
 		}
 	}
 	if (inf.left(20) == "HPS3D device remove " && inf.right(1) == QString::number(m_device_id) ) {

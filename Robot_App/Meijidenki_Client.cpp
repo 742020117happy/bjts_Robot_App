@@ -14,6 +14,8 @@ c_Meijidenki_CallBack::c_Meijidenki_CallBack(QObject * parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Meijidenki_CallBack::~c_Meijidenki_CallBack()
 {
+	g_Meijidenki_CallBack = NULL;
+	g_Meijidenki_CallBack->deleteLater();
 }
 /*************************************************************************************************************************************************
 **Function:状态回调
@@ -72,10 +74,6 @@ void c_Meijidenki_CallBack::Meijidenki_21_Read_Ready(qint32 id)
 *************************************************************************************************************************************************/
 c_Meijidenki_Client::c_Meijidenki_Client(QObject *parent) : QObject(parent)
 {
-	//如果，客户端，状态改变，执行，本线程，状态改变函数
-	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::State_Changed, this, &c_Meijidenki_Client::State_Changed);
-	//开启监听模式{机器人，有可读取通道，对象，读取信号}
-	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::ReadReady, this, &c_Meijidenki_Client::Read_Json);
 }
 /*************************************************************************************************************************************************
 **Function:    析构函数
@@ -87,8 +85,24 @@ c_Meijidenki_Client::c_Meijidenki_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Meijidenki_Client::~c_Meijidenki_Client()
 {
+	m_Stop_Connect = true;
 	CloseEquipmentComm(m_device_id); // 关闭当前设备
 	EquipmentCommDestory(); //关闭通讯库
+}
+/*************************************************************************************************************************************************
+**Function:    初始化函数
+**Description: 线程的构造函数
+**Input:       无输入
+**Output:      无输出
+**Return:      无返回
+**Others:
+*************************************************************************************************************************************************/
+void c_Meijidenki_Client::Init()
+{
+	//如果，客户端，状态改变，执行，本线程，状态改变函数
+	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::State_Changed, this, &c_Meijidenki_Client::State_Changed);
+	//开启监听模式{机器人，有可读取通道，对象，读取信号}
+	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::ReadReady, this, &c_Meijidenki_Client::Read_Json);
 }
 /*************************************************************************************************************************************************
 **Function:    Connect_Device(QString ip, int port)
@@ -102,16 +116,20 @@ c_Meijidenki_Client::~c_Meijidenki_Client()
 *************************************************************************************************************************************************/
 void c_Meijidenki_Client::Connect_Device(int id, QString ip, int port)
 {
-	if (m_State) { return; }//如果处于连接状态立即返回
-	//第一步，//获取SDK版本
-	m_device_id = id;
-	int sdk_version = GetEquipmentCommVersion();
-	emit Status(QString::number(sdk_version));
-	//第二步，通讯库初始化
-	if (!OpenEquipmentComm(id, ip.toLatin1().data(), port)) {
-		emit Connect_Error();
-		emit Status("连接设备.................失败");
+	//如果处于连接状态立即返回
+	if (m_State) { return; }
+	m_State = true;
+	//如果发出断开请求，立即返回停止循环连接，复位请求标志
+	if (m_Stop_Connect) {
+		m_Stop_Connect = false;
+		return;
 	}
+	//通讯库初始化
+	m_device_id = id;
+	m_ip = ip;
+	m_port = port;
+	OpenEquipmentComm(id, ip.toLatin1().data(), port);
+	emit Status("正在尝试连接中");
 }
 /*************************************************************************************************************************************************
 **Function:    Disconnect_Device()
@@ -123,10 +141,16 @@ void c_Meijidenki_Client::Connect_Device(int id, QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Meijidenki_Client::Disconnect_Device()
 {
+	m_Stop_Connect = true;
 	if (!m_State) { return; }//如果处于未连接状态立即返回
+	m_State = false;
 	if (!CloseEquipmentComm(m_device_id)) {
+		m_State = true;
 		emit Disconnect_Error();
 		emit Status("断开设备连接:..........失败!");
+	}
+	else {
+		emit Status("断开设备连接:..........成功!");
 	}
 }
 /*************************************************************************************************************************************************
@@ -214,15 +238,20 @@ void c_Meijidenki_Client::State_Changed(qint32 _cid, quint32 _state_code)
 	}
 	if (_cid == m_device_id && _state_code == EQCOMM_STATE_ERR)
 	{
-		emit Connect_Error();
 		m_State = false;
+		CloseEquipmentComm(m_device_id);
+		emit Connect_Error();
 		emit Status("连接设备.................失败");
+		//如果发出断开请求，立即返回停止循环连接，复位请求标志
+		if (m_Stop_Connect) {
+			m_Stop_Connect = false;
+			return;
+		}
+		emit Connect_Loop(m_device_id, m_ip, m_port);
 	}
 	if (_cid == m_device_id && _state_code == EQCOMM_STATE_LOST) {
-		emit  Disconnect_Done();
 		m_State = false;
-		emit Status("断开设备连接:..........成功!");
-		EquipmentCommDestory(); //关闭通讯库
+		emit  Disconnect_Done();	
 	}
 }
 /*************************************************************************************************************************************************
