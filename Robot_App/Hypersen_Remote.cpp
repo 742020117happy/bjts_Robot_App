@@ -35,8 +35,6 @@ void c_Hypersen_Remote::Init()
 	//连接设备
 	QObject::connect(this, &c_Hypersen_Remote::Connect_Device, m_Hypersen_Remote, &c_Hypersen_Client::Connect_Device);
 	QObject::connect(this, &c_Hypersen_Remote::Disconnect_Device, m_Hypersen_Remote, &c_Hypersen_Client::Disconnect_Device);
-                //循环连接
-	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Connect_Loop, this, &c_Hypersen_Remote::Connect_Loop);
 	//写数据
 	QObject::connect(this, &c_Hypersen_Remote::Write, m_Hypersen_Remote, &c_Hypersen_Client::Write);
 	//设备状态改变
@@ -61,6 +59,10 @@ void c_Hypersen_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Hypersen_Remote::Connect()
 {
+}
+void c_Hypersen_Remote::Connect_Loop()
+{
+	
 }
 /*************************************************************************************************************************************************
 **Function:操作接口
@@ -98,13 +100,5 @@ void c_Hypersen_Remote::Disconnect_Done()
 {
 	m_Hypersen_Remote_State.insert("Connected", false);
 	emit Write_Hypersen_Remote_State(m_Hypersen_Remote_State);
-}
-/*************************************************************************************************************************************************
-**Function:循环连接
-*************************************************************************************************************************************************/
-void c_Hypersen_Remote::Connect_Loop(QString ip, int port)
-{
-	c_Variable::msleep(6000);//等待6秒
-	emit Connect_Device(ip, port);
 }
 

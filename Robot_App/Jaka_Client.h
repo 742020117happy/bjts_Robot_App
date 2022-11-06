@@ -34,7 +34,7 @@ public:
 signals:
 	void Connect_Done();//连接到服务器完成
 	void Disconnect_Done();//断开连接完成
-	void Connect_Loop(QString ip, int port);//循环检测连接状态
+	void Connect_Loop();//循环检测连接状态
 	void Read_Json_Done(QJsonObject value);//读Json完成
 	void Write_Json_Done(); //写完成
 	void Read_Json_Error();//读错误

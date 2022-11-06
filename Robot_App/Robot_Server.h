@@ -34,6 +34,7 @@ public:
 signals:
 	void Init_Done();//完成初始化
     void Connect_Done();//连接到服务器完成
+	void Connect_Loop();//循环连接
     void Disconnect_Done();//断开连接完成
 	void Write_Json_Done(); //写完成
 	void Write_Json_Error(); //写错误

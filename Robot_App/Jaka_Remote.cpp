@@ -43,8 +43,6 @@ void c_Jaka_Remote::Init()
 	//连接设备
 	QObject::connect(this, &c_Jaka_Remote::Connect_Device, m_Jaka_Remote, &c_Jaka_Client::Connect_Device);
 	QObject::connect(this, &c_Jaka_Remote::Disconnect_Device, m_Jaka_Remote, &c_Jaka_Client::Disconnect_Device);
-	//循环连接
-	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Connect_Loop, this, &c_Jaka_Remote::Connect_Loop);
 	//设备状态改变
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Connect_Done, this, &c_Jaka_Remote::Set_Working);
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Disconnect_Done, this, &c_Jaka_Remote::Set_Default);
@@ -67,6 +65,9 @@ void c_Jaka_Remote::Init()
 **Function:连接虚函数
 *************************************************************************************************************************************************/
 void c_Jaka_Remote::Connect()
+{
+}
+void c_Jaka_Remote::Connect_Loop()
 {
 }
 /*************************************************************************************************************************************************
@@ -203,9 +204,4 @@ void c_Jaka_Remote::Disconnect_Done()
 {
 	m_Jaka_Remote_State.insert("Connected", false);
 	emit Write_Jaka_Remote_State(m_Jaka_Remote_State);
-}
-void c_Jaka_Remote::Connect_Loop(QString ip, int port)
-{
-	c_Variable::msleep(6000);//等待6秒
-	emit Connect_Device(ip,port);
 }

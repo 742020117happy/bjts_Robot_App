@@ -9,5 +9,6 @@ public:
 	virtual ~c_Local_Remote();
 
 	public slots:
-	void Run();
+	void Init();
+	virtual void Connect_Loop();
 };

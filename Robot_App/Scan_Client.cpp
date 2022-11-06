@@ -40,8 +40,7 @@ void c_Scan_Client::Init()
     //如果，UDP，状态改变，执行，本线程，状态改变函数
     QObject::connect(m_Socket, &QUdpSocket::stateChanged, this, &c_Scan_Client::State_Changed);
     //错误诊断
-    QObject::connect(m_Socket, QOverload<QAbstractSocket::SocketError>::of(&QUdpSocket::error), this, [=](QAbstractSocket::SocketError socketError)
-    {
+    QObject::connect(m_Socket, QOverload<QAbstractSocket::SocketError>::of(&QUdpSocket::error), this, [=](QAbstractSocket::SocketError socketError){
         emit Status(socketError);
     });
 	//绑定读函数
@@ -120,8 +119,7 @@ void c_Scan_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Scan_Client::Disconnect_Device()
 {
-    if((!m_Socket) || (m_Socket->state() != QAbstractSocket::BoundState))
-    {
+    if((!m_Socket) || (m_Socket->state() != QAbstractSocket::BoundState)){
         return;
     }
     m_Socket->close();

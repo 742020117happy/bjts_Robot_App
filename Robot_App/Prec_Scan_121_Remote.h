@@ -9,10 +9,11 @@ public:
 	explicit c_Prec_Scan_121_Remote(c_Scan_Remote *parent = nullptr);
 	virtual ~c_Prec_Scan_121_Remote();
 	public slots:
-	void Run();
+	void Init();
 	//外部操作接口
 	virtual void Connect();
 	virtual void Tran(QString value);
+	virtual void Connect_Loop();
 private:
 	c_Robot_Server *m_Prec_Scan_Tran;
 };

@@ -63,7 +63,7 @@ public:
 signals:
 	void Connect_Done(quint8 id);//连接到服务器完成
 	void Disconnect_Done();//断开连接完成
-	void Connect_Loop(QString ip, int port);//循环连接
+	void Connect_Loop();//循环连接
 	void Connect_Error();//连接到服务器失败
 	void Disconnect_Error();//断开连接失败
 	void Read_Json_Done(QJsonObject value);//读Json完成

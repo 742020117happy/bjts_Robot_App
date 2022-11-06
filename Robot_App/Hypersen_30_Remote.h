@@ -9,7 +9,9 @@ public:
 	virtual ~c_Hypersen_30_Remote();
 	public slots:
 	//虚函数的多态
+	void Init();
 	virtual void Connect();
+	virtual void Connect_Loop();
 	void Hypersen_30_Read_Ready();
 };
 

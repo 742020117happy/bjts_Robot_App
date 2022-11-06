@@ -37,12 +37,12 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	QObject::connect(m_Meijidenki_21_Remote_Thread, &QThread::started, m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Init);
 	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Init);
 	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Init);
-	QObject::connect(m_Prec_Scan_120_Remote_Thread, &QThread::started, m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Run);
-	QObject::connect(m_Prec_Scan_121_Remote_Thread, &QThread::started, m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Run);
+	QObject::connect(m_Prec_Scan_120_Remote_Thread, &QThread::started, m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Init);
+	QObject::connect(m_Prec_Scan_121_Remote_Thread, &QThread::started, m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Init);
 	QObject::connect(m_Fast_Scan_Remote_Thread, &QThread::started, m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Init);
-	QObject::connect(m_Local_Remote_Thread, &QThread::started, m_Local_Remote, &c_Local_Remote::Run);
-	QObject::connect(m_Local_Monitor_Thread, &QThread::started, m_Local_Monitor, &c_Local_Monitor::Run);
-	QObject::connect(m_App_Control_Thread, &QThread::started, m_App_Control, &c_App_Control::Run);
+	QObject::connect(m_Local_Remote_Thread, &QThread::started, m_Local_Remote, &c_Local_Remote::Init);
+	QObject::connect(m_Local_Monitor_Thread, &QThread::started, m_Local_Monitor, &c_Local_Monitor::Init);
+	QObject::connect(m_App_Control_Thread, &QThread::started, m_App_Control, &c_App_Control::Init);
 	QObject::connect(m_Work_Remote_Thread, &QThread::started, m_Work_Remote, &c_Work_Remote::Init);
 	QObject::connect(m_State_DB_Thread, &QThread::finished, m_State_DB, &c_State_DB::deleteLater);
 	QObject::connect(m_RGV_Remote_Thread, &QThread::finished, m_RGV_Remote, &c_RGV_Remote::deleteLater);

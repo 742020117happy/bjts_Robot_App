@@ -19,10 +19,23 @@ c_Local_Remote::~c_Local_Remote()
 /*************************************************************************************************************************************************
 **Function:初始化接口
 *************************************************************************************************************************************************/
-void c_Local_Remote::Run()
+void c_Local_Remote::Init()
 {
 	//保持监视状态
+	c_Server_Remote::Init();
+	QObject::connect(m_Robot_Server, &c_Robot_Server::Connect_Loop, this, &c_Local_Remote::Connect_Loop);
 	m_Ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	m_Port = c_Variable::g_Communicate_DB.value("Local_Remote_Port").toInt();
-	Init();
+	c_Server_Remote::m_Robot_Server->Connect_Device(m_Ip, m_Port);
+}
+/*************************************************************************************************************************************************
+**Function:循环连接
+*************************************************************************************************************************************************/
+void c_Local_Remote::Connect_Loop()
+{
+	c_Variable::msleep(6000);//等待6秒
+	qDebug() << "重新监听控制端口";
+	m_Ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
+	m_Port = c_Variable::g_Communicate_DB.value("Local_Remote_Port").toInt();
+	c_Server_Remote::m_Robot_Server->Connect_Device(m_Ip, m_Port);
 }

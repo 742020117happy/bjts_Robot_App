@@ -9,11 +9,14 @@ class c_Hypersen_Remote : public QObject
 public:
 	explicit c_Hypersen_Remote(QObject *parent = nullptr);
 	virtual ~c_Hypersen_Remote();
+	QThread *m_Hypersen_Remote_Thread;
+	c_Hypersen_Client *m_Hypersen_Remote;
 	QJsonObject m_Hypersen_Remote_State;
 	quint8 m_device_id = 99;
 	public slots:
 	//初始化接口
 	void Init();
+	void Connect_Loop();//循环连接
 	//虚函数
 	virtual void Connect();
 	void Run_Single_Shot();
@@ -30,11 +33,8 @@ signals:
 	void Write(quint8 value);//写
 	void Status(QString status);//监视器状态
 private:
-	QThread *m_Hypersen_Remote_Thread;
-	c_Hypersen_Client *m_Hypersen_Remote;
 	private slots :
 	void Connect_Done(quint8 id);
 	void Disconnect_Done();
-                void Connect_Loop(QString ip, int port);
 	void Read_Json_Done(QJsonObject json);
 };

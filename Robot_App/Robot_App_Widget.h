@@ -22,6 +22,7 @@ signals:
 private:
 	Ui_Robot_App_Widget *ui;
 	QString m_Current_Time = "";//系统时间
+	int m_Count = 0;//系统计数
 	int m_Current_FPS = 0;//当前帧率
 	int m_FPS = 0;//帧率计数
 

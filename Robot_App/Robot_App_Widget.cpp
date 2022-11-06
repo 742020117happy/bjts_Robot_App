@@ -661,6 +661,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	m_Time->start();
 	m_Thread->Start();
 	emit System_Scan_Done();
+	ui->RGV_Connect->clicked();
 }
 /*************************************************************************************************************************************************
 **Function:析构函数
@@ -1744,11 +1745,15 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	**Function:跟新系统时间
 	*************************************************************************************************************************************************/
 	ui->Status_Bar->showMessage("系统时间：" + m_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
+	if (m_Count == 20000) {
+		ui->Worry_List->clear();//半个小时清空一次
+	}
 	if (m_FPS == 50) {
 		m_Current_FPS = m_Time->restart() / 50;
 		m_Current_FPS = 1000 / m_Current_FPS;
 		m_FPS = 0;
 	}
+	m_Count += 1;
 	m_FPS += 1;
 	c_Variable::msleep(30);
 	emit System_Scan_Done();

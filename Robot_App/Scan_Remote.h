@@ -23,6 +23,7 @@ public:
 	void Init();
 	void Start_Cmd(QJsonObject object);
 	virtual void Connect();
+	virtual void Connect_Loop();
 	virtual void Start();
 	virtual void Collection();
 	virtual void Stop();

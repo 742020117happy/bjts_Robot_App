@@ -35,8 +35,6 @@ void c_Jaka_Monitor::Init()
 	//连接设备
 	QObject::connect(this, &c_Jaka_Monitor::Connect_Device, m_Jaka_Monitor, &c_Jaka_Client::Connect_Device);
 	QObject::connect(this, &c_Jaka_Monitor::Disconnect_Device, m_Jaka_Monitor, &c_Jaka_Client::Disconnect_Device);
-	//循环连接
-	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Connect_Loop, this, &c_Jaka_Monitor::Connect_Loop);
 	//设备状态改变
 	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Connect_Done, this, &c_Jaka_Monitor::Set_Working);
 	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Disconnect_Done, this, &c_Jaka_Monitor::Set_Default);
@@ -60,6 +58,9 @@ void c_Jaka_Monitor::Init()
 **Function:虚函数
 *************************************************************************************************************************************************/
 void c_Jaka_Monitor::Connect()
+{
+}
+void c_Jaka_Monitor::Connect_Loop()
 {
 }
 /*************************************************************************************************************************************************
@@ -107,9 +108,5 @@ void c_Jaka_Monitor::Disconnect_Done()
 	m_Jaka_Monitor_State.insert("Connected", false);
 	emit Write_Jaka_Monitor_State(m_Jaka_Monitor_State);
 }
-void c_Jaka_Monitor::Connect_Loop(QString ip, int port)
-{
-	c_Variable::msleep(6000);//等待6秒
-	emit Connect_Device(ip, port);
-}
+
 

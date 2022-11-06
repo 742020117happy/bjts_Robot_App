@@ -247,7 +247,7 @@ void c_Meijidenki_Client::State_Changed(qint32 _cid, quint32 _state_code)
 			m_Stop_Connect = false;
 			return;
 		}
-		emit Connect_Loop(m_device_id, m_ip, m_port);
+		emit Connect_Loop();
 	}
 	if (_cid == m_device_id && _state_code == EQCOMM_STATE_LOST) {
 		m_State = false;

@@ -9,12 +9,17 @@ class c_Jaka_Remote : public QObject
 public:
 	explicit c_Jaka_Remote(QObject *parent = nullptr);
 	virtual ~c_Jaka_Remote();
+	QThread *m_Jaka_Remote_Thread;
+	c_Jaka_Client *m_Jaka_Remote;
 	QJsonObject m_Jaka_Remote_State;//监控状态
+	QString m_Ip;
+	int m_Port;
 	public slots:
 	//初始化接口
 	void Init();
 	//虚函数
 	virtual void Connect();
+	virtual void Connect_Loop();//循环检测连接状态
 	//遥控接口
 	void Jaka_power_on();
 	void Jaka_power_off();
@@ -40,8 +45,6 @@ signals:
 	void Origin_Monitor();//远点监控
 	void Origin_Moved();//回原点
 private:
-	QThread *m_Jaka_Remote_Thread;
-	c_Jaka_Client *m_Jaka_Remote;
 	bool m_Writing = false;
 	QJsonObject power_on;//上电
 	QJsonObject power_off;//下电
@@ -56,7 +59,6 @@ private:
 	private slots:
 	void Connect_Done();
 	void Disconnect_Done();
-	void Connect_Loop(QString ip, int port);//循环检测连接状态
 	void Write(QJsonObject json);
 	void Read_Json_Done(QJsonObject json);
 	void Jaka_joint_move(double J1, double J2, double J3, double J4, double J5, double J6);

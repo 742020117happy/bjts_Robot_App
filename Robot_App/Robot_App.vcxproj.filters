@@ -7,12 +7,6 @@
     <Filter Include="业务层（子类）">
       <UniqueIdentifier>{c6580657-a066-411e-950b-c3889a6b4600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="业务层（子类）\控制服务器">
-      <UniqueIdentifier>{7743d644-1f02-4c7d-8dad-886068db2902}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\监视服务器">
-      <UniqueIdentifier>{bc43b42f-acbe-4c4b-983a-8163a5461185}</UniqueIdentifier>
-    </Filter>
     <Filter Include="业务层（子类）\底盘控制">
       <UniqueIdentifier>{8dc24cce-1bc8-43c3-825e-03e4ea818988}</UniqueIdentifier>
     </Filter>
@@ -96,42 +90,6 @@
     </Filter>
     <Filter Include="软件开发工具包（与父类组合）\图标资源工具包">
       <UniqueIdentifier>{a2886b1e-d41a-456d-9f75-00824307bfcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\左面阵雷达">
-      <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右面阵雷达">
-      <UniqueIdentifier>{10392102-c051-49ce-864c-767c61474f8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\快扫相机">
-      <UniqueIdentifier>{38998acc-505b-4018-a09d-6e5a36a10660}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右精扫相机">
-      <UniqueIdentifier>{6b34af92-3a89-4632-9d8e-7b9da6cb65b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\左精扫相机">
-      <UniqueIdentifier>{cdda2c4d-500a-41b7-ad4d-0eb269548827}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右机械臂控制">
-      <UniqueIdentifier>{3a1da9d1-c91a-42cf-bafc-57fb8ecf8078}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右机械臂监视">
-      <UniqueIdentifier>{ac90f49b-c3ba-414b-91d8-e59ba8dd3f22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\左机械臂控制">
-      <UniqueIdentifier>{fa94d8fe-68b8-4abc-a640-808c1a26e41e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\左机械臂监视">
-      <UniqueIdentifier>{0876cbb1-dde4-46e1-afcd-d25546726095}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\左线扫雷达">
-      <UniqueIdentifier>{8e094796-2f40-4ebb-885c-4a8ba75eaef7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右线扫雷达">
-      <UniqueIdentifier>{9a891c68-c2ae-4c86-ba75-d5856d1d7f30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\调试平板电脑">
-      <UniqueIdentifier>{d082b247-42c8-4901-a34a-e91123aa1cd0}</UniqueIdentifier>
     </Filter>
     <Filter Include="软件开发工具包（与父类组合）\海康相机工具包">
       <UniqueIdentifier>{1e03cff7-6726-4df3-bc8e-1dc08514d80c}</UniqueIdentifier>
@@ -226,31 +184,91 @@
     <Filter Include="软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端">
       <UniqueIdentifier>{7af53014-e516-4bb6-ad4c-215c8d3fcc68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="业务层（子类）\左监控相机">
-      <UniqueIdentifier>{05f9e0d0-c0ca-4c0e-9053-686ec3890be6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="业务层（子类）\右监控相机">
-      <UniqueIdentifier>{5823f046-9015-4431-8d4d-c6eb43371e7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="通讯层（父类）\监控相机遥控">
       <UniqueIdentifier>{687da099-fd64-472e-b059-253928383499}</UniqueIdentifier>
     </Filter>
     <Filter Include="业务层（子类）\实例化所有子类对象">
       <UniqueIdentifier>{18b7740f-f7be-4d80-bd07-4c9d953dabfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="业务层（子类）\机械臂">
+      <UniqueIdentifier>{a04f67ca-89ba-4910-82f9-a0b1d8d323ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂\右机械臂控制">
+      <UniqueIdentifier>{3a1da9d1-c91a-42cf-bafc-57fb8ecf8078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂\右机械臂监视">
+      <UniqueIdentifier>{ac90f49b-c3ba-414b-91d8-e59ba8dd3f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂\左机械臂监视">
+      <UniqueIdentifier>{0876cbb1-dde4-46e1-afcd-d25546726095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\机械臂\左机械臂控制">
+      <UniqueIdentifier>{fa94d8fe-68b8-4abc-a640-808c1a26e41e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\面阵雷达">
+      <UniqueIdentifier>{958eab6c-8b47-4c61-9ac4-35afaa32babc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\面阵雷达\右面阵雷达">
+      <UniqueIdentifier>{10392102-c051-49ce-864c-767c61474f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\面阵雷达\左面阵雷达">
+      <UniqueIdentifier>{7ed9087c-5862-4daa-b78f-1786e60614b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\线扫雷达">
+      <UniqueIdentifier>{5bd95a2e-4418-4e81-8a97-2016182d53ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\线扫雷达\左线扫雷达">
+      <UniqueIdentifier>{8e094796-2f40-4ebb-885c-4a8ba75eaef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\线扫雷达\右线扫雷达">
+      <UniqueIdentifier>{9a891c68-c2ae-4c86-ba75-d5856d1d7f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\服务端口">
+      <UniqueIdentifier>{8e59f76e-c2fe-4a46-ba9a-1fa7f9724430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\服务端口\监视服务器">
+      <UniqueIdentifier>{bc43b42f-acbe-4c4b-983a-8163a5461185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\服务端口\控制服务器">
+      <UniqueIdentifier>{7743d644-1f02-4c7d-8dad-886068db2902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\服务端口\调试平板电脑">
+      <UniqueIdentifier>{d082b247-42c8-4901-a34a-e91123aa1cd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\立创相机">
+      <UniqueIdentifier>{11e16d40-aa10-41b5-a992-843e0dcbc802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\立创相机\右精扫相机">
+      <UniqueIdentifier>{6b34af92-3a89-4632-9d8e-7b9da6cb65b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\立创相机\左精扫相机">
+      <UniqueIdentifier>{cdda2c4d-500a-41b7-ad4d-0eb269548827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\立创相机\快扫相机">
+      <UniqueIdentifier>{38998acc-505b-4018-a09d-6e5a36a10660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\海康相机">
+      <UniqueIdentifier>{792da8cb-d6ca-4be8-80aa-abfac9f6ef24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\海康相机\右监控相机">
+      <UniqueIdentifier>{5823f046-9015-4431-8d4d-c6eb43371e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="业务层（子类）\海康相机\左监控相机">
+      <UniqueIdentifier>{05f9e0d0-c0ca-4c0e-9053-686ec3890be6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Jaka_120_Remote.cpp">
-      <Filter>业务层（子类）\左机械臂控制</Filter>
+      <Filter>业务层（子类）\机械臂\左机械臂控制</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_120_Monitor.cpp">
-      <Filter>业务层（子类）\左机械臂监视</Filter>
+      <Filter>业务层（子类）\机械臂\左机械臂监视</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_121_Remote.cpp">
-      <Filter>业务层（子类）\右机械臂控制</Filter>
+      <Filter>业务层（子类）\机械臂\右机械臂控制</Filter>
     </ClCompile>
     <ClCompile Include="Jaka_121_Monitor.cpp">
-      <Filter>业务层（子类）\右机械臂监视</Filter>
+      <Filter>业务层（子类）\机械臂\右机械臂监视</Filter>
     </ClCompile>
     <ClCompile Include="Radar_Plot.cpp">
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
@@ -259,16 +277,16 @@
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
     </ClCompile>
     <ClCompile Include="Hypersen_30_Remote.cpp">
-      <Filter>业务层（子类）\左面阵雷达</Filter>
+      <Filter>业务层（子类）\面阵雷达\左面阵雷达</Filter>
     </ClCompile>
     <ClCompile Include="Hypersen_31_Remote.cpp">
-      <Filter>业务层（子类）\右面阵雷达</Filter>
+      <Filter>业务层（子类）\面阵雷达\右面阵雷达</Filter>
     </ClCompile>
     <ClCompile Include="Meijidenki_20_Remote.cpp">
-      <Filter>业务层（子类）\左线扫雷达</Filter>
+      <Filter>业务层（子类）\线扫雷达\左线扫雷达</Filter>
     </ClCompile>
     <ClCompile Include="Meijidenki_21_Remote.cpp">
-      <Filter>业务层（子类）\右线扫雷达</Filter>
+      <Filter>业务层（子类）\线扫雷达\右线扫雷达</Filter>
     </ClCompile>
     <ClCompile Include="Robot_App_Widget.cpp">
       <Filter>界面层（包含子类）\主界面</Filter>
@@ -277,10 +295,10 @@
       <Filter>界面层（包含子类）\登录界面</Filter>
     </ClCompile>
     <ClCompile Include="Local_Monitor.cpp">
-      <Filter>业务层（子类）\监视服务器</Filter>
+      <Filter>业务层（子类）\服务端口\监视服务器</Filter>
     </ClCompile>
     <ClCompile Include="Local_Remote.cpp">
-      <Filter>业务层（子类）\控制服务器</Filter>
+      <Filter>业务层（子类）\服务端口\控制服务器</Filter>
     </ClCompile>
     <ClCompile Include="RGV_Remote.cpp">
       <Filter>业务层（子类）\底盘控制</Filter>
@@ -292,16 +310,16 @@
       <Filter>软件开发工具包（与父类组合）\线阵雷达工具包</Filter>
     </ClCompile>
     <ClCompile Include="Prec_Scan_120_Remote.cpp">
-      <Filter>业务层（子类）\左精扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\左精扫相机</Filter>
     </ClCompile>
     <ClCompile Include="Fast_Scan_Remote .cpp">
-      <Filter>业务层（子类）\快扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\快扫相机</Filter>
     </ClCompile>
     <ClCompile Include="Prec_Scan_121_Remote .cpp">
-      <Filter>业务层（子类）\右精扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\右精扫相机</Filter>
     </ClCompile>
     <ClCompile Include="App_Control.cpp">
-      <Filter>业务层（子类）\调试平板电脑</Filter>
+      <Filter>业务层（子类）\服务端口\调试平板电脑</Filter>
     </ClCompile>
     <ClCompile Include="Work_Remote.cpp">
       <Filter>业务层（子类）\一键巡检</Filter>
@@ -355,10 +373,10 @@
       <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
     </ClCompile>
     <ClCompile Include="Hikvision_21_Remote.cpp">
-      <Filter>业务层（子类）\左监控相机</Filter>
+      <Filter>业务层（子类）\海康相机\左监控相机</Filter>
     </ClCompile>
     <ClCompile Include="Hikvision_20_Remote.cpp">
-      <Filter>业务层（子类）\右监控相机</Filter>
+      <Filter>业务层（子类）\海康相机\右监控相机</Filter>
     </ClCompile>
     <ClCompile Include="Hikvision_Remote.cpp">
       <Filter>通讯层（父类）\监控相机遥控</Filter>
@@ -366,16 +384,16 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Jaka_120_Remote.h">
-      <Filter>业务层（子类）\左机械臂控制</Filter>
+      <Filter>业务层（子类）\机械臂\左机械臂控制</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_120_Monitor.h">
-      <Filter>业务层（子类）\左机械臂监视</Filter>
+      <Filter>业务层（子类）\机械臂\左机械臂监视</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_121_Remote.h">
-      <Filter>业务层（子类）\右机械臂控制</Filter>
+      <Filter>业务层（子类）\机械臂\右机械臂控制</Filter>
     </QtMoc>
     <QtMoc Include="Jaka_121_Monitor.h">
-      <Filter>业务层（子类）\右机械臂监视</Filter>
+      <Filter>业务层（子类）\机械臂\右机械臂监视</Filter>
     </QtMoc>
     <QtMoc Include="Radar_Plot.h">
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\雷达图</Filter>
@@ -384,16 +402,16 @@
       <Filter>软件开发工具包（与父类组合）\画图控件工具包\三色灯</Filter>
     </QtMoc>
     <QtMoc Include="Hypersen_30_Remote.h">
-      <Filter>业务层（子类）\左面阵雷达</Filter>
+      <Filter>业务层（子类）\面阵雷达\左面阵雷达</Filter>
     </QtMoc>
     <QtMoc Include="Hypersen_31_Remote.h">
-      <Filter>业务层（子类）\右面阵雷达</Filter>
+      <Filter>业务层（子类）\面阵雷达\右面阵雷达</Filter>
     </QtMoc>
     <QtMoc Include="Meijidenki_20_Remote.h">
-      <Filter>业务层（子类）\左线扫雷达</Filter>
+      <Filter>业务层（子类）\线扫雷达\左线扫雷达</Filter>
     </QtMoc>
     <QtMoc Include="Meijidenki_21_Remote.h">
-      <Filter>业务层（子类）\右线扫雷达</Filter>
+      <Filter>业务层（子类）\线扫雷达\右线扫雷达</Filter>
     </QtMoc>
     <QtMoc Include="Robot_App_Widget.h">
       <Filter>界面层（包含子类）\主界面</Filter>
@@ -402,25 +420,25 @@
       <Filter>界面层（包含子类）\登录界面</Filter>
     </QtMoc>
     <QtMoc Include="Local_Monitor.h">
-      <Filter>业务层（子类）\监视服务器</Filter>
+      <Filter>业务层（子类）\服务端口\监视服务器</Filter>
     </QtMoc>
     <QtMoc Include="Local_Remote.h">
-      <Filter>业务层（子类）\控制服务器</Filter>
+      <Filter>业务层（子类）\服务端口\控制服务器</Filter>
     </QtMoc>
     <QtMoc Include="RGV_Remote.h">
       <Filter>业务层（子类）\底盘控制</Filter>
     </QtMoc>
     <QtMoc Include="Prec_Scan_120_Remote.h">
-      <Filter>业务层（子类）\左精扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\左精扫相机</Filter>
     </QtMoc>
     <QtMoc Include="Fast_Scan_Remote.h">
-      <Filter>业务层（子类）\快扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\快扫相机</Filter>
     </QtMoc>
     <QtMoc Include="Prec_Scan_121_Remote.h">
-      <Filter>业务层（子类）\右精扫相机</Filter>
+      <Filter>业务层（子类）\立创相机\右精扫相机</Filter>
     </QtMoc>
     <QtMoc Include="App_Control.h">
-      <Filter>业务层（子类）\调试平板电脑</Filter>
+      <Filter>业务层（子类）\服务端口\调试平板电脑</Filter>
     </QtMoc>
     <QtMoc Include="Work_Remote.h">
       <Filter>业务层（子类）\一键巡检</Filter>
@@ -474,10 +492,10 @@
       <Filter>软件开发工具包（与父类组合）\网络通讯工具包\监控相机客户端</Filter>
     </QtMoc>
     <QtMoc Include="Hikvision_21_Remote.h">
-      <Filter>业务层（子类）\左监控相机</Filter>
+      <Filter>业务层（子类）\海康相机\左监控相机</Filter>
     </QtMoc>
     <QtMoc Include="Hikvision_20_Remote.h">
-      <Filter>业务层（子类）\右监控相机</Filter>
+      <Filter>业务层（子类）\海康相机\右监控相机</Filter>
     </QtMoc>
     <QtMoc Include="Hikvision_Remote.h">
       <Filter>通讯层（父类）\监控相机遥控</Filter>

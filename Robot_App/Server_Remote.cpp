@@ -36,7 +36,6 @@ void c_Server_Remote::Init()
 	QObject::connect(m_Robot_Server, &c_Robot_Server::Connect_Done, this, &c_Server_Remote::Connect_Done);
 	QObject::connect(m_Robot_Server, &c_Robot_Server::Disconnect_Done, this, &c_Server_Remote::Disconnect_Done);
 	emit setEnabled(false);
-	m_Robot_Server->Connect_Device(m_Ip, m_Port);
 }
 /*************************************************************************************************************************************************
 **Function: 公有接口
@@ -44,6 +43,13 @@ void c_Server_Remote::Init()
 void c_Server_Remote::System_Scan(QJsonObject db)
 {
 	m_State_DB = db;
+}
+/*************************************************************************************************************************************************
+**Function: 虚函数
+*************************************************************************************************************************************************/
+void c_Server_Remote::Connect_Loop()
+{
+
 }
 /*************************************************************************************************************************************************
 **Function:私有接口

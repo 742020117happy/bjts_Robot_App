@@ -105,7 +105,7 @@ void c_Jaka_Client::Connect_Device(QString ip, int port)
 	m_Socket->connectToHost(ip, port);
 	//等待连接3秒
 	if(!m_Socket->waitForConnected(3000)){
-		emit Connect_Loop(m_Ip, m_Port);
+		emit Connect_Loop();
 	}
 }
 /*************************************************************************************************************************************************

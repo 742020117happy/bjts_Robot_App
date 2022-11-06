@@ -73,6 +73,10 @@ void c_Scan_Remote::Connect()
 {
 
 }
+void c_Scan_Remote::Connect_Loop()
+{
+
+}
 void c_Scan_Remote::Start()
 {
 

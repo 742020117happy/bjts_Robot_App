@@ -8,5 +8,6 @@ public:
 	explicit c_App_Control(c_Server_Remote *parent = nullptr);
 	virtual ~c_App_Control();
 	public slots:
-	void Run();
+	void Init();
+	virtual void Connect_Loop();
 };

@@ -18,15 +18,16 @@ c_Prec_Scan_120_Remote::~c_Prec_Scan_120_Remote()
 /*************************************************************************************************************************************************
 **Function:开始运行
 *************************************************************************************************************************************************/
-void c_Prec_Scan_120_Remote::Run()
+void c_Prec_Scan_120_Remote::Init()
 {
 	m_Prec_Scan_Tran = new c_Robot_Server;
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Init_Done, this, &c_Scan_Remote::Init);
 	m_Prec_Scan_Tran->Init();
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Connect_Done, this, &c_Prec_Scan_120_Remote::Connect);
+	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Connect_Loop, this, &c_Prec_Scan_120_Remote::Connect_Loop);
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Disconnect_Done, this, &c_Scan_Remote::Disconnect_Device);
 	QObject::connect(m_Prec_Scan_Tran, &c_Robot_Server::Read_String_Done, this, &c_Prec_Scan_120_Remote::Tran);
-	//QObject::connect(this, &c_Scan_Remote::Read_String_Done, m_Prec_Scan_Tran, &c_Robot_Server::Write_String);
+	QObject::connect(this, &c_Scan_Remote::Read_String_Done, m_Prec_Scan_Tran, &c_Robot_Server::Write_String);
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_120_Tran_Port").toInt();
 	m_Prec_Scan_Tran->Connect_Device(ip, port);
@@ -40,6 +41,17 @@ void c_Prec_Scan_120_Remote::Connect()
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_120_Local_Port").toInt();
 	emit Connect_Device(ip, port);
+}
+/*************************************************************************************************************************************************
+**Function:循环连接
+*************************************************************************************************************************************************/
+void c_Prec_Scan_120_Remote::Connect_Loop()
+{
+	c_Variable::msleep(6000);//等待6秒
+	qDebug() << "重新监听左精扫端口";
+	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
+	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_120_Tran_Port").toInt();
+	m_Prec_Scan_Tran->Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************
 **Function:自动采集转发协议

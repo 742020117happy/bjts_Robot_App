@@ -9,12 +9,15 @@ class c_Meijidenki_Remote : public QObject
 public:
 	explicit c_Meijidenki_Remote(QObject *parent = nullptr);
 	virtual ~c_Meijidenki_Remote();
+	QThread *m_Meijidenki_Remote_Thread;
+	c_Meijidenki_Client *m_Meijidenki_Remote;
 	QJsonObject m_Meijidenki_Remote_State;
 	public slots:
 	//初始化接口
 	void Init();
 	//虚函数
 	virtual void Connect();
+	virtual void Connect_Loop();//循环连接
 	//外部操作接口
 	void START_LMD();
 	void STOP_LMD();
@@ -29,11 +32,8 @@ signals:
 	void Write(quint32 value);//写
 	void Status(QString status);//监视器状态
 private:
-	QThread *m_Meijidenki_Remote_Thread;
-	c_Meijidenki_Client *m_Meijidenki_Remote;
 	private slots :
 	void Connect_Done();
 	void Disconnect_Done();
-	void Connect_Loop(int id, QString ip, int port);//循环连接
 	void Read_Json_Done(QJsonObject json);
 };

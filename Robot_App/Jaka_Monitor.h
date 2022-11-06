@@ -9,13 +9,18 @@ class c_Jaka_Monitor : public QObject
 public:
 	explicit c_Jaka_Monitor(QObject *parent = nullptr);
 	virtual ~c_Jaka_Monitor();
+	QThread *m_Jaka_Monitor_Thread;
+	c_Jaka_Client *m_Jaka_Monitor;
 	QJsonObject m_Jaka_Monitor_State;
 	bool m_Origin_Monitor = false;
+	QString m_Ip;
+	int m_Port;
 	public slots:
 	//初始化接口
 	void Init();
 	//虚函数
 	virtual void Connect();
+	virtual void Connect_Loop();//循环检测连接状态
 	//进入状态监控，判断是否到达既定关节角位置
 	void Origin_Monitor();//回原点
 signals:
@@ -29,12 +34,9 @@ signals:
 	void Read_Ready();//读同步
 	void Origin_Moved();//回原点
 private:
-	QThread *m_Jaka_Monitor_Thread;
-	c_Jaka_Client *m_Jaka_Monitor;
 	private slots :
 	void Connect_Done();
 	void Disconnect_Done();
-	void Connect_Loop(QString ip, int port);
 	void Read_Json_Done(QJsonObject json);
 	bool Origin_Position(QJsonArray joint);
 };

@@ -15,15 +15,32 @@ c_Hypersen_30_Remote::~c_Hypersen_30_Remote()
 {
 }
 /*************************************************************************************************************************************************
+**Function:    初始化函数
+*************************************************************************************************************************************************/
+void c_Hypersen_30_Remote::Init()
+{
+	//循环连接
+	c_Hypersen_Remote::Init();
+	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Connect_Loop, this, &c_Hypersen_30_Remote::Connect_Loop);
+	QObject::connect(this, &c_Hypersen_30_Remote::Read_Ready, c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::Hypersen_30_Read_Ready);
+}
+/*************************************************************************************************************************************************
 **Function:    操作接口
 *************************************************************************************************************************************************/
 void c_Hypersen_30_Remote::Connect()
 {
 	if (m_Hypersen_Remote_State.value("Connected").toBool()) { return; }
-	QObject::connect(this, &c_Hypersen_30_Remote::Read_Ready, c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::Hypersen_30_Read_Ready);
 	QString ip = c_Variable::g_Communicate_DB.value("Hypersen_30_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Hypersen_30_Port").toInt();
 	emit Connect_Device(ip, port);
+}
+/*************************************************************************************************************************************************
+**Function:    循环连接
+*************************************************************************************************************************************************/
+void c_Hypersen_30_Remote::Connect_Loop()
+{
+	c_Variable::msleep(6000);//等待6s
+	c_Hypersen_30_Remote::Connect();
 }
 /*************************************************************************************************************************************************
 **Function:   同步接口

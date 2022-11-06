@@ -10,9 +10,10 @@ public:
 	virtual ~c_Prec_Scan_120_Remote();
 
 	public slots:
-	void Run();
+	void Init();
 	//外部操作接口
 	virtual void Connect();
+	virtual void Connect_Loop();
 	virtual void Tran(QString value);
 
 private:

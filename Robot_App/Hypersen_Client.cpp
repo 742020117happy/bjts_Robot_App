@@ -139,9 +139,10 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//第二步，连接设备（必要）
 	ret = HPS3D_ConnectByEthernet(ip.toLatin1().data(), port, &m_device_id);
 	if (ret != RET_OK){
+		m_State = false;
 		emit Status("设备连接:..........失败!");
 		emit  Connect_Error();
-		emit Connect_Loop(ip, port);
+		emit Connect_Loop();
 		return;
 	}
 	else {

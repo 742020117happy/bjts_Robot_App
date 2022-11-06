@@ -34,8 +34,6 @@ void c_Meijidenki_Remote::Init()
 	//连接设备
 	QObject::connect(this, &c_Meijidenki_Remote::Connect_Device, m_Meijidenki_Remote, &c_Meijidenki_Client::Connect_Device);
 	QObject::connect(this, &c_Meijidenki_Remote::Disconnect_Device, m_Meijidenki_Remote, &c_Meijidenki_Client::Disconnect_Device);
-	//循环连接
-	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Connect_Loop, this, &c_Meijidenki_Remote::Connect_Loop);
 	//写数据
 	QObject::connect(this, &c_Meijidenki_Remote::Write, m_Meijidenki_Remote, &c_Meijidenki_Client::Write);
 	//设备状态改变
@@ -58,6 +56,9 @@ void c_Meijidenki_Remote::Init()
 **Function:虚函数
 *************************************************************************************************************************************************/
 void c_Meijidenki_Remote::Connect()
+{
+}
+void c_Meijidenki_Remote::Connect_Loop()
 {
 }
 /*************************************************************************************************************************************************
@@ -92,11 +93,4 @@ void c_Meijidenki_Remote::Disconnect_Done()
 	m_Meijidenki_Remote_State.insert("Connected", false);
 	emit Write_Meijidenki_Remote_State(m_Meijidenki_Remote_State);
 }
-/*************************************************************************************************************************************************
-**Function:循环连接
-*************************************************************************************************************************************************/
-void c_Meijidenki_Remote::Connect_Loop(int id, QString ip, int port)
-{
-	QThread::sleep(6);//等待6秒
-	emit Connect_Device(id, ip, port);
-}
+
