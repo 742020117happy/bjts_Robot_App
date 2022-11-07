@@ -53,7 +53,7 @@ public:
 	void Meijidenki_21_Read_Ready(qint32 id);
 signals:
 	//读准备完成
-	void ReadReady(QVariant _db);
+	void Read_Done(QVariant _db);
 	//设备状态
 	void State_Changed(qint32 _cid, quint32 _state_code);
 private:

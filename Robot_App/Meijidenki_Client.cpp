@@ -49,7 +49,7 @@ void CALLBACK c_Meijidenki_CallBack::EqCommDataCallBack(int _cid, unsigned int _
 	}
 	QVariant varData_DB;
 	varData_DB.setValue(g_Meijidenki_CallBack->m_Meijidenki_DB);
-	emit g_Meijidenki_CallBack->ReadReady(varData_DB);
+	emit g_Meijidenki_CallBack->Read_Done(varData_DB);
 }
 /*************************************************************************************************************************************************
 **Function:读完成同步
@@ -102,7 +102,7 @@ void c_Meijidenki_Client::Init()
 	//如果，客户端，状态改变，执行，本线程，状态改变函数
 	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::State_Changed, this, &c_Meijidenki_Client::State_Changed);
 	//开启监听模式{机器人，有可读取通道，对象，读取信号}
-	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::ReadReady, this, &c_Meijidenki_Client::Read_Json);
+	QObject::connect(c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::Read_Done, this, &c_Meijidenki_Client::Read_Json);
 }
 /*************************************************************************************************************************************************
 **Function:    Connect_Device(QString ip, int port)

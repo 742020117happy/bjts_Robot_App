@@ -37,7 +37,7 @@ public:
 	void Hypersen_30_Read_Ready(quint8 id);
 	void Hypersen_31_Read_Ready(quint8 id);
 signals:
-	void ReadReady(quint8 out_id);//读准备完成
+	void Read_Done(quint8 out_id);//读准备完成
 	void State_Changed(QString str);//设备状态改变
 private:
 	bool m_Hypersen_30_Read_Ready = true;

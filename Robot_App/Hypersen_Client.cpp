@@ -49,7 +49,7 @@ void c_Hypersen_CallBack::Hypersen_OutputEventFunc(uint8_t out_id, uint8_t event
 	if (event == EVENT_ROISIMPLEDISTANCERECVD)
 	{
 		//获取指定ROI的深度信息前，需要通过ROI参数接口，获取当前输出的ROI信息，（有几个ROI，ROI的ID等）
-		emit  g_Hypersen_CallBack->ReadReady(quint8(out_id));
+		emit  g_Hypersen_CallBack->Read_Done(quint8(out_id));
 	}
 	else if (event == EVENT_DEVDISCONNECT) {
 		//断开连接，回收资源
@@ -95,7 +95,7 @@ void c_Hypersen_Client::Init()
 	//如果，客户端，状态改变，执行，本线程，状态改变函数
 	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::State_Changed, this, &c_Hypersen_Client::State_Changed);
 	//开启监听模式{机器人，有可读取通道，对象，读取信号}
-	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::ReadReady, this, &c_Hypersen_Client::Read_Json);
+	QObject::connect(c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::Read_Done, this, &c_Hypersen_Client::Read_Json);
 }
 /*************************************************************************************************************************************************
 **Function:    析构函数
