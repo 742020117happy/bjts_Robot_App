@@ -42,6 +42,6 @@ void c_Local_Monitor::Connect()
 *************************************************************************************************************************************************/
 void c_Local_Monitor::Connect_Loop()
 {
-	qDebug() << "重新监听监视端口";
+	emit Status(c_Variable::g_Current_Time + "->监视服务：建立监听中");
 	QTimer::singleShot(6000, this, &c_Local_Monitor::Connect);
 }

@@ -42,6 +42,6 @@ void c_App_Control::Connect()
 *************************************************************************************************************************************************/
 void c_App_Control::Connect_Loop()
 {
-	qDebug() << "重新监听调试App";
+	emit Status(c_Variable::g_Current_Time + "->调试App服务：建立监听中" );
 	QTimer::singleShot(6000, this, &c_App_Control::Connect);
 }

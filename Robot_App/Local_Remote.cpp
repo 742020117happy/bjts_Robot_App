@@ -42,6 +42,6 @@ void c_Local_Remote::Connect()
 *************************************************************************************************************************************************/
 void c_Local_Remote::Connect_Loop()
 {
-	qDebug() << "重新监听控制端口";
+	emit Status(c_Variable::g_Current_Time + "->控制服务：建立监听中");
 	QTimer::singleShot(6000, this, &c_Local_Remote::Connect);
 }
