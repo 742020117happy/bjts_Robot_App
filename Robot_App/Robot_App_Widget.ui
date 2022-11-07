@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
+    <width>1393</width>
     <height>679</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_46">
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="2">
      <widget class="QGroupBox" name="groupBox_11">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -40,13 +40,10 @@
        <string>系统信息</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1">
-        <widget class="QListWidget" name="Worry_List">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="0" column="0">
+        <widget class="QTextEdit" name="Worry_List">
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -773,7 +770,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Work_Widget">
        <layout class="QGridLayout" name="gridLayout_61">
@@ -1352,12 +1349,15 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_51">
            <item row="0" column="0">
-            <widget class="QListWidget" name="Work_List">
+            <widget class="QTextEdit" name="Work_List">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -9106,76 +9106,16 @@
       </widget>
       <widget class="QWidget" name="Scan_Widget">
        <layout class="QGridLayout" name="gridLayout_23">
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox_12">
-          <property name="title">
-           <string>右精扫消息</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_20">
-           <item row="0" column="0">
-            <widget class="QListWidget" name="Prec_Scan_121_Cmd">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="1">
+        <item row="2" column="0">
          <widget class="QGroupBox" name="groupBox_9">
           <property name="title">
            <string>左精扫消息</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_19">
            <item row="0" column="0">
-            <widget class="QListWidget" name="Prec_Scan_120_Cmd">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QGroupBox" name="groupBox_8">
-          <property name="title">
-           <string>快扫消息</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_17">
-           <item row="0" column="0">
-            <widget class="QListWidget" name="Fast_Scan_Cmd">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QGroupBox" name="groupBox_13">
-          <property name="title">
-           <string>声纹采集消息</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_21">
-           <item row="0" column="0">
-            <widget class="QListWidget" name="Hikvision_Cmd">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+            <widget class="QTextEdit" name="Prec_Scan_120_Cmd">
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -9231,6 +9171,38 @@
             <widget class="QPushButton" name="Fast_Scan_Connect">
              <property name="text">
               <string>连接</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_12">
+          <property name="title">
+           <string>右精扫消息</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_20">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="Prec_Scan_121_Cmd">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="title">
+           <string>快扫消息</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="Fast_Scan_Cmd">
+             <property name="readOnly">
+              <bool>true</bool>
              </property>
             </widget>
            </item>

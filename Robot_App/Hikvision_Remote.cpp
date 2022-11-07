@@ -22,7 +22,6 @@ void c_Hikvision_Remote::Init()
 	QObject::connect(this, &c_Hikvision_Remote::Disconnect_Device, m_Hikvision, &c_Hikvision_Client::Disconnect_Device);
 	QObject::connect(m_Hikvision, &c_Hikvision_Client::Connect_Done,this, &c_Hikvision_Remote::Connect_Done);
 	QObject::connect(m_Hikvision, &c_Hikvision_Client::Disconnect_Done,this, &c_Hikvision_Remote::Disconnect_Done);
-	QObject::connect(m_Hikvision, &c_Hikvision_Client::Status,this, &c_Hikvision_Remote::Status);
 }
 /*************************************************************************************************************************************************
 **Function:虚函数

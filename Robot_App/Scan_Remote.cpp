@@ -48,8 +48,6 @@ void c_Scan_Remote::Init()
 	//向状态服务写入状态
 	QObject::connect(m_Scan_Remote, &c_Scan_Client::Connect_Done, this, &c_Scan_Remote::Connect_Done);
 	QObject::connect(m_Scan_Remote, &c_Scan_Client::Disconnect_Done, this, &c_Scan_Remote::Disconnect_Done);
-	//提示信息
-	QObject::connect(m_Scan_Remote, &c_Scan_Client::Status, this, [=](int state) {emit Status(c_Variable::TCP_Status(state)); });
 	//启动线程
 	m_Scan_Remote_Thread->start();
 	emit setEnabled(false);

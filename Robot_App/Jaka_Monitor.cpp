@@ -48,8 +48,6 @@ void c_Jaka_Monitor::Init()
 	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Read_Json_Done, this, &c_Jaka_Monitor::Read_Json_Done);
 	//读准备同步
 	QObject::connect(this, &c_Jaka_Monitor::Read_Ready, m_Jaka_Monitor, &c_Jaka_Client::Read_Ready);
-	//提示信息
-	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Status, this, [=](int value) {emit Status(c_Variable::TCP_Status(value)); });
 	//启动线程
 	m_Jaka_Monitor_Thread->start();
 	emit setEnabled(false);

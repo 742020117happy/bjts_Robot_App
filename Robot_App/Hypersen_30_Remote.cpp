@@ -21,6 +21,7 @@ void c_Hypersen_30_Remote::Init()
 {
 	//循环连接
 	c_Hypersen_Remote::Init();
+	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Status, [=](QString state) {emit Status(c_Variable::g_Current_Time + "->左面阵激光雷达：" + state); });
 	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Connect_Loop, this, &c_Hypersen_30_Remote::Connect_Loop);
 	QObject::connect(this, &c_Hypersen_30_Remote::Read_Ready, c_Hypersen_CallBack::g_Hypersen_CallBack, &c_Hypersen_CallBack::Hypersen_30_Read_Ready);
 }
@@ -39,8 +40,7 @@ void c_Hypersen_30_Remote::Connect()
 *************************************************************************************************************************************************/
 void c_Hypersen_30_Remote::Connect_Loop()
 {
-	c_Variable::msleep(6000);//等待6s
-	c_Hypersen_30_Remote::Connect();
+	QTimer::singleShot(6000, this, &c_Hypersen_30_Remote::Connect);
 }
 /*************************************************************************************************************************************************
 **Function:   同步接口

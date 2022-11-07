@@ -167,7 +167,7 @@ private:
 
 	QJsonObject m_DiscreteInputs;
 	QJsonObject m_InputRegisters;
-	float m_RGV_Position;
+	int m_RGV_Position;
 
 	int m_task_state;
 

@@ -12,6 +12,7 @@ public:
 	QThread *m_Jaka_Remote_Thread;
 	c_Jaka_Client *m_Jaka_Remote;
 	QJsonObject m_Jaka_Remote_State;//监控状态
+	QString m_Name;
 	QString m_Ip;
 	int m_Port;
 	public slots:

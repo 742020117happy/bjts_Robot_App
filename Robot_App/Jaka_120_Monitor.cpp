@@ -22,6 +22,8 @@ void c_Jaka_120_Monitor::Init()
 {
 	//循环连接
 	c_Jaka_Monitor::Init();
+	//提示信息
+	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Status, this, [=](int value) {emit Status(c_Variable::g_Current_Time + "->左机械臂监视：" + c_Variable::TCP_Status(value)); });
 	QObject::connect(m_Jaka_Monitor, &c_Jaka_Client::Connect_Loop, this, &c_Jaka_120_Monitor::Connect_Loop);
 }
 /*************************************************************************************************************************************************
@@ -39,6 +41,5 @@ void c_Jaka_120_Monitor::Connect()
 *************************************************************************************************************************************************/
 void c_Jaka_120_Monitor::Connect_Loop()
 {
-	c_Variable::msleep(6000);//等待6秒
-	c_Jaka_120_Monitor::Connect();
+	QTimer::singleShot(6000, this, &c_Jaka_120_Monitor::Connect);
 }

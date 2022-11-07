@@ -4,27 +4,10 @@
 **Function:全局变量声明
 *************************************************************************************************************************************************/
 QJsonObject c_Variable::g_Communicate_DB;
+QString c_Variable::g_Current_Time;
 HWND c_Variable::g_Hikvision_20_winId;
 HWND c_Variable::g_Hikvision_21_winId;
 QKeyEvent  *c_Variable::Key_F6;
-/*************************************************************************************************************************************************
-**Function:高低位转浮点型
-*************************************************************************************************************************************************/
-float c_Variable::Short_To_Float(quint16 high, quint16 low)
-{
-	if (high == 0 && low == 0) {
-		return 0;
-	}
-	int intSign, intSignRest, intExponent, intExponentRest;
-	float faResult, faDigit;
-	intSign = high / 32768;  //1000 0000 0000 0000  求第16位的值
-	intSignRest = high % 32768;//保留第1至15位的值
-	intExponent = intSignRest / 128; //1000 0000 求15至9位的值
-	intExponentRest = intSignRest % 128;//保留第8至1位的值
-	faDigit = (float)(intExponentRest * 65536 + low) / 8388608;//合成24位后 1000 0000 0000 0000 0000 0000 求第24位的值
-	faResult = (float)pow(-1, intSign) *  (faDigit + 1) * (float)pow(2, intExponent - 127);//pow(x, y)计算x的y次幂
-	return faResult;
-}
 /*************************************************************************************************************************************************
 **Function:通讯错误信息
 *************************************************************************************************************************************************/
@@ -90,10 +73,28 @@ QString c_Variable::Modbus_Status(int State)
 *************************************************************************************************************************************************/
 bool c_Variable::msleep(const int mSec)
 {
-	QEventLoop *loop = new QEventLoop;
-	QTimer::singleShot(mSec, loop, &QEventLoop::quit);
-	loop->exec();
+	QEventLoop loop;
+	QTimer::singleShot(mSec, &loop, &QEventLoop::quit);
+	loop.exec();
 	return true;
+}\
+/*************************************************************************************************************************************************
+**Function:高低位转浮点型
+*************************************************************************************************************************************************/
+float c_Variable::Short_To_Float(quint16 high, quint16 low)
+{
+	if (high == 0 && low == 0) {
+		return 0;
+	}
+	int intSign, intSignRest, intExponent, intExponentRest;
+	float faResult, faDigit;
+	intSign = high / 32768;  //1000 0000 0000 0000  求第16位的值
+	intSignRest = high % 32768;//保留第1至15位的值
+	intExponent = intSignRest / 128; //1000 0000 求15至9位的值
+	intExponentRest = intSignRest % 128;//保留第8至1位的值
+	faDigit = (float)(intExponentRest * 65536 + low) / 8388608;//合成24位后 1000 0000 0000 0000 0000 0000 求第24位的值
+	faResult = (float)pow(-1, intSign) *  (faDigit + 1) * (float)pow(2, intExponent - 127);//pow(x, y)计算x的y次幂
+	return faResult;
 }
 /*************************************************************************************************************************************************
 **Function:构造函数/读取通讯参数

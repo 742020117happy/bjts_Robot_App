@@ -55,5 +55,4 @@ signals:
 
 private:
 	QJsonObject m_State_DB;
-	QString m_Current_Time = "";//系统时间
 };

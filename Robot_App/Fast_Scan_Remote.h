@@ -9,6 +9,7 @@ public:
 	virtual ~c_Fast_Scan_Remote();
 
 	public slots:
+	void Init();
 	//外部操作接口
 	virtual void Connect();
 	virtual void Collection();

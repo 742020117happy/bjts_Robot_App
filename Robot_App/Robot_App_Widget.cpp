@@ -13,14 +13,12 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	//UI输出绑定
 	QObject::connect(m_Thread->m_RGV_Remote, &c_RGV_Remote::Set_Working, ui->RGV_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_RGV_Remote, &c_RGV_Remote::Set_Default, ui->RGV_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_RGV_Remote, &c_RGV_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->RGV遥控：" + value); });
+	
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Set_Working, ui->Jaka_120_Remote_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Set_Default, ui->Jaka_120_Remote_Working_State, &c_Fr_Light::Set_Default);
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Write_Json_Error, ui->Jaka_120_Remote_Working_State, &c_Fr_Light::Set_Error);
-	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->机械臂120遥控：" + value); });
 	QObject::connect(m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Set_Working, ui->Jaka_120_Monitor_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Set_Default, ui->Jaka_120_Monitor_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->机械臂120监视：" + value); });
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::setEnabled, ui->Jaka_120_power_on, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::setEnabled, ui->Jaka_120_power_off, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::setEnabled, ui->Jaka_120_enable, &QPushButton::setEnabled);
@@ -32,10 +30,8 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Set_Working, ui->Jaka_121_Remote_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Set_Default, ui->Jaka_121_Remote_Working_State, &c_Fr_Light::Set_Default);
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Write_Json_Error, ui->Jaka_121_Remote_Working_State, &c_Fr_Light::Set_Error);
-	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->机械臂121遥控：" + value); });
 	QObject::connect(m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Set_Working, ui->Jaka_121_Monitor_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Set_Default, ui->Jaka_121_Monitor_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->机械臂121监视：" + value); });
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::setEnabled, ui->Jaka_121_power_on, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::setEnabled, ui->Jaka_121_power_off, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::setEnabled, ui->Jaka_121_enable, &QPushButton::setEnabled);
@@ -46,7 +42,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::setEnabled, ui->Jaka_121_stop_program, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Set_Working, ui->Hypersen_30_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Set_Default, ui->Hypersen_30_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->面阵激光雷达30：" + value); });
 	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::setEnabled, ui->RUN_SINGLE_SHOT_30, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::setEnabled, this, [=](bool state) {
 		ui->RUN_CONTINUOUS_30->setEnabled(state);
@@ -56,7 +51,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::setEnabled, ui->RUN_IDLE_30, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Set_Working, ui->Hypersen_31_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Set_Default, ui->Hypersen_31_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->面阵激光雷达31：" + value); });
 	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::setEnabled, ui->RUN_SINGLE_SHOT_31, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::setEnabled, this, [=](bool state) {
 		ui->RUN_CONTINUOUS_31->setEnabled(state);
@@ -66,7 +60,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::setEnabled, ui->RUN_IDLE_31, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Set_Working, ui->Meijidenki_20_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Set_Default, ui->Meijidenki_20_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->线阵激光雷达20：" + value); });
 	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::setEnabled, this, [=](bool state) {
 		ui->Meijidenki_20_START_LMD->setEnabled(state);
 		c_Variable::msleep(3000);//等待3秒
@@ -75,7 +68,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::setEnabled, ui->Meijidenki_20_STOP_LMD, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Set_Working, ui->Meijidenki_21_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Set_Default, ui->Meijidenki_21_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->线阵激光雷达21：" + value); });
 	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::setEnabled, this, [=](bool state) {
 		ui->Meijidenki_21_START_LMD->setEnabled(state);
 		c_Variable::msleep(3000);//等待3秒
@@ -84,25 +76,16 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::setEnabled, ui->Meijidenki_21_STOP_LMD, &QPushButton::setEnabled);
 	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Set_Working, ui->Prec_Scan_120_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Set_Default, ui->Prec_Scan_120_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Prec_Scan_120_Cmd->addItem(value); });
-	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->左精扫相机：" + value); });
 	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Set_Working, ui->Prec_Scan_121_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Set_Default, ui->Prec_Scan_121_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Prec_Scan_121_Cmd->addItem(value); });
-	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->右精扫相机：" + value); });
 	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Set_Working, ui->Fast_Scan_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Set_Default, ui->Fast_Scan_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Fast_Scan_Cmd->addItem(value); });
-	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->块扫相机：" + value); });
 	QObject::connect(m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Connect_Done, ui->Hikvision_20_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Disconnect_Done, ui->Hikvision_20_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->右监控相机：" + value); });
 	QObject::connect(m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Connect_Done, ui->Hikvision_21_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Disconnect_Done, ui->Hikvision_21_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->左监控相机：" + value); });
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Set_Working, ui->Local_Remote_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Set_Default, ui->Local_Remote_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->本地控制服务：" + value); });
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_0_Set, ui->Fuction_0_Set, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_0_Reset, ui->Fuction_0_Reset, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Fuction_7, ui->Fuction_7, &QPushButton::click);//主动力位置清零
@@ -164,7 +147,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Jaka_121_play_program, this, [=](QString name) {ui->Jaka_121_program_name->setText(name); ui->Jaka_121_play_program->clicked(); });
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Set_Working, ui->Local_Monitor_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Set_Default, ui->Local_Monitor_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->本地监视服务：" + value); });
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_0_Set, ui->Fuction_0_Set, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_0_Reset, ui->Fuction_0_Reset, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Fuction_7, ui->Fuction_7, &QPushButton::click);//主动力位置清零
@@ -228,7 +210,6 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Jaka_121_play_program, this, [=](QString name) {ui->Jaka_121_program_name->setText(name); ui->Jaka_121_play_program->clicked(); });
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Set_Working, ui->App_Working_State, &c_Fr_Light::Set_Working);
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Set_Default, ui->App_Working_State, &c_Fr_Light::Set_Default);
-	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Status, this, [=](QString value) {ui->Worry_List->addItem(m_Current_Time + "->调试App服务：" + value); });
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_0_Set, ui->Fuction_0_Set, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_0_Reset, ui->Fuction_0_Reset, &QPushButton::click);//通信控制
 	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Fuction_7, ui->Fuction_7, &QPushButton::click);//主动力位置清零
@@ -351,7 +332,28 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fast_Scan_Start, ui->Fast_Scan_Collection, &QPushButton::click);//快扫采集
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Fast_Scan_Stop, ui->Fast_Scan_Stop, &QPushButton::click);//快扫停止采集																				   
 	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Work_Init, ui->Work_Start, &QPushButton::click);//触发自动巡检按钮
-	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Status, this, [=](QString value) {ui->Work_List->addItem(m_Current_Time + "->当前巡检任务：" + value); });
+	//系统消息
+	QObject::connect(m_Thread->m_RGV_Remote, &c_RGV_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Local_Remote, &c_Local_Remote::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Local_Monitor, &c_Local_Monitor::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_App_Control, &c_App_Control::Status, ui->Worry_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Work_Remote, &c_Work_Remote::Status, ui->Work_List, &QTextEdit::append);
+	QObject::connect(m_Thread->m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Prec_Scan_120_Cmd->append(value); });
+	QObject::connect(m_Thread->m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Prec_Scan_121_Cmd->append(value); });
+	QObject::connect(m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Write_String, this, [=](QString ip, int port, QString value) {ui->Fast_Scan_Cmd->append(value); });
 	//UI输入绑定
 	QObject::connect(ui->Show_Work_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Work_Widget); });
 	QObject::connect(ui->Show_Setting_Widget, &QPushButton::clicked, this, [=]() {ui->stackedWidget->setCurrentWidget(ui->Setting_Widget); });
@@ -651,6 +653,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	ui->is_RGV_Date_3->setText(QString::number(c_Variable::g_Communicate_DB.value("RGV_Date_3").toInt()));
 	ui->is_RGV_Date_4->setText(QString::number(c_Variable::g_Communicate_DB.value("RGV_Date_4").toInt()));
 	ui->is_RGV_Date_5->setText(QString::number(c_Variable::g_Communicate_DB.value("RGV_Date_5").toInt()));
+	ui->Worry_List->document()->setMaximumBlockCount(100);//只显示100条消息
 	ui->stackedWidget->setCurrentWidget(ui->Work_Widget);
 	//系统输出
 	QObject::connect(m_Thread->m_State_DB, &c_State_DB::System_Scan, this, &c_Robot_App_Widget::System_Scan);
@@ -667,6 +670,7 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 **Function:析构函数
 *************************************************************************************************************************************************/
 c_Robot_App_Widget::~c_Robot_App_Widget() {
+	m_System_Scan = false;
 	m_Thread->deleteLater();;
 	delete m_Time;
 	delete ui;
@@ -679,7 +683,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	/*************************************************************************************************************************************************
 	**Function:更新状态
 	*************************************************************************************************************************************************/
-	m_Current_Time = db.value("System_Time").toString();//更新
 	QJsonObject Work_Remote_State = db.value("Work_Remote_State").toObject();//更新
 	QJsonObject RGV_State = db.value("RGV_State").toObject();//更新
 	QJsonObject Jaka_120_Remote_State = db.value("Jaka_120_Remote_State").toObject();//更新
@@ -1744,19 +1747,14 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	/*************************************************************************************************************************************************
 	**Function:跟新系统时间
 	*************************************************************************************************************************************************/
-	ui->Status_Bar->showMessage("系统时间：" + m_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
-	if (m_Count == 20000) {
-		ui->Worry_List->clear();//半个小时清空一次
-	}
+	ui->Status_Bar->showMessage("系统时间：" + c_Variable::g_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
 	if (m_FPS == 50) {
 		m_Current_FPS = m_Time->restart() / 50;
 		m_Current_FPS = 1000 / m_Current_FPS;
 		m_FPS = 0;
 	}
-	m_Count += 1;
 	m_FPS += 1;
-	c_Variable::msleep(30);
-	emit System_Scan_Done();
+	if (m_System_Scan) { QTimer::singleShot(30, this, &c_Robot_App_Widget::System_Scan_Done); }
 }
 /*************************************************************************************************************************************************
 **Function:刷新样式表

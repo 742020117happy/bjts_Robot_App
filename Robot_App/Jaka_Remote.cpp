@@ -55,8 +55,6 @@ void c_Jaka_Remote::Init()
 	//写指令与校验
 	QObject::connect(this, &c_Jaka_Remote::Write_Json, m_Jaka_Remote, &c_Jaka_Client::Write_Json);
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Read_Json_Done, this, &c_Jaka_Remote::Read_Json_Done);
-	//提示信息
-	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Status, this, [=](int value) {emit Status(c_Variable::TCP_Status(value)); });
 	//启动线程
 	m_Jaka_Remote_Thread->start();
 	emit setEnabled(false);
@@ -130,7 +128,7 @@ void c_Jaka_Remote::Write(QJsonObject json)
 	QObject::connect(this, &c_Jaka_Remote::Set_Default, Write_Loop, &QEventLoop::quit);
 	emit Write_Json(json);
 	Write_Loop->exec();
-	emit Status(cmdName + "指令校验完成");
+	emit Status(c_Variable::g_Current_Time + m_Name + cmdName + "指令校验完成");
 	m_Writing = false;
 }
 /*************************************************************************************************************************************************
@@ -145,18 +143,18 @@ void c_Jaka_Remote::Read_Json_Done(QJsonObject json)
 	QString cmdName = json.value("cmdName").toString();
 	QString errorCode = json.value("errorCode").toString();
 	QString errorMsg = json.value("errorMsg").toString();
-	emit Status(cmdName + "指令校验开始");
+	emit Status(c_Variable::g_Current_Time + m_Name + cmdName + "指令校验开始");
 	if (errorCode == "0") {
-		emit Status(cmdName + "指令执行成功");
+		emit Status(c_Variable::g_Current_Time + m_Name + cmdName + "指令执行成功");
 		emit Write_Json_Done(cmdName);
 	}
 	if (errorCode == "1") {
-		emit Status(cmdName + "发送失败，程序发生异常,请断开设备重新连接");
+		emit Status(c_Variable::g_Current_Time + m_Name + cmdName + "发送失败，程序发生异常,请断开设备重新连接");
 		emit Write_Json_Error(cmdName);
 		emit setEnabled(false);
 	}
 	if (errorCode == "2") {
-		emit Status(cmdName + "发送失败，错误信息：" + errorMsg + ",请断开设备重新连接");
+		emit Status(c_Variable::g_Current_Time + m_Name + cmdName + "发送失败，错误信息：" + errorMsg + ",请断开设备重新连接");
 		emit Write_Json_Error(cmdName);
 		emit setEnabled(false);
 	}

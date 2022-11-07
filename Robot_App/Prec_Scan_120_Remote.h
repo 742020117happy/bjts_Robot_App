@@ -11,6 +11,7 @@ public:
 
 	public slots:
 	void Init();
+	void Connect_Server();
 	//外部操作接口
 	virtual void Connect();
 	virtual void Connect_Loop();

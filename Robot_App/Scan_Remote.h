@@ -9,6 +9,8 @@ class c_Scan_Remote : public QObject
 public:
 	explicit c_Scan_Remote(QObject *parent = nullptr);
 	virtual ~c_Scan_Remote();
+	QThread *m_Scan_Remote_Thread;
+	c_Scan_Client *m_Scan_Remote;
 	QString m_Track_Rank = "D98";//股道号
 	QString m_Begin_Time = "202209201622";//开始时间
 	QString m_Car_Type = "CHR380AL";//任务车型
@@ -40,8 +42,6 @@ signals:
 	void Status(QString status);//监视器状态
 	void Collect_Done();
 private:
-	QThread *m_Scan_Remote_Thread;
-	c_Scan_Client *m_Scan_Remote;
 	private slots :
     void Connect_Done();
 	void Disconnect_Done();

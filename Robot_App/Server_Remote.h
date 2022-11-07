@@ -15,6 +15,7 @@ public:
 	QJsonObject m_Server_State;
 	public slots:
 	void Init();
+	virtual void Connect();
 	virtual void Connect_Loop();
 	void System_Scan(QJsonObject db);
 signals:

@@ -22,6 +22,8 @@ void c_Meijidenki_20_Remote::Init()
 {
 	//循环连接
 	c_Meijidenki_Remote::Init();
+	//提示信息
+	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Status, [=](QString state) {emit Status(c_Variable::g_Current_Time + "->左线阵激光雷达：" + state); });
 	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Connect_Loop, this, &c_Meijidenki_20_Remote::Connect_Loop);
 	QObject::connect(this, &c_Meijidenki_20_Remote::Read_Ready, c_Meijidenki_CallBack::g_Meijidenki_CallBack, &c_Meijidenki_CallBack::Meijidenki_20_Read_Ready);
 }
@@ -41,8 +43,7 @@ void c_Meijidenki_20_Remote::Connect()
 *************************************************************************************************************************************************/
 void c_Meijidenki_20_Remote::Connect_Loop()
 {
-	c_Variable::msleep(6000);//等待6秒
-	c_Meijidenki_20_Remote::Connect();
+	QTimer::singleShot(6000, this, &c_Meijidenki_20_Remote::Connect);
 }
 /*************************************************************************************************************************************************
 **Function:   同步接口

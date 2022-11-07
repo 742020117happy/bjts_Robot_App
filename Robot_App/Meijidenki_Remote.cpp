@@ -47,8 +47,6 @@ void c_Meijidenki_Remote::Init()
 	//向状态服务写入状态
 	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Connect_Done, this, &c_Meijidenki_Remote::Connect_Done);
 	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Disconnect_Done, this, &c_Meijidenki_Remote::Disconnect_Done);
-	//提示信息
-	QObject::connect(m_Meijidenki_Remote, &c_Meijidenki_Client::Status, this, &c_Meijidenki_Remote::Status);
 	m_Meijidenki_Remote_Thread->start();
 	emit setEnabled(false);
 }

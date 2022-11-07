@@ -9,5 +9,6 @@ public:
 	virtual ~c_Hikvision_21_Remote();
 
 	public slots:
+	void Init();
 	virtual void Connect();
 };

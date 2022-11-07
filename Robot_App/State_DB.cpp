@@ -41,8 +41,8 @@ void c_State_DB::Init()
 *************************************************************************************************************************************************/
 void c_State_DB::Write_System_Time()
 {
-	m_Current_Time = QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss");//更新
-	m_State_DB.insert("System_Time", m_Current_Time);
+	c_Variable::g_Current_Time = QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss");//更新
+	m_State_DB.insert("System_Time", c_Variable::g_Current_Time);
 	emit System_Scan(m_State_DB);
 }
 void c_State_DB::Write_RGV_State(QJsonObject db)

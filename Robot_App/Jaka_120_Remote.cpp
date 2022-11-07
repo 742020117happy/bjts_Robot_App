@@ -19,8 +19,11 @@ c_Jaka_120_Remote::~c_Jaka_120_Remote()
 *************************************************************************************************************************************************/
 void c_Jaka_120_Remote::Init()
 {
-	//循环连接
+	m_Name = "->左机械臂控制：";
 	c_Jaka_Remote::Init();
+	//提示信息
+	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Status, this, [=](int value) {emit Status(c_Variable::g_Current_Time + "->左机械臂控制：" + c_Variable::TCP_Status(value)); });
+	//循环连接
 	QObject::connect(m_Jaka_Remote, &c_Jaka_Client::Connect_Loop, this, &c_Jaka_120_Remote::Connect_Loop);
 }
 /*************************************************************************************************************************************************
@@ -39,7 +42,6 @@ void c_Jaka_120_Remote::Connect()
 *************************************************************************************************************************************************/
 void c_Jaka_120_Remote::Connect_Loop()
 {
-	c_Variable::msleep(6000);//等待6秒
-	c_Jaka_120_Remote::Connect();
+	QTimer::singleShot(6000, this, &c_Jaka_120_Remote::Connect);
 }
 

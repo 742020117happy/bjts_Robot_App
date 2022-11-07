@@ -7,6 +7,7 @@ class c_Hikvision_Remote : public QObject {
 public:
 	explicit c_Hikvision_Remote(QObject * parent = nullptr);
 	virtual ~c_Hikvision_Remote();
+	c_Hikvision_Client *m_Hikvision;
 	public slots:
 	void Init();
 	//虚函数
@@ -18,9 +19,4 @@ signals:
 	void Connect_Done();//工作状态
 	void Disconnect_Done();//非工作状态
 	void Status(QString status);//监视器状态
-
-private:
-	c_Hikvision_Client *m_Hikvision;
-	
-	
 };

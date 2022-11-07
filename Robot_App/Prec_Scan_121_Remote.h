@@ -11,6 +11,7 @@ public:
 	public slots:
 	void Init();
 	//外部操作接口
+	void Connect_Server();
 	virtual void Connect();
 	virtual void Tran(QString value);
 	virtual void Connect_Loop();

@@ -23,7 +23,16 @@ void c_App_Control::Init()
 {
 	//初始化
 	c_Server_Remote::Init();
+	//提示信息
+	QObject::connect(m_Robot_Server, &c_Robot_Server::Status, this, [=](int state) {emit Status(c_Variable::g_Current_Time + "->调试App服务：" + c_Variable::TCP_Status(state)); });
 	QObject::connect(m_Robot_Server, &c_Robot_Server::Connect_Loop, this, &c_App_Control::Connect_Loop);
+	c_App_Control::Connect();
+}
+/*************************************************************************************************************************************************
+**Function:连接系统
+*************************************************************************************************************************************************/
+void c_App_Control::Connect()
+{
 	m_Ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	m_Port = c_Variable::g_Communicate_DB.value("App_Server_Port").toInt();
 	c_Server_Remote::m_Robot_Server->Connect_Device(m_Ip, m_Port);
@@ -33,9 +42,6 @@ void c_App_Control::Init()
 *************************************************************************************************************************************************/
 void c_App_Control::Connect_Loop()
 {
-	c_Variable::msleep(6000);//等待6秒
-	qDebug() << "重新监听调试App端口";
-	m_Ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
-	m_Port = c_Variable::g_Communicate_DB.value("App_Server_Port").toInt();
-	c_Server_Remote::m_Robot_Server->Connect_Device(m_Ip, m_Port);
+	qDebug() << "重新监听调试App";
+	QTimer::singleShot(6000, this, &c_App_Control::Connect);
 }

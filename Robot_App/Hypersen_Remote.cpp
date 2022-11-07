@@ -48,8 +48,6 @@ void c_Hypersen_Remote::Init()
 	//向状态服务写入状态
 	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Connect_Done, this, &c_Hypersen_Remote::Connect_Done);
 	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Disconnect_Done, this, &c_Hypersen_Remote::Disconnect_Done);
-	//提示信息
-	QObject::connect(m_Hypersen_Remote, &c_Hypersen_Client::Status, this, &c_Hypersen_Remote::Status);
 	//启动线程
 	m_Hypersen_Remote_Thread->start();
 	emit setEnabled(false);

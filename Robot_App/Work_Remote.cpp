@@ -407,7 +407,6 @@ void c_Work_Remote::System_Scan(QJsonObject db)
 	else {
 		m_State_32 = false;
 	}
-
 	if (m_RGV_Connected)
 	{
 		m_json = m_RGV_State.value("DB").toObject();
@@ -454,14 +453,8 @@ void c_Work_Remote::System_Scan(QJsonObject db)
 		m_InputRegisters = m_json.value("InputRegisters").toObject();
 		m_RGV_Position = c_Variable::Short_To_Float(m_InputRegisters.value("40").toInt(), m_InputRegisters.value("41").toInt());
 		if (!m_State_5 && m_RGV_Position == 0) { emit is_State_5(); }//主动力位置清零
-		if (m_RGV_Position == 0)
-		{
-			m_State_5 = true;//主动力位置清零
-		}
-		if (m_RGV_Position != 0)
-		{
-			m_State_5 = false;//主动力位置清零
-		}
+		if (m_RGV_Position == 0){m_State_5 = true;}
+		if (m_RGV_Position != 0){m_State_5 = false;}
 	}
 	if (m_Jaka_120_Monitor_Connected && m_Jaka_121_Monitor_Connected)
 	{
@@ -854,5 +847,5 @@ void c_Work_Remote::Load_Status(QString state)
 	db.insert("Status", m_Status);
 	m_Work_Remote_State.insert("DB", db);
 	emit Write_Work_Remote_State(m_Work_Remote_State);
-	emit Status(state);
+	emit Status(c_Variable::g_Current_Time + "->当前巡检任务：" + state);
 }

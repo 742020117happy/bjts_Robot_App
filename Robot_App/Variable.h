@@ -11,6 +11,7 @@ public:
 	explicit c_Variable(QObject *parent = nullptr);
 	virtual ~c_Variable();
 	static QJsonObject g_Communicate_DB;
+	static QString g_Current_Time;
 	static HWND g_Hikvision_20_winId;
 	static HWND g_Hikvision_21_winId;
 	static QKeyEvent *Key_F6;

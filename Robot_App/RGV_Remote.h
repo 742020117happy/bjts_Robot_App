@@ -20,6 +20,7 @@ public:
 	public slots:
 	void Init();
 	void Connect();
+	void Connect_Loop();
 	void Fuction_0_Set();//通信控制（线圈）
 	void Fuction_0_Reset();//通信控制（线圈）
 	void Fuction_7();//主动力位置清零（线圈，工控机立即复位）
