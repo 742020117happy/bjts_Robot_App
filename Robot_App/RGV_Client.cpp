@@ -67,8 +67,10 @@ void c_RGV_Client::Init()
 *************************************************************************************************************************************************/
 void c_RGV_Client::Connect_Device(QString ip, int port)
 {
-    //如果已连接，则返回
+	qDebug() << "c_RGV_Client::Connect_Device";
+	//如果已连接，则返回
     if (m_ModbusDevice->state() != QModbusDevice::UnconnectedState){
+		qDebug() << "c_RGV_Client::Connect_Device_return";
         return;
     }
 	if (m_Stop_Connect) {
@@ -93,10 +95,12 @@ void c_RGV_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_RGV_Client::Disconnect_Device()
 {
-	m_Stop_Connect = true;
+	qDebug() << "c_RGV_Client::Disconnect_Device";
 	if ((!m_ModbusDevice) || (m_ModbusDevice->state() != QModbusDevice::ConnectedState)){
+		qDebug() << "c_RGV_Client::Disconnect_Device_return";
         return;//如果RGV没有连接则提前退出
     }
+	m_Stop_Connect = true;
     m_ModbusDevice->disconnectDevice();
 }
 /*************************************************************************************************************************************************

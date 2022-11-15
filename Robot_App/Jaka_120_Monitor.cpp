@@ -31,9 +31,9 @@ void c_Jaka_120_Monitor::Init()
 *************************************************************************************************************************************************/
 void c_Jaka_120_Monitor::Connect()
 {
-	if (m_Jaka_Monitor_State.value("Connected").toBool()) { return; }
 	m_Ip = c_Variable::g_Communicate_DB.value("Jaka_120_Ip").toString();
 	m_Port = c_Variable::g_Communicate_DB.value("Jaka_Monitor_Port").toInt();
+	qDebug() << "c_Jaka_120_Monitor::Connect";
 	emit Connect_Device(m_Ip, m_Port);
 }
 /*************************************************************************************************************************************************

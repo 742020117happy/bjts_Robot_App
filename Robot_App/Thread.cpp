@@ -35,8 +35,8 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	QObject::connect(m_Hypersen_31_Remote_Thread, &QThread::started, m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Init);
 	QObject::connect(m_Meijidenki_20_Remote_Thread, &QThread::started, m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Init);
 	QObject::connect(m_Meijidenki_21_Remote_Thread, &QThread::started, m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Init);
-	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Init);
-	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Init);
+	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::started, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Init);
+	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::started, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Init);
 	QObject::connect(m_Prec_Scan_120_Remote_Thread, &QThread::started, m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::Init);
 	QObject::connect(m_Prec_Scan_121_Remote_Thread, &QThread::started, m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::Init);
 	QObject::connect(m_Fast_Scan_Remote_Thread, &QThread::started, m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Init);
@@ -57,8 +57,8 @@ c_Thread::c_Thread(QObject *parent) : QObject(parent)
 	QObject::connect(m_Prec_Scan_120_Remote_Thread, &QThread::finished, m_Prec_Scan_120_Remote, &c_Prec_Scan_120_Remote::deleteLater);
 	QObject::connect(m_Prec_Scan_121_Remote_Thread, &QThread::finished, m_Prec_Scan_121_Remote, &c_Prec_Scan_121_Remote::deleteLater);
 	QObject::connect(m_Fast_Scan_Remote_Thread, &QThread::finished, m_Fast_Scan_Remote, &c_Fast_Scan_Remote::deleteLater);
-	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_Remote::deleteLater);
-	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_Remote::deleteLater);
+	QObject::connect(m_Hikvision_20_Remote_Thread, &QThread::finished, m_Hikvision_20_Remote, &c_Hikvision_20_Remote::deleteLater);
+	QObject::connect(m_Hikvision_21_Remote_Thread, &QThread::finished, m_Hikvision_21_Remote, &c_Hikvision_21_Remote::deleteLater);
 	QObject::connect(m_Local_Remote_Thread, &QThread::finished, m_Local_Remote, &c_Local_Remote::deleteLater);
 	QObject::connect(m_Local_Monitor_Thread, &QThread::finished, m_Local_Monitor, &c_Local_Monitor::deleteLater);
 	QObject::connect(m_App_Control_Thread, &QThread::finished, m_App_Control, &c_App_Control::deleteLater);

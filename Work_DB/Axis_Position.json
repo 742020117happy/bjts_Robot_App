@@ -1,0 +1,22 @@
+{
+   "CRH380AL": {
+    "Axis_1_Position": 400,
+    "Axis_2_Position": 400,
+    "Header_Position": 3200
+  },
+  "CR400AFA": {
+    "Axis_1_Position": 200,
+    "Axis_2_Position": 200,
+    "Header_Position": 3200
+  },
+  "CR400AFZ": {
+    "Axis_1_Position": 200,
+    "Axis_2_Position": 200,
+    "Header_Position": 3200
+  },
+  "CRH2A": {
+    "Axis_1_Position": 150,
+    "Axis_2_Position": 150,
+    "Header_Position": 3200
+  }
+}

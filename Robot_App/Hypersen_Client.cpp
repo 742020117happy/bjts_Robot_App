@@ -126,8 +126,12 @@ c_Hypersen_Client::~c_Hypersen_Client()
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Connect_Device(QString ip, int port)
 {
+	qDebug() << " c_Hypersen_Client::Connect_Device";
 	//如果处于连接状态立即返回
-	if (m_State) {return; }
+	if (m_State) {
+		qDebug() << "c_Hypersen_Client::Connect_Device_return";
+		return; 	
+	}
 	m_State = true;
 	//如果发出断开请求，立即返回停止循环连接，复位请求标志
 	if (m_Stop_Connect) {
@@ -151,7 +155,8 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//第三步，注册输出事件回调函数（必要）
 	ret = HPS3D_SetOutputCallBack(c_Hypersen_CallBack::Hypersen_OutputEventFunc, m_device_id, NULL);
 	if (ret != RET_OK){
-			HPS3D_DisConnect(m_device_id);
+		m_State = false;
+		HPS3D_DisConnect(m_device_id);
 		emit Status("输出事件回调函数注册:..........失败!");
 		emit  Connect_Error();
 		return;
@@ -163,6 +168,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//调试时使用，调试完成后需要及时开启
 	ret = HPS3D_SetWatchDogEnable(m_device_id, false);
 	if (ret != RET_OK){
+		m_State = false;
 		HPS3D_DisConnect(m_device_id);
 		emit Status("看门狗关闭:..........失败!");
 		emit  Connect_Error();
@@ -175,6 +181,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//查询设备信息
 	ret = HPS3D_GetSDKVersion(m_sdk_version);
 	if (ret != RET_OK) {
+		m_State = false;
 		HPS3D_DisConnect(m_device_id);
 		emit Status("SDK版本信息获取:..........失败!");
 		emit  Connect_Error();
@@ -186,6 +193,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//获取设备版本前，需要确保设备已经正常连接
 	ret = HPS3D_GetDeviceVersion(m_device_id, m_device_version);
 	if (ret != RET_OK) {
+		m_State = false;
 		HPS3D_DisConnect(m_device_id);
 		emit Status("设备版本信息获取:..........失败!");
 		emit  Connect_Error();
@@ -197,6 +205,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//获取设备序列号前，需要确保设备已经正常连接
 	ret = HPS3D_GetDeviceSN(m_device_id, m_SN);
 	if (ret != RET_OK) {
+		m_State = false;
 		HPS3D_DisConnect(m_device_id);
 		emit Status("设备序列号获取:..........失败!");
 		emit  Connect_Error();
@@ -208,6 +217,7 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 	//第六步，设置设备输出类型（必要）
 	ret = HPS3D_SetOutputDataType(m_device_id, OUTPUT_DISTANCE_SIMPLE);
 	if (ret != RET_OK) {
+		m_State = false;
 		HPS3D_DisConnect(m_device_id);
 		emit Status("设置ROI简单深度事件:..........失败!");
 		emit  Connect_Error();
@@ -231,13 +241,16 @@ void c_Hypersen_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Hypersen_Client::Disconnect_Device()
 {
-	m_Stop_Connect = true;
-	if (!m_State) { return; }//如果处于未连接状态立即返回
+	qDebug() << "c_Hypersen_Client::Disconnect_Device";
+	if (!m_State) {
+		qDebug() << "c_Hypersen_Client::Disconnect_Device_return"; 
+		return; 
+	}//如果处于未连接状态立即返回
 	m_State = false;
+	m_Stop_Connect = true;
 	uint8_t ret = 0;
 	ret = HPS3D_DisConnect(m_device_id);
 	if (ret != RET_OK) {
-		m_State = true;
 		emit Status("断开设备连接:..........失败!");
 		emit  Disconnect_Error();
 	}

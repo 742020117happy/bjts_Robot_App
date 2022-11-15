@@ -12,22 +12,26 @@ c_Hikvision_Client::c_Hikvision_Client(QObject *parent) : QObject(parent)
 *************************************************************************************************************************************************/
 c_Hikvision_Client::~c_Hikvision_Client()
 {
+	m_State = false;
+	m_Stop_Connect = true;
 	//关闭预览
 	NET_DVR_StopRealPlay(lRealPlayHandle);
 	//注销用户
 	NET_DVR_Logout(lUserID);
 	//释放 SDK 资源
 	NET_DVR_Cleanup();
-	m_State = false;
 }
 /*************************************************************************************************************************************************
 **Function:连接设备
 *************************************************************************************************************************************************/
 void c_Hikvision_Client::Connect_Device(QVariant Login, QVariant Client)
 {
+	qDebug() << "c_Hikvision_Client::Connect_Device";
 	//如果处于连接状态则立即退出
-	if (m_State) { return; }
-	m_State = true;
+	if (m_State) { 
+		qDebug() << "c_Hikvision_Client::Connect_Device_return";
+		return; 
+	}
 	//初始化
 	NET_DVR_Init();
 	//设置连接时间与重连时间
@@ -45,6 +49,11 @@ void c_Hikvision_Client::Connect_Device(QVariant Login, QVariant Client)
 		&struDeviceInfoV30);
 	if (lUserID < 0) {
 		emit Status("登陆错误代码:" + QString::number(NET_DVR_GetLastError()));
+		if (m_Stop_Connect){
+			m_Stop_Connect = false;
+			return;
+		}
+		emit Connect_Loop();
 	}
 	else {
 		NET_DVR_CLIENTINFO ClientInfo = Client.value<NET_DVR_CLIENTINFO>();
@@ -65,11 +74,17 @@ void c_Hikvision_Client::Connect_Device(QVariant Login, QVariant Client)
 *************************************************************************************************************************************************/
 void c_Hikvision_Client::Disconnect_Device()
 {
-	if (!m_State) { return; }  //如果处于断开状态立即退出
+	qDebug() << "c_Hikvision_Client::Disconnect_Device";
+	if (!m_State) { 
+		qDebug() << "c_Hikvision_Client::Disconnect_Device_return";
+		return;
+	}  //如果处于断开状态立即退出
 	m_State = false;
+	m_Stop_Connect = true;
 	//关闭预览
-	if (!NET_DVR_StopRealPlay(lRealPlayHandle)) { m_State = true; };
+	NET_DVR_StopRealPlay(lRealPlayHandle);	
 	//注销用户
 	NET_DVR_Logout(lUserID);
+	emit Disconnect_Done();
 	emit Status("断开连接成功");
 }

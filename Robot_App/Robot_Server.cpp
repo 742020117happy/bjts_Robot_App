@@ -85,7 +85,11 @@ void c_Robot_Server::Init()
 void c_Robot_Server::Connect_Device(QString ip, int port)
 {    
 	//如果已经处于监听状态立即返回
-	if (m_Server->isListening()) { return; }
+	qDebug() << "c_Robot_Server::Connect_Device";
+	if (m_Server->isListening()) {
+		qDebug() << "c_Robot_Server::Connect_Device_return";
+		return;
+	}
 	//侦听一个端口，使得客户端可以使用这个端口访问服务器
 	if (!m_Server->listen(QHostAddress(ip), port)) {
 		emit Connect_Loop();
@@ -101,8 +105,10 @@ void c_Robot_Server::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Robot_Server::Disconnect_Device()
 {
-    if((!m_Socket) || (m_Socket->state() != QTcpSocket::ConnectedState))
+	qDebug() << "c_Robot_Server::Disconnect_Device";
+	if((!m_Socket) || (m_Socket->state() != QTcpSocket::ConnectedState))
     {
+		qDebug() << "c_Robot_Server::Disconnect_Device_return";
         return;
     }
     m_Socket->close();

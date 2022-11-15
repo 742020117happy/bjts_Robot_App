@@ -449,30 +449,37 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	QObject::connect(ui->Fast_Scan_Collection, &QPushButton::clicked, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Collection);
 	QObject::connect(ui->Fast_Scan_Stop, &QPushButton::clicked, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Stop);
 	QObject::connect(ui->Work_Start, &QPushButton::clicked, m_Thread->m_Work_Remote, &c_Work_Remote::Work_Start);
+
+	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Connect);//左机器人开机
+	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Connect); //左机器人开机
+	QObject::connect(ui->m_State_18, &c_Fr_Light::Working_State, m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Connect);//右机器人开机
+	QObject::connect(ui->m_State_18, &c_Fr_Light::Working_State, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Connect); //右机器人开机
+
+	QObject::connect(ui->m_State_16, &c_Fr_Light::Working_State, m_Thread->m_Jaka_120_Monitor, &c_Jaka_120_Monitor::Disconnect_Device);//左机器人关机	
+	QObject::connect(ui->m_State_16, &c_Fr_Light::Working_State, m_Thread->m_Jaka_120_Remote, &c_Jaka_120_Remote::Disconnect_Device);//左机器人关机
+	QObject::connect(ui->m_State_17, &c_Fr_Light::Working_State, m_Thread->m_Jaka_121_Monitor, &c_Jaka_121_Monitor::Disconnect_Device);//右机器人关机
+	QObject::connect(ui->m_State_17, &c_Fr_Light::Working_State, m_Thread->m_Jaka_121_Remote, &c_Jaka_121_Remote::Disconnect_Device);//右机器人关机
+
 	QObject::connect(ui->m_State_224, &c_Fr_Light::Working_State, m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Connect);//监控相机电源开
 	QObject::connect(ui->m_State_224, &c_Fr_Light::Working_State, m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Connect);//监控相机电源开
 	QObject::connect(ui->m_State_224, &c_Fr_Light::Default_State, m_Thread->m_Hikvision_20_Remote, &c_Hikvision_20_Remote::Disconnect_Device); //监控相机电源关
 	QObject::connect(ui->m_State_224, &c_Fr_Light::Default_State, m_Thread->m_Hikvision_21_Remote, &c_Hikvision_21_Remote::Disconnect_Device); //监控相机电源关
-	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, ui->Jaka_120_Monitor_Connect, &QPushButton::click);//左机器人开机
-	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, ui->Jaka_120_Remote_Connect, &QPushButton::click);//左机器人开机	
-	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, ui->Jaka_121_Monitor_Connect, &QPushButton::click);//右机器人开机
-	QObject::connect(ui->m_State_15, &c_Fr_Light::Working_State, ui->Jaka_121_Remote_Connect, &QPushButton::click);//右机器人开机	
-	QObject::connect(ui->m_State_16, &c_Fr_Light::Working_State, ui->Jaka_120_Monitor_Disconnect, &QPushButton::click);//左机器人关机
-	QObject::connect(ui->m_State_16, &c_Fr_Light::Working_State, ui->Jaka_120_Remote_Disconnect, &QPushButton::click);//左机器人关机
-	QObject::connect(ui->m_State_17, &c_Fr_Light::Working_State, ui->Jaka_121_Monitor_Disconnect, &QPushButton::click);//右机器人关机
-	QObject::connect(ui->m_State_17, &c_Fr_Light::Working_State, ui->Jaka_121_Remote_Disconnect, &QPushButton::click);//右机器人关机
-	QObject::connect(ui->m_State_225, &c_Fr_Light::Working_State, ui->Fast_Scan_Connect, &QPushButton::click);//采集机电源
-	QObject::connect(ui->m_State_225, &c_Fr_Light::Default_State, ui->Fast_Scan_Disconnect, &QPushButton::click);//采集机电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Hypersen_30_Connect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Hypersen_31_Connect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Meijidenki_20_Connect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, ui->Meijidenki_21_Connect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Hypersen_30_Disconnect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Hypersen_31_Disconnect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Meijidenki_20_Disconnect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, ui->Meijidenki_21_Disconnect, &QPushButton::click);//传感器电源
-	QObject::connect(ui->RGV_Working_State, &c_Fr_Light::Working_State, ui->Fuction_0_Set, &QPushButton::setEnabled);//通信控制
-	QObject::connect(ui->m_State_0, &c_Fr_Light::Working_State, ui->Fuction_0_Reset, &QPushButton::setEnabled);//通信控制
+
+	QObject::connect(ui->m_State_225, &c_Fr_Light::Working_State, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Connect);//采集机电源开
+	QObject::connect(ui->m_State_225, &c_Fr_Light::Default_State, m_Thread->m_Fast_Scan_Remote, &c_Fast_Scan_Remote::Disconnect_Device);//采集机电源关
+
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Connect);//传感器电源开
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Connect);//传感器电源开
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Connect);//传感器电源开
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Working_State, m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Connect);//传感器电源开
+
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, m_Thread->m_Hypersen_30_Remote, &c_Hypersen_30_Remote::Disconnect_Device);//传感器电源关
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, m_Thread->m_Hypersen_31_Remote, &c_Hypersen_31_Remote::Disconnect_Device);//传感器电源关
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, m_Thread->m_Meijidenki_20_Remote, &c_Meijidenki_20_Remote::Disconnect_Device);//传感器电源关
+	QObject::connect(ui->m_State_230, &c_Fr_Light::Default_State, m_Thread->m_Meijidenki_21_Remote, &c_Meijidenki_21_Remote::Disconnect_Device);//传感器电源关
+
+	QObject::connect(ui->RGV_Working_State, &c_Fr_Light::Working_State, ui->Fuction_0_Set, &QPushButton::setEnabled);//通信控制开
+	QObject::connect(ui->m_State_0, &c_Fr_Light::Working_State, ui->Fuction_0_Reset, &QPushButton::setEnabled);//通信控制关
 	QObject::connect(ui->m_State_0, &c_Fr_Light::Working_State, ui->Fuction_7, &QPushButton::setEnabled);//主动力位置清零
 	QObject::connect(ui->m_State_0, &c_Fr_Light::Working_State, ui->Fuction_8, &QPushButton::setEnabled);//主动力故障复位
 	QObject::connect(ui->m_State_0, &c_Fr_Light::Working_State, ui->Fuction_9, &QPushButton::setEnabled);//主动力手动左行
@@ -658,12 +665,265 @@ c_Robot_App_Widget::c_Robot_App_Widget(QWidget * parent) : QMainWindow(parent) {
 	//系统输出
 	QObject::connect(m_Thread->m_State_DB, &c_State_DB::System_Scan, this, &c_Robot_App_Widget::System_Scan);
 	QObject::connect(this, &c_Robot_App_Widget::System_Scan_Done, m_Thread->m_State_DB, &c_State_DB::Write_System_Time);
-	//加载样式表
-	keyPressEvent(c_Variable::Key_F6);
 	//启动系统
 	m_Time->start();
 	m_Thread->Start();
 	emit System_Scan_Done();
+
+	ui->Plot_1->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_0_aver_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_0_aver_distance.setColor(QColor("blue"));//设置画笔线条颜色
+	ui->Plot_1->graph(0)->setPen(m_Hypersen_30_Pen_0_aver_distance);//设置画笔颜色
+	ui->Plot_1->graph(0)->setName(QString("平均距离"));//设置画笔名称
+	ui->Plot_1->graph(0)->setAntialiasedFill(false);
+	ui->Plot_1->graph(0)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_1->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_1->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_0_max_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_0_max_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_1->graph(1)->setPen(m_Hypersen_30_Pen_0_max_distance);//设置画笔颜色
+	ui->Plot_1->graph(1)->setName(QString("最大距离"));//设置画笔名称
+	ui->Plot_1->graph(1)->setAntialiasedFill(false);
+	ui->Plot_1->graph(1)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_1->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_1->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_0_min_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_0_min_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_1->graph(2)->setPen(m_Hypersen_30_Pen_0_min_distance);//设置画笔颜色
+	ui->Plot_1->graph(2)->setName(QString("最小距离"));//设置画笔名称
+	ui->Plot_1->graph(2)->setAntialiasedFill(false);
+	ui->Plot_1->graph(2)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_1->graph(2)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_1->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_0_valid_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_0_valid_aver_amp.setColor(QColor("yellow"));//设置画笔线条颜色
+	ui->Plot_1->graph(3)->setPen(m_Hypersen_30_Pen_0_valid_aver_amp);//设置画笔颜色
+	ui->Plot_1->graph(3)->setName(QString("有效幅值"));//设置画笔名称
+	ui->Plot_1->graph(3)->setAntialiasedFill(false);
+	ui->Plot_1->graph(3)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_1->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_1->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_0_all_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_0_all_aver_amp.setColor(QColor("green"));//设置画笔线条颜色
+	ui->Plot_1->graph(4)->setPen(m_Hypersen_30_Pen_0_all_aver_amp);//设置画笔颜色
+	ui->Plot_1->graph(4)->setName(QString("平均幅值"));//设置画笔名称
+	ui->Plot_1->graph(4)->setAntialiasedFill(false);
+	ui->Plot_1->graph(4)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_1->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	//设置图表
+	ui->Plot_1->xAxis->setLabel("时间/t");//设置x坐标轴名称
+	ui->Plot_1->xAxis->setLabelColor(QColor(20, 20, 20));//设置x坐标轴名称颜色
+	ui->Plot_1->xAxis->ticker()->setTickCount(8);//8个主刻度
+	ui->Plot_1->xAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_1->xAxis->setRange(0, 50000);//设定x轴的范围
+
+	ui->Plot_1->yAxis->setLabel("距离/s");//设置y坐标轴名称
+	ui->Plot_1->yAxis->setLabelColor(QColor(20, 20, 20));//设置y坐标轴名称颜色
+	ui->Plot_1->yAxis->ticker()->setTickCount(8);//15个主刻度
+	ui->Plot_1->yAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_1->yAxis->setRange(0, 6000);//设定y轴范围
+
+	ui->Plot_1->axisRect()->setupFullAxesBox(true);//设置缩放，拖拽，设置图表的分类图标显示位置
+	ui->Plot_1->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes);
+	ui->Plot_1->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);//图例显示位置右上
+	ui->Plot_1->legend->setVisible(true);//显示图例
+
+	ui->Plot_2->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_1_aver_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_1_aver_distance.setColor(QColor("blue"));//设置画笔线条颜色
+	ui->Plot_2->graph(0)->setPen(m_Hypersen_30_Pen_1_aver_distance);//设置画笔颜色
+	ui->Plot_2->graph(0)->setName(QString("平均距离"));//设置画笔名称
+	ui->Plot_2->graph(0)->setAntialiasedFill(false);
+	ui->Plot_2->graph(0)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_2->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_2->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_1_max_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_1_max_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_2->graph(1)->setPen(m_Hypersen_30_Pen_1_max_distance);//设置画笔颜色
+	ui->Plot_2->graph(1)->setName(QString("最大距离"));//设置画笔名称
+	ui->Plot_2->graph(1)->setAntialiasedFill(false);
+	ui->Plot_2->graph(1)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_2->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_2->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_1_min_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_1_min_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_2->graph(2)->setPen(m_Hypersen_30_Pen_1_min_distance);//设置画笔颜色
+	ui->Plot_2->graph(2)->setName(QString("最小距离"));//设置画笔名称
+	ui->Plot_2->graph(2)->setAntialiasedFill(false);
+	ui->Plot_2->graph(2)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_2->graph(2)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_2->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_1_valid_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_1_valid_aver_amp.setColor(QColor("yellow"));//设置画笔线条颜色
+	ui->Plot_2->graph(3)->setPen(m_Hypersen_30_Pen_1_valid_aver_amp);//设置画笔颜色
+	ui->Plot_2->graph(3)->setName(QString("有效幅值"));//设置画笔名称
+	ui->Plot_2->graph(3)->setAntialiasedFill(false);
+	ui->Plot_2->graph(3)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_2->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_2->addGraph();//添加一条曲线
+	m_Hypersen_30_Pen_1_all_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_30_Pen_1_all_aver_amp.setColor(QColor("green"));//设置画笔线条颜色
+	ui->Plot_2->graph(4)->setPen(m_Hypersen_30_Pen_1_all_aver_amp);//设置画笔颜色
+	ui->Plot_2->graph(4)->setName(QString("平均幅值"));//设置画笔名称
+	ui->Plot_2->graph(4)->setAntialiasedFill(false);
+	ui->Plot_2->graph(4)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_2->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+																					   //设置图表
+	ui->Plot_2->xAxis->setLabel("时间/t");//设置x坐标轴名称
+	ui->Plot_2->xAxis->setLabelColor(QColor(20, 20, 20));//设置x坐标轴名称颜色
+	ui->Plot_2->xAxis->ticker()->setTickCount(8);//8个主刻度
+	ui->Plot_2->xAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_2->xAxis->setRange(0, 50000);//设定x轴的范围
+
+	ui->Plot_2->yAxis->setLabel("距离/s");//设置y坐标轴名称
+	ui->Plot_2->yAxis->setLabelColor(QColor(20, 20, 20));//设置y坐标轴名称颜色
+	ui->Plot_2->yAxis->ticker()->setTickCount(8);//15个主刻度
+	ui->Plot_2->yAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_2->yAxis->setRange(0, 6000);//设定y轴范围
+
+	ui->Plot_2->axisRect()->setupFullAxesBox(true);//设置缩放，拖拽，设置图表的分类图标显示位置
+	ui->Plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes);
+	ui->Plot_2->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);//图例显示位置右上
+	ui->Plot_2->legend->setVisible(true);//显示图例
+
+	ui->Plot_3->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_0_aver_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_0_aver_distance.setColor(QColor("blue"));//设置画笔线条颜色
+	ui->Plot_3->graph(0)->setPen(m_Hypersen_31_Pen_0_aver_distance);//设置画笔颜色
+	ui->Plot_3->graph(0)->setName(QString("平均距离"));//设置画笔名称
+	ui->Plot_3->graph(0)->setAntialiasedFill(false);
+	ui->Plot_3->graph(0)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_3->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_3->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_0_max_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_0_max_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_3->graph(1)->setPen(m_Hypersen_31_Pen_0_max_distance);//设置画笔颜色
+	ui->Plot_3->graph(1)->setName(QString("最大距离"));//设置画笔名称
+	ui->Plot_3->graph(1)->setAntialiasedFill(false);
+	ui->Plot_3->graph(1)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_3->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_3->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_0_min_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_0_min_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_3->graph(2)->setPen(m_Hypersen_31_Pen_0_min_distance);//设置画笔颜色
+	ui->Plot_3->graph(2)->setName(QString("最小距离"));//设置画笔名称
+	ui->Plot_3->graph(2)->setAntialiasedFill(false);
+	ui->Plot_3->graph(2)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_3->graph(2)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_3->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_0_valid_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_0_valid_aver_amp.setColor(QColor("yellow"));//设置画笔线条颜色
+	ui->Plot_3->graph(3)->setPen(m_Hypersen_31_Pen_0_valid_aver_amp);//设置画笔颜色
+	ui->Plot_3->graph(3)->setName(QString("有效幅值"));//设置画笔名称
+	ui->Plot_3->graph(3)->setAntialiasedFill(false);
+	ui->Plot_3->graph(3)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_3->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_3->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_0_all_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_0_all_aver_amp.setColor(QColor("green"));//设置画笔线条颜色
+	ui->Plot_3->graph(4)->setPen(m_Hypersen_31_Pen_0_all_aver_amp);//设置画笔颜色
+	ui->Plot_3->graph(4)->setName(QString("平均幅值"));//设置画笔名称
+	ui->Plot_3->graph(4)->setAntialiasedFill(false);
+	ui->Plot_3->graph(4)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_3->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+																					   //设置图表
+	ui->Plot_3->xAxis->setLabel("时间/t");//设置x坐标轴名称
+	ui->Plot_3->xAxis->setLabelColor(QColor(20, 20, 20));//设置x坐标轴名称颜色
+	ui->Plot_3->xAxis->ticker()->setTickCount(8);//8个主刻度
+	ui->Plot_3->xAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_3->xAxis->setRange(0, 50000);//设定x轴的范围
+
+	ui->Plot_3->yAxis->setLabel("距离/s");//设置y坐标轴名称
+	ui->Plot_3->yAxis->setLabelColor(QColor(20, 20, 20));//设置y坐标轴名称颜色
+	ui->Plot_3->yAxis->ticker()->setTickCount(8);//15个主刻度
+	ui->Plot_3->yAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_3->yAxis->setRange(0, 6000);//设定y轴范围
+
+	ui->Plot_3->axisRect()->setupFullAxesBox(true);//设置缩放，拖拽，设置图表的分类图标显示位置
+	ui->Plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes);
+	ui->Plot_3->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);//图例显示位置右上
+	ui->Plot_3->legend->setVisible(true);//显示图例
+
+	ui->Plot_4->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_1_aver_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_1_aver_distance.setColor(QColor("blue"));//设置画笔线条颜色
+	ui->Plot_4->graph(0)->setPen(m_Hypersen_31_Pen_1_aver_distance);//设置画笔颜色
+	ui->Plot_4->graph(0)->setName(QString("平均距离"));//设置画笔名称
+	ui->Plot_4->graph(0)->setAntialiasedFill(false);
+	ui->Plot_4->graph(0)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_4->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_4->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_1_max_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_1_max_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_4->graph(1)->setPen(m_Hypersen_31_Pen_1_max_distance);//设置画笔颜色
+	ui->Plot_4->graph(1)->setName(QString("最大距离"));//设置画笔名称
+	ui->Plot_4->graph(1)->setAntialiasedFill(false);
+	ui->Plot_4->graph(1)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_4->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_4->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_1_min_distance.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_1_min_distance.setColor(QColor("red"));//设置画笔线条颜色
+	ui->Plot_4->graph(2)->setPen(m_Hypersen_31_Pen_1_min_distance);//设置画笔颜色
+	ui->Plot_4->graph(2)->setName(QString("最小距离"));//设置画笔名称
+	ui->Plot_4->graph(2)->setAntialiasedFill(false);
+	ui->Plot_4->graph(2)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_4->graph(2)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_4->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_1_valid_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_1_valid_aver_amp.setColor(QColor("yellow"));//设置画笔线条颜色
+	ui->Plot_4->graph(3)->setPen(m_Hypersen_31_Pen_1_valid_aver_amp);//设置画笔颜色
+	ui->Plot_4->graph(3)->setName(QString("有效幅值"));//设置画笔名称
+	ui->Plot_4->graph(3)->setAntialiasedFill(false);
+	ui->Plot_4->graph(3)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_4->graph(3)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+	ui->Plot_4->addGraph();//添加一条曲线
+	m_Hypersen_31_Pen_1_all_aver_amp.setWidth(1);//设置画笔线条宽度
+	m_Hypersen_31_Pen_1_all_aver_amp.setColor(QColor("green"));//设置画笔线条颜色
+	ui->Plot_4->graph(4)->setPen(m_Hypersen_31_Pen_1_all_aver_amp);//设置画笔颜色
+	ui->Plot_4->graph(4)->setName(QString("平均幅值"));//设置画笔名称
+	ui->Plot_4->graph(4)->setAntialiasedFill(false);
+	ui->Plot_4->graph(4)->setLineStyle(QCPGraph::lsLine);//曲线画笔
+	ui->Plot_4->graph(4)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssNone, 5));//曲线形状
+
+																					   //设置图表
+	ui->Plot_4->xAxis->setLabel("时间/t");//设置x坐标轴名称
+	ui->Plot_4->xAxis->setLabelColor(QColor(20, 20, 20));//设置x坐标轴名称颜色
+	ui->Plot_4->xAxis->ticker()->setTickCount(8);//8个主刻度
+	ui->Plot_4->xAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_4->xAxis->setRange(0, 50000);//设定x轴的范围
+
+	ui->Plot_4->yAxis->setLabel("距离/s");//设置y坐标轴名称
+	ui->Plot_4->yAxis->setLabelColor(QColor(20, 20, 20));//设置y坐标轴名称颜色
+	ui->Plot_4->yAxis->ticker()->setTickCount(8);//15个主刻度
+	ui->Plot_4->yAxis->ticker()->setTickStepStrategy(QCPAxisTicker::tssReadability);//可读性优于设置
+	ui->Plot_4->yAxis->setRange(0, 6000);//设定y轴范围
+
+	ui->Plot_4->axisRect()->setupFullAxesBox(true);//设置缩放，拖拽，设置图表的分类图标显示位置
+	ui->Plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes);
+	ui->Plot_4->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);//图例显示位置右上
+	ui->Plot_4->legend->setVisible(true);//显示图例
+
+	 //加载样式表
+	keyPressEvent(c_Variable::Key_F6);
 	ui->RGV_Connect->clicked();
 }
 /*************************************************************************************************************************************************
@@ -710,8 +970,7 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	/*************************************************************************************************************************************************
 	**Function:执行计数
 	*************************************************************************************************************************************************/
-	ui->System_State->Set_State(
-		RGV_Connected &&
+	ui->System_State->Set_State(RGV_Connected &&
 		Jaka_120_Remote_Connected &&
 		Jaka_121_Remote_Connected &&
 		Jaka_120_Monitor_Connected &&
@@ -1264,8 +1523,6 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		if (State) { ui->m_State_204->Set_Working(); }
 		State = DiscreteInputs.value("223").toInt();//清扫电机
 		ui->m_State_223->Set_State(State);
-		State = DiscreteInputs.value("224").toInt();//监控相机 电源
-		ui->m_State_224->Set_State(State);
 		State = DiscreteInputs.value("225").toInt();//采集机 电源
 		ui->m_State_225->Set_State(State);
 		State = DiscreteInputs.value("226").toInt();//前快扫相机 电源
@@ -1278,6 +1535,8 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		ui->m_State_229->Set_State(State);
 		State = DiscreteInputs.value("230").toInt();//传感器 电源
 		ui->m_State_230->Set_State(State);
+		State = DiscreteInputs.value("224").toInt();//监控相机 电源
+		ui->m_State_224->Set_State(State);
 		State = DiscreteInputs.value("253").toInt();//车尾面板灯-红
 		if (State) { ui->m_State_253->Set_Default(); }
 		State = DiscreteInputs.value("254").toInt();//车尾面板灯-黄
@@ -1632,27 +1891,45 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		QJsonArray Array = json.value("0").toArray();
 
 		int distance = Array.at(0).toInt();
+		ui->Plot_1->graph(0)->addData(m_Pen_Count, distance);
 		ui->roi_aver_distance_30_0->setText(QString::number(distance));//ROI_0平均距离
+
 		distance = Array.at(1).toInt();
+		ui->Plot_1->graph(1)->addData(m_Pen_Count, distance);
 		ui->roi_max_distance_30_0->setText(QString::number(distance));//ROI_0最大距离
+
 		distance = Array.at(2).toInt();
+		ui->Plot_1->graph(2)->addData(m_Pen_Count, distance);
 		ui->roi_min_distance_30_0->setText(QString::number(distance));//ROI_0最小距离
+
 		distance = Array.at(3).toInt();
+		ui->Plot_1->graph(3)->addData(m_Pen_Count, distance);
 		ui->roi_valid_aver_amp_30_0->setText(QString::number(distance));//ROI_0有效幅值
+
 		distance = Array.at(4).toInt();
+		ui->Plot_1->graph(4)->addData(m_Pen_Count, distance);
 		ui->roi_all_aver_amp_30_0->setText(QString::number(distance));//ROI_0平均幅值
 
 		Array = json.value("1").toArray();
 
 		distance = Array.at(0).toInt();
+		ui->Plot_2->graph(0)->addData(m_Pen_Count, distance);
 		ui->roi_aver_distance_30_1->setText(QString::number(distance));//ROI_1平均距离
+
 		distance = Array.at(1).toInt();
+		ui->Plot_2->graph(1)->addData(m_Pen_Count, distance);
 		ui->roi_max_distance_30_1->setText(QString::number(distance));//ROI_1最大距离
+		
 		distance = Array.at(2).toInt();
+		ui->Plot_2->graph(2)->addData(m_Pen_Count, distance);
 		ui->roi_min_distance_30_1->setText(QString::number(distance));//ROI_1最小距离
+
 		distance = Array.at(3).toInt();
+		ui->Plot_2->graph(3)->addData(m_Pen_Count, distance);
 		ui->roi_valid_aver_amp_30_1->setText(QString::number(distance));//ROI_1有效幅值
+
 		distance = Array.at(4).toInt();
+		ui->Plot_2->graph(4)->addData(m_Pen_Count, distance);
 		ui->roi_all_aver_amp_30_1->setText(QString::number(distance));//ROI_1平均幅值
 	}
 	/*************************************************************************************************************************************************
@@ -1664,27 +1941,45 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 		QJsonArray Array = json.value("0").toArray();
 
 		int distance = Array.at(0).toInt();
+		ui->Plot_3->graph(0)->addData(m_Pen_Count, distance);
 		ui->roi_aver_distance_31_0->setText(QString::number(distance));//ROI_0平均距离
+
 		distance = Array.at(1).toInt();
+		ui->Plot_3->graph(1)->addData(m_Pen_Count, distance);
 		ui->roi_max_distance_31_0->setText(QString::number(distance));//ROI_0最大距离
+
 		distance = Array.at(2).toInt();
+		ui->Plot_3->graph(2)->addData(m_Pen_Count, distance);
 		ui->roi_min_distance_31_0->setText(QString::number(distance));//ROI_0最小距离
+
 		distance = Array.at(3).toInt();
+		ui->Plot_3->graph(3)->addData(m_Pen_Count, distance);
 		ui->roi_valid_aver_amp_31_0->setText(QString::number(distance));//ROI_0有效幅值
+
 		distance = Array.at(4).toInt();
+		ui->Plot_3->graph(4)->addData(m_Pen_Count, distance);
 		ui->roi_all_aver_amp_31_0->setText(QString::number(distance));//ROI_0平均幅值
 
 		Array = json.value("1").toArray();
 
 		distance = Array.at(0).toInt();
+		ui->Plot_4->graph(0)->addData(m_Pen_Count, distance);
 		ui->roi_aver_distance_31_1->setText(QString::number(distance));//ROI_1平均距离
+
 		distance = Array.at(1).toInt();
+		ui->Plot_4->graph(1)->addData(m_Pen_Count, distance);
 		ui->roi_max_distance_31_1->setText(QString::number(distance));//ROI_1最大距离
+
 		distance = Array.at(2).toInt();
+		ui->Plot_4->graph(2)->addData(m_Pen_Count, distance);
 		ui->roi_min_distance_31_1->setText(QString::number(distance));//ROI_1最小距离
+
 		distance = Array.at(3).toInt();
+		ui->Plot_4->graph(3)->addData(m_Pen_Count, distance);
 		ui->roi_valid_aver_amp_31_1->setText(QString::number(distance));//ROI_1有效幅值
+
 		distance = Array.at(4).toInt();
+		ui->Plot_4->graph(4)->addData(m_Pen_Count, distance);
 		ui->roi_all_aver_amp_31_1->setText(QString::number(distance));//ROI_1平均幅值
 	}
 	/*************************************************************************************************************************************************
@@ -1749,12 +2044,40 @@ void c_Robot_App_Widget::System_Scan(QJsonObject db)
 	*************************************************************************************************************************************************/
 	ui->Status_Bar->showMessage("系统时间：" + c_Variable::g_Current_Time + "              " + "刷新帧率：" + QString::number(m_Current_FPS));
 	if (m_FPS == 50) {
+		ui->Plot_1->replot();
+		ui->Plot_2->replot();
+		ui->Plot_3->replot();
+		ui->Plot_4->replot();
 		m_Current_FPS = m_Time->restart() / 50;
 		m_Current_FPS = 1000 / m_Current_FPS;
 		m_FPS = 0;
 	}
+	if (m_Pen_Count == 50000) {
+		ui->Plot_1->graph(0)->data().data()->clear();
+		ui->Plot_1->graph(1)->data().data()->clear();
+		ui->Plot_1->graph(2)->data().data()->clear();
+		ui->Plot_1->graph(3)->data().data()->clear();
+		ui->Plot_1->graph(4)->data().data()->clear();
+		ui->Plot_2->graph(0)->data().data()->clear();
+		ui->Plot_2->graph(1)->data().data()->clear();
+		ui->Plot_2->graph(2)->data().data()->clear();
+		ui->Plot_2->graph(3)->data().data()->clear();
+		ui->Plot_2->graph(4)->data().data()->clear();
+		ui->Plot_3->graph(0)->data().data()->clear();
+		ui->Plot_3->graph(1)->data().data()->clear();
+		ui->Plot_3->graph(2)->data().data()->clear();
+		ui->Plot_3->graph(3)->data().data()->clear();
+		ui->Plot_3->graph(4)->data().data()->clear();
+		ui->Plot_4->graph(0)->data().data()->clear();
+		ui->Plot_4->graph(1)->data().data()->clear();
+		ui->Plot_4->graph(2)->data().data()->clear();
+		ui->Plot_4->graph(3)->data().data()->clear();
+		ui->Plot_4->graph(4)->data().data()->clear();
+		m_Pen_Count = 0;
+	}
+	m_Pen_Count += 1;
 	m_FPS += 1;
-	if (m_System_Scan) { QTimer::singleShot(30, this, &c_Robot_App_Widget::System_Scan_Done); }
+	if (m_System_Scan) { QTimer::singleShot(20, this, &c_Robot_App_Widget::System_Scan_Done); }
 }
 /*************************************************************************************************************************************************
 **Function:刷新样式表

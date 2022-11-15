@@ -27,9 +27,9 @@ void c_Fast_Scan_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Fast_Scan_Remote::Connect()
 {
-	if (m_Scan_Remote_State.value("Connected").toBool()) { return; }
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Fast_Scan_Local_Port").toInt();
+	qDebug() << "c_Fast_Scan_Remote::Connect";
 	emit Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************

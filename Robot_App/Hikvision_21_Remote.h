@@ -11,4 +11,5 @@ public:
 	public slots:
 	void Init();
 	virtual void Connect();
+	virtual void Connect_Loop();//循环连接
 };

@@ -12,7 +12,7 @@ public:
 	void Init();
 	//虚函数
 	virtual void Connect();
-
+	virtual void Connect_Loop();//循环连接
 signals:
 	void Connect_Device(QVariant Login, QVariant Client);
 	void Disconnect_Device();

@@ -102,9 +102,11 @@ void c_Scan_Client::Init()
 void c_Scan_Client::Connect_Device(QString ip, int port)
 {
     //如果已连接则返回
+	qDebug() << "c_Scan_Client::Connect_Device";
     if(m_Socket->state() == QAbstractSocket::BoundState)
     {
-        return;
+		qDebug() << "c_Scan_Client::Connect_Device_return";
+		return;
     }
     //绑定主机、监听信号
 	m_Socket->bind(QHostAddress(ip), port);
@@ -119,7 +121,9 @@ void c_Scan_Client::Connect_Device(QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Scan_Client::Disconnect_Device()
 {
-    if((!m_Socket) || (m_Socket->state() != QAbstractSocket::BoundState)){
+	qDebug() << "c_Scan_Client::Disconnect_Device";
+	if((!m_Socket) || (m_Socket->state() != QAbstractSocket::BoundState)){
+		qDebug() << "c_Scan_Client::Disconnect_Device_return";
         return;
     }
     m_Socket->close();

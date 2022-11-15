@@ -39,7 +39,7 @@ void c_Work_Remote::Start_Cmd(QJsonObject object)
 		m_Car_Type = object.value("Car_Type").toString();
 		m_Car_Num = object.value("Car_Num").toString();
 		m_Work_Num = m_Begin_Time + m_Car_Type + m_Car_Num;
-		Init();
+		Load_Status("初始化参数");
 	}
 	if (m_Work_Start) {
 		Load_Status("加载巡检任务程序");

@@ -30,3 +30,7 @@ void c_Hikvision_Remote::Connect()
 {
 	
 }
+void c_Hikvision_Remote::Connect_Loop()
+{
+
+}

@@ -18,6 +18,7 @@ c_Hikvision_21_Remote::~c_Hikvision_21_Remote() {
 void c_Hikvision_21_Remote::Init()
 {
 	c_Hikvision_Remote::Init();
+	QObject::connect(m_Hikvision, &c_Hikvision_Client::Connect_Loop, this, &c_Hikvision_21_Remote::Connect_Loop);
 	QObject::connect(m_Hikvision, &c_Hikvision_Client::Status, this, [=](QString value) {emit Status(c_Variable::g_Current_Time + "->左监控相机：" + value); });
 }
 /*************************************************************************************************************************************************
@@ -25,7 +26,7 @@ void c_Hikvision_21_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Hikvision_21_Remote::Connect()
 {
-	c_Variable::msleep(10000);//等待10s
+	c_Variable::msleep(20000);//等待20s
 
 	QString ip = c_Variable::g_Communicate_DB.value("Hikvision_21_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Hikvision_21_Port").toInt();
@@ -47,6 +48,10 @@ void c_Hikvision_21_Remote::Connect()
 	ClientInfo.sMultiCastIP = NULL;
 	QVariant Client;
 	Client.setValue(ClientInfo);
-	
+	qDebug() << "c_Hikvision_21_Remote::Connect";
 	emit Connect_Device(Login, Client);
+}
+void c_Hikvision_21_Remote::Connect_Loop()
+{
+	QTimer::singleShot(6000, this, &c_Hikvision_21_Remote::Connect);
 }

@@ -16,7 +16,7 @@ public:
 	public slots:
 	//初始化接口
 	void Init();
-	void Connect_Loop();//循环连接
+	virtual void Connect_Loop();//循环连接
 	//虚函数
 	virtual void Connect();
 	void Run_Single_Shot();

@@ -116,8 +116,12 @@ void c_Meijidenki_Client::Init()
 *************************************************************************************************************************************************/
 void c_Meijidenki_Client::Connect_Device(int id, QString ip, int port)
 {
+	qDebug() << " c_Meijidenki_Client::Connect_Device";
 	//如果处于连接状态立即返回
-	if (m_State) { return; }
+	if (m_State) { 
+		qDebug() << "c_Meijidenki_Client::Connect_Device_return"; 
+		return; 
+	}
 	m_State = true;
 	//如果发出断开请求，立即返回停止循环连接，复位请求标志
 	if (m_Stop_Connect) {
@@ -128,7 +132,9 @@ void c_Meijidenki_Client::Connect_Device(int id, QString ip, int port)
 	m_device_id = id;
 	m_ip = ip;
 	m_port = port;
-	OpenEquipmentComm(id, ip.toLatin1().data(), port);
+	if (!OpenEquipmentComm(id, ip.toLatin1().data(), port)) {
+		m_State = false;
+	}
 	emit Status("正在尝试连接中");
 }
 /*************************************************************************************************************************************************
@@ -141,15 +147,21 @@ void c_Meijidenki_Client::Connect_Device(int id, QString ip, int port)
 *************************************************************************************************************************************************/
 void c_Meijidenki_Client::Disconnect_Device()
 {
-	m_Stop_Connect = true;
-	if (!m_State) { return; }//如果处于未连接状态立即返回
+	qDebug() << "c_Meijidenki_Client::Disconnect_Device";
+	if (!m_State) {
+		qDebug() << "c_Meijidenki_Client::Disconnect_Device_return";
+		return;
+	}//如果处于未连接状态立即返回
 	m_State = false;
+	m_Stop_Connect = true;
 	if (!CloseEquipmentComm(m_device_id)) {
-		m_State = true;
+		emit Disconnect_Done();
 		emit Disconnect_Error();
 		emit Status("断开设备连接:..........失败!");
 	}
 	else {
+		m_State = false;
+		emit Disconnect_Done();
 		emit Status("断开设备连接:..........成功!");
 	}
 }
@@ -241,6 +253,7 @@ void c_Meijidenki_Client::State_Changed(qint32 _cid, quint32 _state_code)
 		m_State = false;
 		CloseEquipmentComm(m_device_id);
 		emit Connect_Error();
+		emit  Disconnect_Done();
 		emit Status("连接设备.................失败");
 		//如果发出断开请求，立即返回停止循环连接，复位请求标志
 		if (m_Stop_Connect) {

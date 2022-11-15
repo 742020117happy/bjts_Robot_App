@@ -38,9 +38,9 @@ void c_Prec_Scan_120_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Prec_Scan_120_Remote::Connect()
 {
-	if (m_Scan_Remote_State.value("Connected").toBool()) { return; }
 	QString ip = c_Variable::g_Communicate_DB.value("Local_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Prec_Scan_120_Local_Port").toInt();
+	qDebug() << "c_Prec_Scan_120_Remote::Connect";
 	emit Connect_Device(ip, port);
 }
 void c_Prec_Scan_120_Remote::Connect_Server()

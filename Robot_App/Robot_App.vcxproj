@@ -103,6 +103,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App_Control.cpp" />
+    <ClCompile Include="Custom_Plot.cpp" />
     <ClCompile Include="Hikvision_20_Remote.cpp" />
     <ClCompile Include="Hikvision_21_Remote.cpp" />
     <ClCompile Include="Hikvision_Client.cpp" />
@@ -212,6 +213,7 @@
     <QtMoc Include="Local_Remote.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="Custom_Plot.h" />
     <ClInclude Include="DataType.h" />
     <ClInclude Include="DecodeCardSdk.h" />
     <ClInclude Include="HCNetSDK.h" />

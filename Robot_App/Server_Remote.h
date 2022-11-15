@@ -60,12 +60,12 @@ signals:
 	void Jaka_120_enable();//左机器人上使能
 	void Jaka_120_play_program(QString programName);//左机械臂运行轨迹文件
 	void Jaka_120_stop_program();//左机械臂运行轨迹文件
-	void Jaka_121_power_on();//左机械臂打开电源
-	void Jaka_121_power_off();//左机械臂关闭电源
-	void Jaka_121_disable();//左机器人下使能
-	void Jaka_121_enable();//左机器人上使能
-	void Jaka_121_play_program(QString programName);//左机械臂运行轨迹文件
-	void Jaka_121_stop_program();//左机械臂运行轨迹文件 
+	void Jaka_121_power_on();//右机械臂打开电源
+	void Jaka_121_power_off();//右机械臂关闭电源
+	void Jaka_121_disable();//右机器人下使能
+	void Jaka_121_enable();//右机器人上使能
+	void Jaka_121_play_program(QString programName);//右机械臂运行轨迹文件
+	void Jaka_121_stop_program();//右机械臂运行轨迹文件 
 private:
 	QJsonObject m_State_DB;
 	QString m_Cmd_Name;

@@ -32,10 +32,10 @@ void c_Meijidenki_20_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Meijidenki_20_Remote::Connect()
 {
-	if (m_Meijidenki_Remote_State.value("Connected").toBool()) { return; }
     m_device_id = c_Variable::g_Communicate_DB.value("Meijidenki_20_Id").toInt();
 	QString ip = c_Variable::g_Communicate_DB.value("Meijidenki_20_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Meijidenki_20_Port").toInt();
+	qDebug() << "c_Meijidenki_20_Remote::Connect";
 	emit Connect_Device(m_device_id, ip, port);
 }
 /*************************************************************************************************************************************************

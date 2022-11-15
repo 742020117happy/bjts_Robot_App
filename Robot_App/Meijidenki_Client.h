@@ -72,6 +72,7 @@ public:
 	explicit c_Meijidenki_Client(QObject * parent = nullptr);
 	virtual ~c_Meijidenki_Client();
 	bool m_State = false;
+	bool m_Stop_Connect = false;
 
 	public slots:
 	void Init();//子线程初始化
@@ -96,7 +97,6 @@ private:
 	QString m_ip = "";
 	int m_port = 0;
 	QJsonObject m_Value;
-	bool m_Stop_Connect;
 	private slots :
 	void Read_Json(QVariant db);//读Json数据
 	void State_Changed(qint32 _cid, quint32 _state_code);//状态改变

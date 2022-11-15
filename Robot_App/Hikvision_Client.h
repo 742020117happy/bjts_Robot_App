@@ -14,6 +14,7 @@ public:
 	virtual ~c_Hikvision_Client();
 	LONG lUserID;
 	LONG lRealPlayHandle;
+	bool m_Stop_Connect = false;
 	bool m_State = false;
 
 	public slots:
@@ -23,5 +24,6 @@ public:
 signals:
 	void Connect_Done();//工作状态
 	void Disconnect_Done();//非工作状态
+	void Connect_Loop();//循环连接
 	void Status(QString status);//监视器状态
 };

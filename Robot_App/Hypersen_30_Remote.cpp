@@ -30,9 +30,9 @@ void c_Hypersen_30_Remote::Init()
 *************************************************************************************************************************************************/
 void c_Hypersen_30_Remote::Connect()
 {
-	if (m_Hypersen_Remote_State.value("Connected").toBool()) { return; }
 	QString ip = c_Variable::g_Communicate_DB.value("Hypersen_30_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("Hypersen_30_Port").toInt();
+	qDebug() << "c_Hypersen_30_Remote::Connect";
 	emit Connect_Device(ip, port);
 }
 /*************************************************************************************************************************************************

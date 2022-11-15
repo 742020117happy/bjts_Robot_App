@@ -256,6 +256,9 @@
     <Filter Include="业务层（子类）\海康相机\左监控相机">
       <UniqueIdentifier>{05f9e0d0-c0ca-4c0e-9053-686ec3890be6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="软件开发工具包（与父类组合）\画图控件工具包\曲线图">
+      <UniqueIdentifier>{598a6490-d181-4493-a3bb-b03b6d1f122c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Jaka_120_Remote.cpp">
@@ -381,6 +384,9 @@
     <ClCompile Include="Hikvision_Remote.cpp">
       <Filter>通讯层（父类）\监控相机遥控</Filter>
     </ClCompile>
+    <ClCompile Include="Custom_Plot.cpp">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\曲线图</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Jaka_120_Remote.h">
@@ -499,6 +505,9 @@
     </QtMoc>
     <QtMoc Include="Hikvision_Remote.h">
       <Filter>通讯层（父类）\监控相机遥控</Filter>
+    </QtMoc>
+    <QtMoc Include="Custom_Plot.h">
+      <Filter>软件开发工具包（与父类组合）\画图控件工具包\曲线图</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

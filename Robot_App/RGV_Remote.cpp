@@ -71,9 +71,9 @@ void c_RGV_Remote::Init()
 *************************************************************************************************************************************************/
 void c_RGV_Remote::Connect()
 {
-	if (m_RGV_Remote_State.value("Connected").toBool()) { return; }
 	QString ip = c_Variable::g_Communicate_DB.value("RGV_Ip").toString();
 	int port = c_Variable::g_Communicate_DB.value("RGV_Port").toInt();
+	qDebug() << "c_RGV_Remote::Connect";
 	emit Connect_Device(ip, port);
 }
 void c_RGV_Remote::Connect_Loop()

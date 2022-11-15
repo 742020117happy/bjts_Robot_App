@@ -71,48 +71,50 @@ void c_Server_Remote::Disconnect_Done()
 //收到Ai服务器读请求，发送系统状态，解决粘包问题
 void c_Server_Remote::Read_Json_Done(QJsonObject json)
 {
+	qDebug() << json;
 	m_Cmd_Name = json.value("Cmd_Name").toString();
 	m_Value = json.value("Value").toBool();
-	if (m_Cmd_Name == "Read_Ready" && m_Value) { m_Robot_Server->Write_Json(m_State_DB); }
-	if (m_Cmd_Name == "Work_Start") { emit Start_Cmd(json);  m_Robot_Server->Write_Json(json);}
-	if (m_Cmd_Name == "00000" && m_Value) { emit Fuction_0_Set(); }
-	if (m_Cmd_Name == "00000" && !m_Value) { emit Fuction_0_Reset(); }
-	if (m_Cmd_Name == "00007" && m_Value) { emit Fuction_7();}
-	if (m_Cmd_Name == "00008" && m_Value) { emit Fuction_8(); }
-	if (m_Cmd_Name == "00009" && m_Value) { emit Fuction_9_Set(); }
-	if (m_Cmd_Name == "00009" && !m_Value) { emit Fuction_9_Reset(); }
-	if (m_Cmd_Name == "00010" && m_Value) { emit Fuction_10_Set(); }
-	if (m_Cmd_Name == "00010" && !m_Value) { emit Fuction_10_Reset(); }
-	if (m_Cmd_Name == "00011" && m_Value) { emit Fuction_11(); }
-	if (m_Cmd_Name == "00012" && m_Value) { emit Fuction_12(); }
-	if (m_Cmd_Name == "00013" && m_Value) { emit Fuction_13(); }
-	if (m_Cmd_Name == "00014" && m_Value) { emit Fuction_14(); }
-	if (m_Cmd_Name == "00015" && m_Value) { emit Fuction_15(); }
-	if (m_Cmd_Name == "00016" && m_Value) { emit Fuction_16(); }
-	if (m_Cmd_Name == "00017" && m_Value) { emit Fuction_17(); }
-	if (m_Cmd_Name == "00018" && m_Value) { emit Fuction_18(); }
-	if (m_Cmd_Name == "00019" && m_Value) { emit Fuction_19_Set(); }
-	if (m_Cmd_Name == "00019" && !m_Value) { emit Fuction_19_Reset(); }
-	if (m_Cmd_Name == "00020" && m_Value) { emit Fuction_20(); }
-	if (m_Cmd_Name == "00021" && m_Value) { emit Fuction_21_Set(); }
-	if (m_Cmd_Name == "00021" && !m_Value) { emit Fuction_21_Reset(); }
-	if (m_Cmd_Name == "00022" && m_Value) { emit Fuction_22_Set(); }
-	if (m_Cmd_Name == "00022" && !m_Value) { emit Fuction_22_Reset(); }
-	if (m_Cmd_Name == "00024" && m_Value) { emit Fuction_24(json.value("Position").toInt()); }
-	if (m_Cmd_Name == "00025" && m_Value) { emit Fuction_25(json.value("Position").toInt()); }
-	if (m_Cmd_Name == "00026" && m_Value) { emit Fuction_26(); }
-	if (m_Cmd_Name == "40000" && m_Value) { emit Date_0(json.value("Position").toInt(), json.value("Speed").toInt()); }
-	if (m_Cmd_Name == "40004" && m_Value) { emit Date_4(json.value("Position").toInt(), json.value("Speed").toInt()); }
-	if (m_Cmd_Name == "Jaka_120_power_on" && m_Value) { emit Jaka_120_power_on(); }
-	if (m_Cmd_Name == "Jaka_120_power_off" && m_Value) { emit Jaka_120_power_off(); }
-	if (m_Cmd_Name == "Jaka_120_disable_robot" && m_Value) { emit Jaka_120_disable(); }
-	if (m_Cmd_Name == "Jaka_120_enable_robot" && m_Value) { emit Jaka_120_enable(); }
-	if (m_Cmd_Name == "Jaka_120_play_program" && m_Value) { emit Jaka_120_play_program(json.value("programName").toString()); }
-	if (m_Cmd_Name == "Jaka_120_stop_program" && m_Value) { emit Jaka_120_stop_program(); }
-	if (m_Cmd_Name == "Jaka_121_power_on" && m_Value) { emit Jaka_121_power_on(); }
-	if (m_Cmd_Name == "Jaka_121_power_off" && m_Value) { emit Jaka_121_power_off(); }
-	if (m_Cmd_Name == "Jaka_121_disable_robot" && m_Value) { emit Jaka_121_disable(); }
-	if (m_Cmd_Name == "Jaka_121_enable_robot" && m_Value) { emit Jaka_121_enable(); }
-	if (m_Cmd_Name == "Jaka_121_play_program" && m_Value) { emit Jaka_121_play_program(json.value("programName").toString()); }
-	if (m_Cmd_Name == "Jaka_121_stop_program" && m_Value) { emit Jaka_121_stop_program(); }
+	if (m_Cmd_Name == "Read_Ready" && m_Value) { m_Robot_Server->Write_Json(m_State_DB); }//服务器读准备就绪
+	if (m_Cmd_Name == "Work_Start") { emit Start_Cmd(json); }//开始巡检
+	if (m_Cmd_Name == "00000" && m_Value) { emit Fuction_0_Set(); }//通信控制
+	if (m_Cmd_Name == "00000" && !m_Value) { emit Fuction_0_Reset(); }//通信控制
+	if (m_Cmd_Name == "00007" && m_Value) { emit Fuction_7(); }//主动力位置清零
+	if (m_Cmd_Name == "00008" && m_Value) { emit Fuction_8(); }//主动力故障复位
+	if (m_Cmd_Name == "00009" && m_Value) { emit Fuction_9_Set(); }//主动力手动左行
+	if (m_Cmd_Name == "00009" && !m_Value) { emit Fuction_9_Reset(); }//主动力手动左行
+	if (m_Cmd_Name == "00010" && m_Value) { emit Fuction_10_Set(); }//主动力手动右行
+	if (m_Cmd_Name == "00010" && !m_Value) { emit Fuction_10_Reset(); }//主动力手动右行
+	if (m_Cmd_Name == "00011" && m_Value) { emit Fuction_11(); }//正向连续运行
+	if (m_Cmd_Name == "00012" && m_Value) { emit Fuction_12(); }//返向连续运行
+	if (m_Cmd_Name == "00013" && m_Value) { emit Fuction_13(); }//返向连续运行再启动
+	if (m_Cmd_Name == "00014" && m_Value) { emit Fuction_14(); }//急停
+	if (m_Cmd_Name == "00015" && m_Value) { emit Fuction_15(); }//左机器人开机
+	if (m_Cmd_Name == "00016" && m_Value) { emit Fuction_16(); }//左机器人关机
+	if (m_Cmd_Name == "00017" && m_Value) { emit Fuction_17(); }//右机器人开机
+	if (m_Cmd_Name == "00018" && m_Value) { emit Fuction_18(); }//右机器人关机
+	if (m_Cmd_Name == "00019" && m_Value) { emit Fuction_19_Set(); }//上电
+	if (m_Cmd_Name == "00019" && !m_Value) { emit Fuction_19_Reset(); }//下电
+	if (m_Cmd_Name == "00020" && m_Value) { emit Fuction_20(); }//充电回原点
+	if (m_Cmd_Name == "00021" && m_Value) { emit Fuction_21_Set(); }//清扫电机
+	if (m_Cmd_Name == "00021" && !m_Value) { emit Fuction_21_Reset(); }//清扫电机
+	if (m_Cmd_Name == "00022" && m_Value) { emit Fuction_22_Set(); }//风刀电机
+	if (m_Cmd_Name == "00022" && !m_Value) { emit Fuction_22_Reset(); }//风刀电机
+	if (m_Cmd_Name == "00024" && m_Value) { emit Fuction_24(json.value("Position").toInt()); }//轴1移动
+	if (m_Cmd_Name == "00025" && m_Value) { emit Fuction_25(json.value("Position").toInt()); }//轴2移动
+	if (m_Cmd_Name == "00026" && m_Value) { emit Fuction_26(); }//开始充电
+	if (m_Cmd_Name == "00027" && m_Value) { emit Fuction_27(); }//结束充电
+	if (m_Cmd_Name == "40000" && m_Value) { emit Date_0(json.value("Position").toInt(), json.value("Speed").toInt()); }//左升降台
+	if (m_Cmd_Name == "40004" && m_Value) { emit Date_4(json.value("Position").toInt(), json.value("Speed").toInt()); }//右升降台
+	if (m_Cmd_Name == "Jaka_120_power_on" && m_Value) { emit Jaka_120_power_on(); }//左机械臂打开电源
+	if (m_Cmd_Name == "Jaka_120_power_off" && m_Value) { emit Jaka_120_power_off(); }//左机械臂关闭电源
+	if (m_Cmd_Name == "Jaka_120_disable_robot" && m_Value) { emit Jaka_120_disable(); }//左机器人下使能
+	if (m_Cmd_Name == "Jaka_120_enable_robot" && m_Value) { emit Jaka_120_enable(); }//左机器人上使能
+	if (m_Cmd_Name == "Jaka_120_play_program" && m_Value) { emit Jaka_120_play_program(json.value("programName").toString()); }//左机械臂运行轨迹文件
+	if (m_Cmd_Name == "Jaka_120_stop_program" && m_Value) { emit Jaka_120_stop_program(); }//左机械臂停止运行轨迹文件
+	if (m_Cmd_Name == "Jaka_121_power_on" && m_Value) { emit Jaka_121_power_on(); }//右机械臂打开电源
+	if (m_Cmd_Name == "Jaka_121_power_off" && m_Value) { emit Jaka_121_power_off(); }//右机械臂关闭电源
+	if (m_Cmd_Name == "Jaka_121_disable_robot" && m_Value) { emit Jaka_121_disable(); }//右机器人下使能
+	if (m_Cmd_Name == "Jaka_121_enable_robot" && m_Value) { emit Jaka_121_enable(); }//右机器人上使能
+	if (m_Cmd_Name == "Jaka_121_play_program" && m_Value) { emit Jaka_121_play_program(json.value("programName").toString()); }//右机械臂运行轨迹文件
+	if (m_Cmd_Name == "Jaka_121_stop_program" && m_Value) { emit Jaka_121_stop_program(); }//右机械臂停止运行轨迹文件
 }
